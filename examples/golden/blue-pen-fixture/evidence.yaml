@@ -1,0 +1,27 @@
+evidence:
+  - evidence_id: EV-001
+    content: Night-shift staff leave wet umbrellas in an unused x-ray archive because the public rack is monitored.
+    source_type: observation
+    source_reference: fictional_fixture_observation_01
+    rights:
+      status: owned
+      notes: Created for this fixture.
+    authority: source_backed
+    confidence: high
+    dramatic_affordances:
+      - concealed meeting place
+      - recurring rain sound
+      - institutional workaround
+
+  - evidence_id: EV-002
+    content: Refilled fountain-pen ink leaves a different edge and drying pattern than the original signature pen.
+    source_type: research
+    source_reference: fictional_fixture_research_02
+    rights:
+      status: owned
+      notes: Created for this fixture; verify real-world claims before production use.
+    authority: creative_proposal
+    confidence: low
+    dramatic_affordances:
+      - blue-ink setup and payoff
+      - procedural clue

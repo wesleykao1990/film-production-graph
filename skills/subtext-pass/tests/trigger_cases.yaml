@@ -1,0 +1,12 @@
+should_trigger:
+  - input: Rewrite this approved dialogue scene to reduce direct exposition without changing its outcome.
+  - input: Apply the subtext pass after the dialogue draft.
+should_not_trigger:
+  - input: Generate three independent premises from these interviews.
+  - input: Check whether Mara's coat changes between shots.
+  - input: Compose music for this sequence.
+adjacent_skill_negatives:
+  - skill: dialogue-voice-audit
+    input: Determine whether Mara and Ivo could swap these lines unchanged.
+  - skill: continuity-review
+    input: Check who knows the audit file exists at the start of the scene.

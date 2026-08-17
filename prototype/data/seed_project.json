@@ -1,0 +1,172 @@
+{
+  "project": {
+    "id": "project_blue_pen",
+    "name": "Blue Pen Microfilm",
+    "description": "Deterministic reference project demonstrating canon, lineage, skills, audio state, and human approval."
+  },
+  "artifacts": [
+    {
+      "id": "art_constitution",
+      "version_id": "ver_constitution_1",
+      "artifact_type": "creative_constitution",
+      "title": "Creative Constitution",
+      "status": "locked",
+      "payload": {
+        "emotional_promise": "A procedural favor becomes an irreversible act of control.",
+        "thematic_argument": {
+          "claim_a": "Protection can justify withholding the truth.",
+          "claim_b": "Withholding the truth removes another person's right to choose."
+        },
+        "forbidden_defaults": ["generic threat", "explanatory monologue", "sentimental resolution"]
+      }
+    },
+    {
+      "id": "art_evidence",
+      "version_id": "ver_evidence_1",
+      "artifact_type": "evidence_item",
+      "title": "Archive Room Evidence Bank",
+      "status": "locked",
+      "payload": {
+        "items": [
+          {"id": "EV-001", "fact": "The archive still uses discontinued 90gsm audit paper.", "authority": "source-backed"},
+          {"id": "EV-002", "fact": "Blue ink is stored beside the missing audit file.", "authority": "canonical"}
+        ]
+      }
+    },
+    {
+      "id": "art_mara",
+      "version_id": "ver_mara_1",
+      "artifact_type": "character",
+      "title": "Mara",
+      "status": "locked",
+      "payload": {
+        "character_id": "MARA",
+        "public_mask": "Procedurally calm and helpful.",
+        "private_desire": "Keep her brother out of the fraud investigation.",
+        "pressure_behaviors": ["becomes excessively precise", "turns labels away"],
+        "voice_fingerprint": "Short statement followed by a qualifying clause."
+      }
+    },
+    {
+      "id": "art_ivo",
+      "version_id": "ver_ivo_1",
+      "artifact_type": "character",
+      "title": "Ivo",
+      "status": "locked",
+      "payload": {
+        "character_id": "IVO",
+        "public_mask": "Tired compliance.",
+        "private_desire": "Force Mara to admit that protection is also control.",
+        "pressure_behaviors": ["deliberately misunderstands", "waits past acceptable silence"],
+        "voice_fingerprint": "Plain statements with delayed questions."
+      }
+    },
+    {
+      "id": "art_relationship",
+      "version_id": "ver_relationship_1",
+      "artifact_type": "relationship",
+      "title": "Mara ↔ Ivo",
+      "status": "locked",
+      "payload": {
+        "from": "MARA",
+        "to": "IVO",
+        "power": -1,
+        "trust": -1,
+        "debt": 2,
+        "unresolved_history": "Ivo took public blame for Mara seven years earlier."
+      }
+    },
+    {
+      "id": "art_beats",
+      "version_id": "ver_beats_1",
+      "artifact_type": "beat_graph",
+      "title": "Causal Beat Graph",
+      "status": "locked",
+      "payload": {
+        "beats": [
+          {"id": "B10", "actor": "MARA", "choice": "Use the copied sheet.", "outcome": "Ivo notices the paper stock."},
+          {"id": "B12", "actor": "IVO", "choice": "Name the file before Mara reveals it.", "outcome": "Power reverses."},
+          {"id": "B14", "actor": "MARA", "choice": "Lie about her brother.", "outcome": "Ivo signs and the lie becomes evidence."}
+        ]
+      }
+    },
+    {
+      "id": "art_scene_contract",
+      "version_id": "ver_scene_contract_1",
+      "artifact_type": "scene_contract",
+      "title": "Scene Contract S07",
+      "status": "locked",
+      "payload": {
+        "scene_id": "S07",
+        "purpose": "Force Mara to choose between protecting her brother and preserving Ivo's right to choose.",
+        "objectives": {"MARA": "Obtain the signature without revealing the copy.", "IVO": "Force Mara to choose."},
+        "turn": "Ivo names the supposedly secret file.",
+        "end_state": {"power": {"MARA": -3, "IVO": 3}, "trust": -3},
+        "forbidden": ["explanatory monologue", "generic threat", "new document"],
+        "required_facts": ["Ivo knows Mara has a copy before the scene begins."]
+      }
+    },
+    {
+      "id": "art_screenplay_scene",
+      "version_id": "ver_screenplay_scene_1",
+      "artifact_type": "screenplay_scene",
+      "title": "Screenplay Scene S07",
+      "status": "approved",
+      "payload": {
+        "scene_id": "S07",
+        "heading": "INT. X-RAY ARCHIVE — NIGHT",
+        "lines": [
+          {"line_id": "L01", "speaker": "MARA", "text": "You know why I need your signature."},
+          {"line_id": "L02", "speaker": "IVO", "text": "Because you removed the original audit file."},
+          {"line_id": "L03", "speaker": "MARA", "text": "This replacement page is exactly the same."},
+          {"line_id": "L04", "speaker": "IVO", "text": "It is different paper, and you know it."},
+          {"line_id": "L05", "speaker": "MARA", "text": "Please sign it so we can protect my brother."},
+          {"line_id": "L06", "speaker": "IVO", "text": "Did your brother see the file?"},
+          {"line_id": "L07", "speaker": "MARA", "text": "He never saw it."},
+          {"line_id": "L08", "speaker": "IVO", "text": "Then explain the blue ink on my cuff."}
+        ],
+        "outcome": "Ivo signs after Mara lies about her brother."
+      }
+    },
+    {
+      "id": "art_audio_bible",
+      "version_id": "ver_audio_bible_1",
+      "artifact_type": "audio_bible",
+      "title": "Audio Bible",
+      "status": "locked",
+      "payload": {
+        "voices": {
+          "MARA": {"voice_asset_id": "VOICE_MARA_V1", "identity": "restrained alto"},
+          "IVO": {"voice_asset_id": "VOICE_IVO_V1", "identity": "dry baritone"}
+        },
+        "music": {"cue": "M03", "scope": "sequence", "forbidden": ["trailer riser", "sentimental piano"]},
+        "ambience": {"asset_id": "AMB_ARCHIVE_NIGHT_RAIN_V1", "continuous": true}
+      }
+    },
+    {
+      "id": "art_shot_contract",
+      "version_id": "ver_shot_contract_1",
+      "artifact_type": "shot_contract",
+      "title": "Shot Contract S07_SH04",
+      "status": "draft",
+      "payload": {
+        "shot_id": "S07_SH04",
+        "story_function": "Reveal that Ivo knows about the file.",
+        "information_delta": ["Audience learns Ivo already knew."],
+        "audio_policy": {"dialogue_source": "canonical_tts", "music": "canonical_timeline_only"},
+        "prompt_may_add_story_facts": false
+      }
+    }
+  ],
+  "edges": [
+    {"parent": "art_constitution", "child": "art_beats", "edge_type": "constrains"},
+    {"parent": "art_evidence", "child": "art_beats", "edge_type": "supports"},
+    {"parent": "art_mara", "child": "art_scene_contract", "edge_type": "defines_character"},
+    {"parent": "art_ivo", "child": "art_scene_contract", "edge_type": "defines_character"},
+    {"parent": "art_relationship", "child": "art_scene_contract", "edge_type": "defines_relationship"},
+    {"parent": "art_beats", "child": "art_scene_contract", "edge_type": "realized_by"},
+    {"parent": "art_scene_contract", "child": "art_screenplay_scene", "edge_type": "realized_by"},
+    {"parent": "art_screenplay_scene", "child": "art_shot_contract", "edge_type": "compiled_to"},
+    {"parent": "art_audio_bible", "child": "art_shot_contract", "edge_type": "constrains_audio"}
+  ]
+}

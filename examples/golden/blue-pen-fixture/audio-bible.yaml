@@ -1,0 +1,86 @@
+audio_bible_id: AUDIO_BLUE_PEN_V2
+voice_profiles:
+  - voice_profile_id: VOICE_MARA_V1
+    character_id: MARA
+    provider_strategy:
+      preferred_provider_alias: fake-tts
+    reference_asset_version_ids: []
+    identity:
+      vocal_register: alto
+      texture: restrained
+      baseline_pace: 0.92
+    speech_fingerprint:
+      cadence: short_then_qualifier
+      hesitation: breath_before_denial
+    pronunciation_dictionary_ref: null
+    rights_record_ref: RIGHTS_FIXTURE_VOICES
+  - voice_profile_id: VOICE_IVO_V1
+    character_id: IVO
+    provider_strategy:
+      preferred_provider_alias: fake-tts
+    reference_asset_version_ids: []
+    identity:
+      vocal_register: baritone
+      texture: dry
+      baseline_pace: 0.80
+    speech_fingerprint:
+      cadence: delayed_question
+      hesitation: holds_silence
+    pronunciation_dictionary_ref: null
+    rights_record_ref: RIGHTS_FIXTURE_VOICES
+music_bible:
+  principle: Music represents what the characters refuse to articulate.
+  source_policy: imported_or_fixture_only
+  rights_record_refs: [RIGHTS_FIXTURE_MUSIC]
+  palette:
+    instruments: [prepared_piano, cello_harmonic, bowed_metal]
+    textures: [tape_wow]
+    forbidden: [epic_trailer_brass, generic_riser, sentimental_string_swell]
+  harmonic_language:
+    tonal_center: D
+    resolution_policy: no_full_resolution
+  motifs:
+    - motif_id: MOTIF_MARA
+      function: private guilt
+      contour: descending_minor_third
+    - motif_id: MOTIF_SECRET
+      function: concealed knowledge
+      contour: inverted_fragment
+      derived_from: MOTIF_MARA
+      transform: {inversion: true}
+  cues:
+    - cue_id: M03
+      target_sequence_ref: SEQ_03
+      start_ms: 0
+      end_ms: 14000
+      rights_record_ref: RIGHTS_FIXTURE_MUSIC
+location_acoustics:
+  - acoustic_profile_id: ACOUSTIC_ARCHIVE_NIGHT_RAIN_V1
+    location_state_ref: XRAY_ARCHIVE@NIGHT_WET
+    room: {size: medium, decay_ms: 480}
+    components:
+      - {id: HVAC_LOW, level: 0.5}
+      - {id: FLUORESCENT_HUM, level: 0.25}
+      - {id: RAIN_WINDOW_FAR, level: 0.35}
+    canonical_ambience_asset_ref: AMB_ARCHIVE_NIGHT_RAIN_V1
+sfx_bible:
+  - cue_id: FOLEY_BLUE_PEN_CAP_V1
+    source_entity_ref: PROP_BLUE_PEN
+    action: cap_turn_and_stop
+    story_function: Makes Mara's reaction visible without dialogue.
+    preferred_asset_ref: ASSET_FOLEY_BLUE_PEN_V1
+  - cue_id: SFX_ARCHIVE_DOOR_V1
+    source_entity_ref: PROP_ARCHIVE_DOOR
+    action: close
+    story_function: Marks the point at which Mara cannot retreat.
+    preferred_asset_ref: ASSET_SFX_ARCHIVE_DOOR_V1
+technical_policy:
+  sample_rate_hz: 48000
+  channel_layout: stereo
+  intermediate_format: wav
+  loudness_target_lufs: -14
+  true_peak_max_dbtp: -1
+rights_policy:
+  generated_music_enabled: false
+  rights_required_for_approval: true
+  rights_required_for_release: true

@@ -1,0 +1,133 @@
+shots:
+  - shot_id: S07_SH01
+    scene_id: S07
+    sequence_id: SEQ_03
+    story_function: Establish the pen as Mara's control mechanism and preserve the information imbalance.
+    information_delta:
+      audience_gains:
+        - Mara brought the signing pen deliberately.
+      audience_loses_or_revises: []
+      withheld:
+        - Ivo already knows about the hidden file.
+    character_focus: MARA
+    visible_action: Mara turns the blue pen cap once, stops, and places it beside the signature line.
+    reaction_priority: medium
+    continuity_state:
+      character_state_refs: [MARA@S07_START, IVO@S07_START]
+      location_state_ref: XRAY_ARCHIVE@NIGHT_WET
+      prop_state_refs: [PROP_BLUE_PEN@CAPPED]
+    screen_direction:
+      MARA: camera_right
+      IVO: camera_left
+    duration_target_seconds: 5.0
+    camera_intent: Stay close enough to read the stopped hand without announcing the prop as a symbol.
+    camera_constraints:
+      shot_size: close
+    audio_policy:
+      dialogue_source: no_on_camera_dialogue
+      dialogue_line_refs: []
+      dialogue_asset_refs: []
+      music_cue_ref: M03
+      ambience_profile_ref: ACOUSTIC_ARCHIVE_NIGHT_RAIN_V1
+      foley_cue_refs: [FOLEY_BLUE_PEN_CAP_V1]
+      sfx_cue_refs: []
+      native_audio:
+        dialogue: discard
+        foley: candidate
+        sfx: candidate
+        ambience: discard
+        music: discard
+      native_dialogue_validation: null
+    delivery_spec_ref: DELIVERY_BLUE_PEN_V1
+    forbidden_additions: [smile, explanatory_voiceover]
+    notes: []
+
+  - shot_id: S07_SH02
+    scene_id: S07
+    sequence_id: SEQ_03
+    story_function: Reveal that Ivo knows about the supposedly hidden file through Mara's reaction.
+    information_delta:
+      audience_gains:
+        - Ivo knows that Mara possesses the copy.
+      audience_loses_or_revises: []
+      withheld:
+        - Why Ivo is willing to sign.
+    character_focus: MARA
+    visible_action: Mara stops breathing for one beat when Ivo names the file.
+    reaction_priority: high
+    continuity_state:
+      character_state_refs: [MARA@S07_TURN, IVO@S07_TURN]
+      location_state_ref: XRAY_ARCHIVE@NIGHT_WET
+      prop_state_refs: [PROP_BLUE_PEN@TABLE]
+    screen_direction:
+      MARA: camera_right
+      IVO: camera_left
+    duration_target_seconds: 4.0
+    camera_intent: Withhold Ivo's face until Mara has reacted.
+    camera_constraints:
+      shot_size: medium_close
+    audio_policy:
+      dialogue_source: native_provider_dialogue
+      dialogue_line_refs: [IVO_L046]
+      dialogue_asset_refs: []
+      music_cue_ref: M03
+      ambience_profile_ref: ACOUSTIC_ARCHIVE_NIGHT_RAIN_V1
+      foley_cue_refs: []
+      sfx_cue_refs: []
+      native_audio:
+        dialogue: candidate
+        foley: candidate
+        sfx: candidate
+        ambience: discard
+        music: discard
+      native_dialogue_validation:
+        locked_line_ref: IVO_L046
+        asr_required: true
+        material_difference_requires_revision: true
+    delivery_spec_ref: DELIVERY_BLUE_PEN_V1
+    forbidden_additions: [new_document, explicit_threat]
+    notes:
+      - Fake ASR fixture must exactly match the locked line.
+
+  - shot_id: S07_SH03
+    scene_id: S07
+    sequence_id: SEQ_03
+    story_function: Mark Mara's irreversible lie and Ivo's gain in leverage.
+    information_delta:
+      audience_gains:
+        - Mara chooses control over informed consent.
+      audience_loses_or_revises: []
+      withheld:
+        - Ivo's motive for signing.
+    character_focus: IVO
+    visible_action: Ivo signs; the archive door closes offscreen as Mara lies.
+    reaction_priority: high
+    continuity_state:
+      character_state_refs: [MARA@S07_END, IVO@S07_END]
+      location_state_ref: XRAY_ARCHIVE@NIGHT_WET
+      prop_state_refs: [PROP_BLUE_PEN@SIGNED, PROP_ARCHIVE_DOOR@CLOSED]
+    screen_direction:
+      MARA: camera_right
+      IVO: camera_left
+    duration_target_seconds: 5.0
+    camera_intent: Stay on Ivo's hand and delay his face until after the signature.
+    camera_constraints:
+      shot_size: insert_to_medium
+    audio_policy:
+      dialogue_source: canonical_tts
+      dialogue_line_refs: [MARA_L047]
+      dialogue_asset_refs: [DIALOGUE_MARA_L047_V2]
+      music_cue_ref: M03
+      ambience_profile_ref: ACOUSTIC_ARCHIVE_NIGHT_RAIN_V1
+      foley_cue_refs: []
+      sfx_cue_refs: [SFX_ARCHIVE_DOOR_V1]
+      native_audio:
+        dialogue: discard
+        foley: candidate
+        sfx: candidate
+        ambience: discard
+        music: discard
+      native_dialogue_validation: null
+    delivery_spec_ref: DELIVERY_BLUE_PEN_V1
+    forbidden_additions: [smile, explicit_threat, new_document]
+    notes: []

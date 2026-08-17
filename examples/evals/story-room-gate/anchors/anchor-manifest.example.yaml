@@ -1,0 +1,43 @@
+anchor_manifest_version: 2.4.0-example
+anchor_set_id: M04-INSTRUMENT-ANCHORS-V1
+purpose: Blinded positive controls for specificity, character voice, and causal progression.
+source_material_policy: Synthetic material outside calibration, primary, and reserve
+  briefs.
+created_before_primary_generation: true
+samples:
+- sample_id: ANCHOR_INTACT
+  path: intact-scene.example.md
+  sha256: sha256:67fef3e4e6baf4f4f4cd37dd29c9259c07cfa43f929e385fdda5cf5265c0631c
+  rights_status: synthetic_cleared
+- sample_id: ANCHOR_DEGRADED_SV
+  path: degraded-specificity-voice.example.md
+  sha256: sha256:8e64cc3d0c2cb3807370985e0418e20ca22088b6bd292f64f5789cfa08f7ca26
+  rights_status: synthetic_cleared
+- sample_id: ANCHOR_DEGRADED_CAUSAL
+  path: degraded-causality.example.md
+  sha256: sha256:4f2094590af1310d38d6c39055c73981dde1d786528a9849aba9592d084ec7ae
+  rights_status: synthetic_cleared
+tasks:
+- anchor_id: ANCHOR-SPECIFICITY-VOICE
+  intact_sample_id: ANCHOR_INTACT
+  degraded_sample_id: ANCHOR_DEGRADED_SV
+  dimensions:
+  - specificity
+  - character_voice
+  degradation_recipe: Genericize setting, profession, and objects; replace relationship-specific
+    tactics with direct explanatory dialogue.
+- anchor_id: ANCHOR-CAUSALITY
+  intact_sample_id: ANCHOR_INTACT
+  degraded_sample_id: ANCHOR_DEGRADED_CAUSAL
+  dimensions:
+  - causal_progression
+  degradation_recipe: Remove the consequential choice and make discovery and approval
+    occur through coincidence and automation.
+response_contract:
+  choice_mode: forced_choice
+  tie_option_available: false
+  technical_issue_action: abort_and_replace_before_dataset_freeze
+blinding:
+  opaque_labels_required: true
+  anchor_identity_hidden_until_analysis: true
+  interspersed_with_scored_tasks: true

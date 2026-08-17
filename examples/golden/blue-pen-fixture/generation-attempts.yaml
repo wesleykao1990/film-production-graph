@@ -1,0 +1,25 @@
+generation_attempts:
+  - attempt_id: ATT_FAKE_S07_SH02_NATIVE
+    shot_id: S07_SH02
+    adapter: fake-video
+    resolved_model: deterministic-native-dialogue-fixture
+    seed: 42
+    settings_known: true
+    native_audio:
+      transcript: I knew about the file.
+      locked_line_ref: IVO_L046
+      text_match: exact
+      human_disposition: selected_candidate
+    output_asset_ref: ASSET_FAKE_SH02_NATIVE
+    rights_record_ref: RIGHTS_FIXTURE_VISUALS
+  - attempt_id: ATT_MANUAL_UNKNOWN_METADATA
+    shot_id: S07_SH03
+    adapter: manual-import
+    resolved_model: null
+    seed: null
+    settings_known: false
+    native_audio: null
+    output_asset_ref: ASSET_FAKE_SH03_MANUAL
+    rights_record_ref: RIGHTS_FIXTURE_VISUALS
+    provenance_notes:
+      - Provider model and seed were unavailable and intentionally left unknown.

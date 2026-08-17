@@ -1,0 +1,13 @@
+brief_id: calibration-non-test
+status: calibration_only
+excluded_from_gate: true
+genre: contained_workplace_drama
+premise_seed: A night receptionist discovers that a familiar visitor has been using the building under two identities.
+target_scene: The receptionist must decide whether to confront the visitor before the morning supervisor arrives.
+constraints:
+  characters: 2
+  locations: 1
+  target_scene_pages: 2_to_3
+notes:
+  - Use only to calibrate budgets, rater wording, and timing.
+  - Never report its preferences as M4 evidence.

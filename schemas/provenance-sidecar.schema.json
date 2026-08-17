@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:provenance-sidecar:1",
+  "title": "Release Provenance Sidecar",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "spec_version",
+    "project_id",
+    "release_id",
+    "created_at",
+    "master_assets",
+    "artifact_version_ids",
+    "provider_runs",
+    "skills",
+    "human_decision_ids",
+    "rights_summary",
+    "ai_disclosure_ref"
+  ],
+  "properties": {
+    "spec_version": {
+      "const": "1.0"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "release_id": {
+      "type": "string"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "master_assets": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "asset_ref",
+          "sha256"
+        ],
+        "properties": {
+          "asset_ref": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "media_type": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "artifact_version_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "provider_runs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "run_id",
+          "provider"
+        ],
+        "properties": {
+          "run_id": {
+            "type": "string"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "resolved_model": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "unknown_fields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "content_hash"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "source_commit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "content_hash": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "human_decision_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rights_summary": {
+      "type": "object"
+    },
+    "ai_disclosure_ref": {
+      "type": "string"
+    },
+    "subtitle_asset_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "c2pa": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "not_configured",
+            "signed",
+            "failed",
+            "not_supported"
+          ]
+        },
+        "manifest_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "signer_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "public_verification_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

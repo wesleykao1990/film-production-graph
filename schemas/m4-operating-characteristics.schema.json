@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:m4-operating-characteristics:3",
+  "title": "M04 Operating Characteristics v2.4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "simulation_version",
+    "protocol_hash",
+    "rule_source_hash",
+    "seed",
+    "trials_per_point",
+    "run_mode",
+    "assumptions",
+    "scenarios",
+    "review"
+  ],
+  "properties": {
+    "simulation_version": {
+      "type": "string"
+    },
+    "protocol_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "rule_source_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "seed": {
+      "type": "integer"
+    },
+    "trials_per_point": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "run_mode": {
+      "enum": [
+        "standard_seven",
+        "standard_six",
+        "standard_five",
+        "degraded_three"
+      ]
+    },
+    "assumptions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "assignment_plan",
+        "tie_rate",
+        "rater_sd_logit",
+        "brief_sd_logit",
+        "dimension_sd_logit",
+        "run_sd_logit",
+        "continuity_pass_probability",
+        "reliability_mode",
+        "anchor_true_preference",
+        "anchor_rater_sd_logit",
+        "anchor_dimension_sd_logit",
+        "mixed_repeat_runs_per_condition"
+      ],
+      "properties": {
+        "assignment_plan": {
+          "type": "string"
+        },
+        "tie_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "rater_sd_logit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "brief_sd_logit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "dimension_sd_logit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "run_sd_logit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "continuity_pass_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reliability_mode": {
+          "enum": [
+            "assume_interpretable",
+            "simulate"
+          ]
+        },
+        "anchor_true_preference": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "anchor_rater_sd_logit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "anchor_dimension_sd_logit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "mixed_repeat_runs_per_condition": {
+          "type": "integer",
+          "minimum": 3
+        }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/scenario"
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reviewed_by",
+        "reviewed_at",
+        "rationale"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "example",
+            "unreviewed",
+            "reviewed"
+          ]
+        },
+        "reviewed_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "rationale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "probabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "PASS",
+        "MIXED",
+        "FAIL",
+        "INCONCLUSIVE"
+      ],
+      "properties": {
+        "PASS": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "MIXED": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "FAIL": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "INCONCLUSIVE": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "true_preference",
+        "primary_decision_probabilities",
+        "mixed_repeat_conditional_trials",
+        "mixed_repeat_conditional_pass_probability",
+        "eventual_pass_probability",
+        "instrument_pass_probability",
+        "reliability_diagnostic_means",
+        "mixed_repeat_runs_per_condition"
+      ],
+      "properties": {
+        "true_preference": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "primary_decision_probabilities": {
+          "$ref": "#/$defs/probabilities"
+        },
+        "mixed_repeat_conditional_trials": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "mixed_repeat_conditional_pass_probability": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "eventual_pass_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "instrument_pass_probability": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "mixed_repeat_runs_per_condition": {
+          "type": "integer",
+          "minimum": 3
+        },
+        "reliability_diagnostic_means": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "specificity",
+            "character_voice",
+            "causal_progression"
+          ],
+          "properties": {
+            "specificity": {
+              "$ref": "#/$defs/diagnosticMeans"
+            },
+            "character_voice": {
+              "$ref": "#/$defs/diagnosticMeans"
+            },
+            "causal_progression": {
+              "$ref": "#/$defs/diagnosticMeans"
+            }
+          }
+        }
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "tie_rate",
+        "rater_sd_logit",
+        "brief_sd_logit",
+        "points",
+        "anchor_true_preference",
+        "anchor_rater_sd_logit"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "tie_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "rater_sd_logit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "brief_sd_logit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "points": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/point"
+          }
+        },
+        "anchor_true_preference": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "anchor_rater_sd_logit": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "diagnosticMeans": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_pairwise_agreement",
+        "krippendorff_alpha_nominal",
+        "tie_rate"
+      ],
+      "properties": {
+        "raw_pairwise_agreement": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "krippendorff_alpha_nominal": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": -1,
+          "maximum": 1
+        },
+        "tie_rate": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    }
+  }
+}

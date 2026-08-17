@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "aliases": {
+    "story_test": {
+      "provider": "fake",
+      "model": "deterministic-story-test-v1"
+    },
+    "continuity_test": {
+      "provider": "fake",
+      "model": "deterministic-continuity-test-v1"
+    }
+  }
+}

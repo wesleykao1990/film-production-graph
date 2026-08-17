@@ -1,0 +1,54 @@
+rights_records:
+  - rights_record_id: RIGHTS_FIXTURE_VOICES
+    subject_ref: VOICE_MARA_V1,VOICE_IVO_V1
+    status: cleared
+    source_type: self_created
+    holder: fixture_owner
+    license_or_permission: Synthetic test fixture; no real person or voice.
+    permitted_uses: [internal_development]
+    territories: [worldwide]
+    starts_at: null
+    expires_at: null
+    attribution: null
+    evidence_asset_refs: []
+    consent_record_refs: []
+    provider_policy_ref: POLICY_FAKE_AUDIO
+    reviewed_by: fixture_system
+    reviewed_at: "2026-08-17T00:00:00Z"
+    notes: []
+
+  - rights_record_id: RIGHTS_FIXTURE_MUSIC
+    subject_ref: MUSIC_M03
+    status: cleared
+    source_type: self_created
+    holder: fixture_owner
+    license_or_permission: Deterministic generated tone fixture; not for distribution.
+    permitted_uses: [internal_development]
+    territories: [worldwide]
+    starts_at: null
+    expires_at: null
+    attribution: null
+    evidence_asset_refs: []
+    consent_record_refs: []
+    provider_policy_ref: POLICY_FAKE_AUDIO
+    reviewed_by: fixture_system
+    reviewed_at: "2026-08-17T00:00:00Z"
+    notes: []
+
+  - rights_record_id: RIGHTS_FIXTURE_VISUALS
+    subject_ref: BLUE_PEN_VISUAL_ASSETS
+    status: cleared
+    source_type: self_created
+    holder: fixture_owner
+    license_or_permission: Synthetic placeholder assets.
+    permitted_uses: [internal_development]
+    territories: [worldwide]
+    starts_at: null
+    expires_at: null
+    attribution: null
+    evidence_asset_refs: []
+    consent_record_refs: []
+    provider_policy_ref: POLICY_FAKE_VIDEO
+    reviewed_by: fixture_system
+    reviewed_at: "2026-08-17T00:00:00Z"
+    notes: []

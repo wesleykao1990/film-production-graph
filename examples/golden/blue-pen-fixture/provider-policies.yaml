@@ -1,0 +1,26 @@
+provider_policies:
+  - provider_policy_id: POLICY_FAKE_AUDIO
+    provider: fake-audio
+    model_or_service: deterministic-fixture
+    captured_at: "2026-08-17T00:00:00Z"
+    source_url_or_document_ref: internal-fixture-policy
+    commercial_use_status: allowed
+    retention_training_status: no_training
+    voice_likeness_constraints: []
+    distribution_constraints:
+      - Internal test use only by fixture convention.
+    allowed_for_project: true
+    block_reasons: []
+
+  - provider_policy_id: POLICY_FAKE_VIDEO
+    provider: fake-video
+    model_or_service: deterministic-fixture
+    captured_at: "2026-08-17T00:00:00Z"
+    source_url_or_document_ref: internal-fixture-policy
+    commercial_use_status: allowed
+    retention_training_status: no_training
+    voice_likeness_constraints: []
+    distribution_constraints:
+      - Internal test use only by fixture convention.
+    allowed_for_project: true
+    block_reasons: []

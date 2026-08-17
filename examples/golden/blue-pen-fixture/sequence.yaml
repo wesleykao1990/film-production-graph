@@ -1,0 +1,12 @@
+sequence_id: SEQ_03
+title: The Signature
+dramatic_function: Mara moves from concealment to active complicity while Ivo gains leverage.
+scene_ids:
+  - S07
+start_state_ref: STATE_S07_START
+end_state_ref: STATE_S07_END
+music_cue_refs:
+  - M03
+visual_strategy: Hold stable frames until Ivo reveals knowledge, then withhold his face while Mara reacts.
+delivery_notes:
+  - Maintain 2.39:1 framing.

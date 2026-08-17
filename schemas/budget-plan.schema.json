@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:budget-plan:1",
+  "title": "Budget Plan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "budget_plan_id",
+    "currency",
+    "total_limit",
+    "stage_limits"
+  ],
+  "properties": {
+    "budget_plan_id": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "total_limit": {
+      "type": "number",
+      "minimum": 0
+    },
+    "stage_limits": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "approval_threshold": {
+      "type": "number",
+      "minimum": 0
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

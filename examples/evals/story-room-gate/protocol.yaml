@@ -1,0 +1,143 @@
+protocol_version: 2.4.0-template
+status: draft
+frozen_at: null
+decision_mode: exploratory_product_heuristic
+conditions:
+- id: equal_information
+  prompt_path: baseline_equal_information.md
+  budget_policy: same_model_complete_input_single_prompt
+- id: fixed_budget_conventional
+  prompt_path: baseline_fixed_budget.md
+  budget_policy: fixed_before_final_generation_at_1_5x_projected_story_room_cap
+- id: story_room
+  prompt_path: ../../../docs/M4_EXPERIMENT_PROTOCOL.md
+  budget_policy: frozen_from_non_test_calibration
+calibration_brief: briefs/calibration.yaml
+primary_briefs:
+- briefs/blue-pen.yaml
+- briefs/closed-platform.yaml
+- briefs/genre-contrast.yaml
+reserve_brief_commitment: reserve-brief-commitment.template.yaml
+runs_per_condition: 3
+sample_policy:
+  generated_scenes: 3
+  rated_scene_position: 2
+  rated_scene_target_pages_min: 2
+  rated_scene_target_pages_max: 3
+presentation:
+  mode: matched_triplet
+  assignment_plan: assignment-plan.example.yaml
+  target_minutes_per_rater_max: 45
+raters:
+  standard_target: 6
+  standard_timing_fallback: 7
+  standard_minimum: 5
+  standard_ratings_per_triplet: 3
+  degraded_minimum: 3
+  degraded_ratings_per_triplet: 3
+  max_triplets_per_rater_with_seven: 4
+  max_triplets_per_rater_with_six: 5
+  max_triplets_per_rater_with_five: 6
+  max_triplets_per_rater_degraded: 9
+  max_sessions_per_degraded_rater: 2
+primary_dimensions:
+- specificity
+- character_voice
+- causal_progression
+secondary_dimensions:
+- coherence
+- relationship_pressure
+- subtext
+- emotional_engagement
+- predictability
+secondary_sampling:
+  gating: false
+  max_triplets_per_rater: 2
+instrument_validity:
+  pilot:
+    deliberately_spans_quality_range: true
+    minimum_non_builder_raters: 2
+    target_direction_required_for_each_dimension: unanimous_or_revise_instrument
+  positive_control:
+    anchor_manifest: anchors/anchor-manifest.example.yaml
+    all_completed_primary_raters_required: true
+    response_mode: forced_choice
+    tie_option_available: false
+    technical_issue_policy: abort_replace_not_score
+    per_dimension_intact_preference_floor: 0.5
+    per_dimension_comparison: strictly_greater
+    pooled_intact_preference_minimum: 0.75
+    failure_outcome: inconclusive
+  diagnostics:
+    raw_pairwise_agreement: true
+    krippendorff_alpha_nominal: true
+    tie_rate: true
+    gating: false
+budget_freeze:
+  calibration_required: true
+  projected_story_room_cap_usd_per_sample: null
+  fixed_budget_conventional_multiplier: 1.5
+  provider_price_snapshot_ref: REPLACE_BEFORE_FREEZE
+operating_characteristics:
+  required_before_freeze: true
+  script_path: ../../../scripts/simulate_m4.py
+  planned_output_path: analysis/operating-characteristics.json
+  example_output_path: analysis/operating-characteristics.example.json
+  required_true_preferences:
+  - 0.55
+  - 0.65
+  - 0.75
+  trials_minimum: 4000
+  calibration_inputs:
+    tie_rate: null
+    rater_sd_logit: null
+    brief_sd_logit: null
+    anchor_true_preference: null
+    anchor_rater_sd_logit: null
+  sensitivity_required: true
+  reviewed_by: null
+  reviewed_at: null
+  output_hash: null
+  mandatory_reliability_mode: simulate
+pass_rule:
+  primary:
+    specificity: 0.6
+    character_voice: 0.6
+    causal_progression: 0.55
+    briefs_required_to_clear_each_primary: 2
+  aggregate_baselines_required: both
+  per_brief_baseline_policy: stronger_aggregate_baseline
+  per_brief_preference_floor: 0.5
+  per_brief_comparison: strictly_greater
+  stronger_baseline_tie_break: fixed_budget_conventional
+  continuity_non_inferiority: true
+mixed_repeat:
+  reserve_brief_only: true
+  affected_dimension_threshold_policy: same_as_primary
+  previously_passing_dimension_floor: 0.5
+  aggregate_baselines_required: both
+  per_brief_requirement: false
+  round_one_pooling: false
+  maximum_skill_or_contract_changes: 1
+  runs_per_condition: 5
+  ratings_per_triplet: 3
+  instrument_policy: inherit_if_same_rater_pool_else_repeat_anchors
+failure_branches:
+  pass: Complete M04b, then proceed to production.
+  mixed: Permit one bounded revision and one reserve-brief repeat under the same aggregate
+    thresholds.
+  fail: Stop platform expansion and reassess or reposition the thesis.
+  inconclusive: Repair measurement under a new protocol version. Re-rate the frozen
+    primary samples only when every reuse attestation holds and a fresh rater pool
+    is used; otherwise use fresh primary briefs and samples.
+inconclusive_rerun:
+  new_protocol_version_required: true
+  reuse_frozen_primary_samples_policy: allowed_only_if_all_attestations_true
+  attestations:
+    preference_results_withheld: true
+    unblinding_map_never_opened: true
+    no_cross_condition_inspection_by_creative_authority: true
+    creative_pipeline_unchanged: true
+  fresh_rater_pool_required: true
+  rerandomized_labels_required: true
+  if_any_attestation_unknown: use_fresh_primary_briefs_and_samples

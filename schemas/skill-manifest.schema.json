@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:skill-app-manifest:2",
+  "title": "Film Production Graph skill.yaml v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "activation",
+    "stage",
+    "contracts",
+    "permissions",
+    "resources",
+    "budgets",
+    "tests"
+  ],
+  "properties": {
+    "activation": {
+      "enum": [
+        "manual",
+        "auto",
+        "workflow_only"
+      ]
+    },
+    "stage": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*$"
+    },
+    "contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input",
+        "output"
+      ],
+      "properties": {
+        "input": {
+          "type": "string"
+        },
+        "output": {
+          "type": "string"
+        }
+      }
+    },
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifacts",
+        "tools",
+        "providers",
+        "network_hosts",
+        "shell",
+        "media"
+      ],
+      "properties": {
+        "artifacts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "read",
+            "propose"
+          ],
+          "properties": {
+            "read": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "propose": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "providers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "network_hosts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "shell": {
+          "const": false
+        },
+        "media": {
+          "type": "boolean"
+        }
+      }
+    },
+    "resources": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allow"
+      ],
+      "properties": {
+        "allow": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_model_calls",
+        "max_cost_usd"
+      ],
+      "properties": {
+        "max_model_calls": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_cost_usd": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "tests": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "routing",
+        "contracts"
+      ],
+      "properties": {
+        "routing": {
+          "type": "string"
+        },
+        "contracts": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": "3.0",
+  "milestones": [
+    {
+      "id": "M00",
+      "title": "Foundation Lite",
+      "prompt_path": "prompts/milestones/M00_FOUNDATION_LITE.md",
+      "goal": "Reproducible production monorepo; preserve but do not port the reference prototype",
+      "depends_on": [],
+      "effort_band": "M"
+    },
+    {
+      "id": "M01",
+      "title": "Artifact, Lineage, Impact, and Rights Core",
+      "prompt_path": "prompts/milestones/M01_ARTIFACT_LINEAGE_IMPACT.md",
+      "goal": "Immutable canon, coarse impacts, approvals, rights, provenance",
+      "depends_on": [
+        "M00"
+      ],
+      "effort_band": "L"
+    },
+    {
+      "id": "M02",
+      "title": "Repository Skill Loader",
+      "prompt_path": "prompts/milestones/M02_REPOSITORY_SKILLS.md",
+      "goal": "Git/hash-pinned custom skills without hosted registry",
+      "depends_on": [
+        "M01"
+      ],
+      "effort_band": "M"
+    },
+    {
+      "id": "M03",
+      "title": "Typed Agent Runtime and Security Gate",
+      "prompt_path": "prompts/milestones/M03_AGENT_RUNTIME_SECURITY.md",
+      "goal": "Least-privilege agents and early injection/authority tests",
+      "depends_on": [
+        "M02"
+      ],
+      "effort_band": "L"
+    },
+    {
+      "id": "M04a",
+      "title": "Minimum Story Room and Calibrated Decision Gate",
+      "prompt_path": "prompts/milestones/M04A_STORY_ROOM_GATE.md",
+      "goal": "Run executable creative gate after blinded-anchor and operating-characteristic review",
+      "depends_on": [
+        "M03"
+      ],
+      "effort_band": "L-XL"
+    },
+    {
+      "id": "M04b",
+      "title": "Story Room Completion After PASS",
+      "prompt_path": "prompts/milestones/M04B_STORY_ROOM_COMPLETION.md",
+      "goal": "Complete deferred creative passes and export after the gate passes",
+      "depends_on": [
+        "M04a:PASS"
+      ],
+      "effort_band": "M"
+    },
+    {
+      "id": "M05",
+      "title": "WorkflowRuntime ADR and Durable Approvals",
+      "prompt_path": "prompts/milestones/M05_DURABLE_RUNTIME.md",
+      "goal": "Select and implement durable runtime after PASS",
+      "depends_on": [
+        "M04b"
+      ],
+      "effort_band": "L"
+    },
+    {
+      "id": "M06",
+      "title": "Audio, Delivery, Subtitles, Rights, and Cost",
+      "prompt_path": "prompts/milestones/M06_AUDIO_DELIVERY_RIGHTS.md",
+      "goal": "Persistent soundtrack and release constraints",
+      "depends_on": [
+        "M04b"
+      ],
+      "effort_band": "L"
+    },
+    {
+      "id": "M07",
+      "title": "Shot Contracts, Animatic, and Dialogue Feasibility",
+      "prompt_path": "prompts/milestones/M07_ANIMATIC_DIALOGUE_FEASIBILITY.md",
+      "goal": "Approve animatic and real talking-character path",
+      "depends_on": [
+        "M06"
+      ],
+      "effort_band": "L"
+    },
+    {
+      "id": "M08",
+      "title": "Manual Provider Adapter and Minimum Film",
+      "prompt_path": "prompts/milestones/M08_MINIMUM_FILM.md",
+      "goal": "Finish one real film without broad API automation",
+      "depends_on": [
+        "M07"
+      ],
+      "effort_band": "M-L"
+    },
+    {
+      "id": "M09",
+      "title": "Automated Provider Adapters",
+      "prompt_path": "prompts/milestones/M09_PROVIDER_ADAPTERS.md",
+      "goal": "Automate selected providers behind shared contracts",
+      "depends_on": [
+        "M08"
+      ],
+      "effort_band": "L-per-family"
+    },
+    {
+      "id": "M10",
+      "title": "Full Studio, Editing, OTIO, and External Provenance",
+      "prompt_path": "prompts/milestones/M10_STUDIO_EDIT_EXPORT.md",
+      "goal": "Production UI, timeline, editor round trip, release package",
+      "depends_on": [
+        "M09"
+      ],
+      "effort_band": "XL"
+    },
+    {
+      "id": "M11",
+      "title": "Evaluation, Observability, and Regression Gates",
+      "prompt_path": "prompts/milestones/M11_EVALS_OBSERVABILITY.md",
+      "goal": "Separate quality/reliability/cost regression suites",
+      "depends_on": [
+        "M10"
+      ],
+      "effort_band": "L"
+    },
+    {
+      "id": "M12",
+      "title": "Hosted Registry, Multi-Tenancy, Security, and Recovery",
+      "prompt_path": "prompts/milestones/M12_HOSTED_PLATFORM_HARDENING.md",
+      "goal": "Productize only after explicit hosted decision",
+      "depends_on": [
+        "M11",
+        "hosted_product_decision"
+      ],
+      "effort_band": "XL"
+    }
+  ]
+}

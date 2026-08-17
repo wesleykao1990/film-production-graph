@@ -1,0 +1,64 @@
+beats:
+  - beat_id: B10
+    actor: MARA
+    objective: Get Ivo to sign the corrected audit page.
+    pressure: The signature could expose her brother.
+    tactic: Present the page as routine closure.
+    choice: Conceal the final audit page and use a copied sheet.
+    immediate_outcome: Ivo takes the pen.
+    hidden_cost: The copied sheet has different paper stock.
+    dramatic_delta:
+      mara_commitment: actively implicates her brother by concealment
+    audience_delta:
+      gains:
+        - Mara is hiding more than a procedural error.
+    caused_by: []
+    enables:
+      - B12
+    setup_refs:
+      - SETUP_BLUE_INK
+    payoff_refs: []
+
+  - beat_id: B12
+    actor: IVO
+    objective: Make Mara reveal what she removed.
+    pressure: Direct accusation lets her retreat into procedure.
+    tactic: Name a detail he should not know.
+    choice: Mention the missing file before she reveals it.
+    immediate_outcome: Mara stops turning the pen cap.
+    hidden_cost: Ivo reveals that he has been testing her.
+    dramatic_delta:
+      power_mara_to_ivo: -2
+      trust: -2
+    audience_delta:
+      gains:
+        - Ivo knows about the hidden file.
+      questions:
+        - Did Ivo copy the file first?
+    caused_by:
+      - B10
+    enables:
+      - B14
+    setup_refs: []
+    payoff_refs:
+      - SETUP_BLUE_INK
+
+  - beat_id: B14
+    actor: MARA
+    objective: Preserve control of the investigation.
+    pressure: Silence confirms Ivo's accusation.
+    tactic: Lie about her brother.
+    choice: State that her brother never saw the file.
+    immediate_outcome: Ivo signs.
+    hidden_cost: The lie makes their private debt part of the formal record.
+    dramatic_delta:
+      trust: -3
+      mara_commitment: irreversible lie
+    audience_delta:
+      questions:
+        - Did Ivo sign to protect Mara or expose her later?
+    caused_by:
+      - B12
+    enables: []
+    setup_refs: []
+    payoff_refs: []

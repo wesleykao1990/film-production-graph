@@ -1,0 +1,618 @@
+{
+  "assumptions": {
+    "anchor_dimension_sd_logit": 0.1,
+    "anchor_rater_sd_logit": 0.3,
+    "anchor_true_preference": 0.9,
+    "assignment_plan": "standard_target_six_raters",
+    "brief_sd_logit": 0.35,
+    "continuity_pass_probability": 1.0,
+    "dimension_sd_logit": 0.15,
+    "mixed_repeat_runs_per_condition": 5,
+    "rater_sd_logit": 0.3,
+    "reliability_mode": "simulate",
+    "run_sd_logit": 0.15,
+    "tie_rate": 0.15
+  },
+  "protocol_hash": "sha256:40e008ad9b700fcb1aa9ce7fbedfa5274012b7f7015ca6f184bd24c9c0c0d0d1",
+  "review": {
+    "rationale": "Illustrative package fixture only; replace assumptions with calibration-observed values, keep reliability_mode=simulate, and record a human review before freeze.",
+    "reviewed_at": null,
+    "reviewed_by": null,
+    "status": "example"
+  },
+  "rule_source_hash": "sha256:0ea13eda2ef10a415342f3488b84f46e78ea85f0ba53c62693490e6df6f3e63f",
+  "run_mode": "standard_six",
+  "scenarios": [
+    {
+      "anchor_rater_sd_logit": 0.3,
+      "anchor_true_preference": 0.9,
+      "brief_sd_logit": 0.35,
+      "name": "calibration_central",
+      "points": [
+        {
+          "eventual_pass_probability": 0.0143,
+          "instrument_pass_probability": 0.9367,
+          "mixed_repeat_conditional_pass_probability": 0.0411,
+          "mixed_repeat_conditional_trials": 851,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.7185,
+            "INCONCLUSIVE": 0.0633,
+            "MIXED": 0.2127,
+            "PASS": 0.0055
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0132,
+              "raw_pairwise_agreement": 0.3981,
+              "tie_rate": 0.1499
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0127,
+              "raw_pairwise_agreement": 0.3975,
+              "tie_rate": 0.15
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0135,
+              "raw_pairwise_agreement": 0.399,
+              "tie_rate": 0.1492
+            }
+          },
+          "true_preference": 0.5
+        },
+        {
+          "eventual_pass_probability": 0.05,
+          "instrument_pass_probability": 0.939,
+          "mixed_repeat_conditional_pass_probability": 0.082,
+          "mixed_repeat_conditional_trials": 1500,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.5447,
+            "INCONCLUSIVE": 0.061,
+            "MIXED": 0.375,
+            "PASS": 0.0192
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.013,
+              "raw_pairwise_agreement": 0.4005,
+              "tie_rate": 0.1507
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0115,
+              "raw_pairwise_agreement": 0.4,
+              "tie_rate": 0.1504
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0123,
+              "raw_pairwise_agreement": 0.4013,
+              "tie_rate": 0.1489
+            }
+          },
+          "true_preference": 0.55
+        },
+        {
+          "eventual_pass_probability": 0.3543,
+          "instrument_pass_probability": 0.9325,
+          "mixed_repeat_conditional_pass_probability": 0.2856,
+          "mixed_repeat_conditional_trials": 2325,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.163,
+            "INCONCLUSIVE": 0.0675,
+            "MIXED": 0.5813,
+            "PASS": 0.1883
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0104,
+              "raw_pairwise_agreement": 0.4242,
+              "tie_rate": 0.1508
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0151,
+              "raw_pairwise_agreement": 0.4285,
+              "tie_rate": 0.1498
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0104,
+              "raw_pairwise_agreement": 0.4241,
+              "tie_rate": 0.1507
+            }
+          },
+          "true_preference": 0.65
+        },
+        {
+          "eventual_pass_probability": 0.5902,
+          "instrument_pass_probability": 0.9305,
+          "mixed_repeat_conditional_pass_probability": 0.4631,
+          "mixed_repeat_conditional_trials": 2084,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.0605,
+            "INCONCLUSIVE": 0.0695,
+            "MIXED": 0.521,
+            "PASS": 0.349
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0047,
+              "raw_pairwise_agreement": 0.4419,
+              "tie_rate": 0.1505
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0097,
+              "raw_pairwise_agreement": 0.4465,
+              "tie_rate": 0.1501
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0091,
+              "raw_pairwise_agreement": 0.4451,
+              "tie_rate": 0.1505
+            }
+          },
+          "true_preference": 0.7
+        },
+        {
+          "eventual_pass_probability": 0.7915,
+          "instrument_pass_probability": 0.9333,
+          "mixed_repeat_conditional_pass_probability": 0.6154,
+          "mixed_repeat_conditional_trials": 1326,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.0143,
+            "INCONCLUSIVE": 0.0668,
+            "MIXED": 0.3315,
+            "PASS": 0.5875
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0058,
+              "raw_pairwise_agreement": 0.4735,
+              "tie_rate": 0.1494
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0064,
+              "raw_pairwise_agreement": 0.4731,
+              "tie_rate": 0.1503
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0086,
+              "raw_pairwise_agreement": 0.4741,
+              "tie_rate": 0.1503
+            }
+          },
+          "true_preference": 0.75
+        },
+        {
+          "eventual_pass_probability": 0.9345,
+          "instrument_pass_probability": 0.9365,
+          "mixed_repeat_conditional_pass_probability": 0.9424,
+          "mixed_repeat_conditional_trials": 139,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.0,
+            "INCONCLUSIVE": 0.0635,
+            "MIXED": 0.0348,
+            "PASS": 0.9018
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0032,
+              "raw_pairwise_agreement": 0.5548,
+              "tie_rate": 0.1503
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0069,
+              "raw_pairwise_agreement": 0.5544,
+              "tie_rate": 0.15
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0029,
+              "raw_pairwise_agreement": 0.5536,
+              "tie_rate": 0.1491
+            }
+          },
+          "true_preference": 0.85
+        }
+      ],
+      "rater_sd_logit": 0.3,
+      "tie_rate": 0.15
+    },
+    {
+      "anchor_rater_sd_logit": 0.18,
+      "anchor_true_preference": 0.93,
+      "brief_sd_logit": 0.21,
+      "name": "lower_heterogeneity",
+      "points": [
+        {
+          "eventual_pass_probability": 0.0035,
+          "instrument_pass_probability": 0.977,
+          "mixed_repeat_conditional_pass_probability": 0.0146,
+          "mixed_repeat_conditional_trials": 756,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.7873,
+            "INCONCLUSIVE": 0.023,
+            "MIXED": 0.189,
+            "PASS": 0.0008
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0104,
+              "raw_pairwise_agreement": 0.4253,
+              "tie_rate": 0.0996
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0068,
+              "raw_pairwise_agreement": 0.4231,
+              "tie_rate": 0.1001
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.01,
+              "raw_pairwise_agreement": 0.4245,
+              "tie_rate": 0.1001
+            }
+          },
+          "true_preference": 0.5
+        },
+        {
+          "eventual_pass_probability": 0.0325,
+          "instrument_pass_probability": 0.9792,
+          "mixed_repeat_conditional_pass_probability": 0.0558,
+          "mixed_repeat_conditional_trials": 1596,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.57,
+            "INCONCLUSIVE": 0.0208,
+            "MIXED": 0.399,
+            "PASS": 0.0103
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0084,
+              "raw_pairwise_agreement": 0.4281,
+              "tie_rate": 0.0997
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0078,
+              "raw_pairwise_agreement": 0.4278,
+              "tie_rate": 0.0996
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0106,
+              "raw_pairwise_agreement": 0.4289,
+              "tie_rate": 0.0999
+            }
+          },
+          "true_preference": 0.55
+        },
+        {
+          "eventual_pass_probability": 0.3662,
+          "instrument_pass_probability": 0.9825,
+          "mixed_repeat_conditional_pass_probability": 0.2806,
+          "mixed_repeat_conditional_trials": 2712,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.1285,
+            "INCONCLUSIVE": 0.0175,
+            "MIXED": 0.678,
+            "PASS": 0.176
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0065,
+              "raw_pairwise_agreement": 0.4567,
+              "tie_rate": 0.0996
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0045,
+              "raw_pairwise_agreement": 0.455,
+              "tie_rate": 0.0998
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0071,
+              "raw_pairwise_agreement": 0.4572,
+              "tie_rate": 0.1008
+            }
+          },
+          "true_preference": 0.65
+        },
+        {
+          "eventual_pass_probability": 0.6743,
+          "instrument_pass_probability": 0.975,
+          "mixed_repeat_conditional_pass_probability": 0.4993,
+          "mixed_repeat_conditional_trials": 2159,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.0305,
+            "INCONCLUSIVE": 0.025,
+            "MIXED": 0.5397,
+            "PASS": 0.4047
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0062,
+              "raw_pairwise_agreement": 0.484,
+              "tie_rate": 0.1001
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0039,
+              "raw_pairwise_agreement": 0.4806,
+              "tie_rate": 0.0996
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0048,
+              "raw_pairwise_agreement": 0.4813,
+              "tie_rate": 0.1012
+            }
+          },
+          "true_preference": 0.7
+        },
+        {
+          "eventual_pass_probability": 0.893,
+          "instrument_pass_probability": 0.9742,
+          "mixed_repeat_conditional_pass_probability": 0.7177,
+          "mixed_repeat_conditional_trials": 1137,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.001,
+            "INCONCLUSIVE": 0.0257,
+            "MIXED": 0.2843,
+            "PASS": 0.689
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0053,
+              "raw_pairwise_agreement": 0.5182,
+              "tie_rate": 0.0994
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0065,
+              "raw_pairwise_agreement": 0.519,
+              "tie_rate": 0.0993
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0034,
+              "raw_pairwise_agreement": 0.5181,
+              "tie_rate": 0.1003
+            }
+          },
+          "true_preference": 0.75
+        },
+        {
+          "eventual_pass_probability": 0.974,
+          "instrument_pass_probability": 0.9742,
+          "mixed_repeat_conditional_pass_probability": 0.9851,
+          "mixed_repeat_conditional_trials": 67,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.0,
+            "INCONCLUSIVE": 0.0257,
+            "MIXED": 0.0168,
+            "PASS": 0.9575
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0038,
+              "raw_pairwise_agreement": 0.6134,
+              "tie_rate": 0.0995
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0062,
+              "raw_pairwise_agreement": 0.6093,
+              "tie_rate": 0.1007
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0017,
+              "raw_pairwise_agreement": 0.6077,
+              "tie_rate": 0.1001
+            }
+          },
+          "true_preference": 0.85
+        }
+      ],
+      "rater_sd_logit": 0.18,
+      "tie_rate": 0.09999999999999999
+    },
+    {
+      "anchor_rater_sd_logit": 0.44999999999999996,
+      "anchor_true_preference": 0.8200000000000001,
+      "brief_sd_logit": 0.5249999999999999,
+      "name": "higher_heterogeneity",
+      "points": [
+        {
+          "eventual_pass_probability": 0.0258,
+          "instrument_pass_probability": 0.6745,
+          "mixed_repeat_conditional_pass_probability": 0.0865,
+          "mixed_repeat_conditional_trials": 717,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.485,
+            "INCONCLUSIVE": 0.3255,
+            "MIXED": 0.1792,
+            "PASS": 0.0103
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0164,
+              "raw_pairwise_agreement": 0.3629,
+              "tie_rate": 0.2505
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0144,
+              "raw_pairwise_agreement": 0.3613,
+              "tie_rate": 0.2495
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0115,
+              "raw_pairwise_agreement": 0.3596,
+              "tie_rate": 0.2497
+            }
+          },
+          "true_preference": 0.5
+        },
+        {
+          "eventual_pass_probability": 0.0607,
+          "instrument_pass_probability": 0.6827,
+          "mixed_repeat_conditional_pass_probability": 0.1351,
+          "mixed_repeat_conditional_trials": 1007,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.4042,
+            "INCONCLUSIVE": 0.3172,
+            "MIXED": 0.2517,
+            "PASS": 0.0267
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0154,
+              "raw_pairwise_agreement": 0.364,
+              "tie_rate": 0.2497
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.017,
+              "raw_pairwise_agreement": 0.3646,
+              "tie_rate": 0.2499
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.015,
+              "raw_pairwise_agreement": 0.3637,
+              "tie_rate": 0.2509
+            }
+          },
+          "true_preference": 0.55
+        },
+        {
+          "eventual_pass_probability": 0.248,
+          "instrument_pass_probability": 0.6813,
+          "mixed_repeat_conditional_pass_probability": 0.3029,
+          "mixed_repeat_conditional_trials": 1568,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.16,
+            "INCONCLUSIVE": 0.3187,
+            "MIXED": 0.392,
+            "PASS": 0.1293
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0117,
+              "raw_pairwise_agreement": 0.378,
+              "tie_rate": 0.2504
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0116,
+              "raw_pairwise_agreement": 0.3779,
+              "tie_rate": 0.2491
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0143,
+              "raw_pairwise_agreement": 0.3808,
+              "tie_rate": 0.2504
+            }
+          },
+          "true_preference": 0.65
+        },
+        {
+          "eventual_pass_probability": 0.4042,
+          "instrument_pass_probability": 0.6903,
+          "mixed_repeat_conditional_pass_probability": 0.449,
+          "mixed_repeat_conditional_trials": 1470,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.0835,
+            "INCONCLUSIVE": 0.3098,
+            "MIXED": 0.3675,
+            "PASS": 0.2392
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.011,
+              "raw_pairwise_agreement": 0.394,
+              "tie_rate": 0.2499
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0146,
+              "raw_pairwise_agreement": 0.3963,
+              "tie_rate": 0.2501
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0137,
+              "raw_pairwise_agreement": 0.3951,
+              "tie_rate": 0.2514
+            }
+          },
+          "true_preference": 0.7
+        },
+        {
+          "eventual_pass_probability": 0.5423,
+          "instrument_pass_probability": 0.6895,
+          "mixed_repeat_conditional_pass_probability": 0.6022,
+          "mixed_repeat_conditional_trials": 1174,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.0305,
+            "INCONCLUSIVE": 0.3105,
+            "MIXED": 0.2935,
+            "PASS": 0.3655
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0103,
+              "raw_pairwise_agreement": 0.4142,
+              "tie_rate": 0.2499
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0105,
+              "raw_pairwise_agreement": 0.4149,
+              "tie_rate": 0.25
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0137,
+              "raw_pairwise_agreement": 0.4161,
+              "tie_rate": 0.2499
+            }
+          },
+          "true_preference": 0.75
+        },
+        {
+          "eventual_pass_probability": 0.6677,
+          "instrument_pass_probability": 0.679,
+          "mixed_repeat_conditional_pass_probability": 0.8636,
+          "mixed_repeat_conditional_trials": 308,
+          "mixed_repeat_runs_per_condition": 5,
+          "primary_decision_probabilities": {
+            "FAIL": 0.0008,
+            "INCONCLUSIVE": 0.321,
+            "MIXED": 0.077,
+            "PASS": 0.6012
+          },
+          "reliability_diagnostic_means": {
+            "causal_progression": {
+              "krippendorff_alpha_nominal": 0.0083,
+              "raw_pairwise_agreement": 0.4723,
+              "tie_rate": 0.2511
+            },
+            "character_voice": {
+              "krippendorff_alpha_nominal": 0.0069,
+              "raw_pairwise_agreement": 0.4721,
+              "tie_rate": 0.249
+            },
+            "specificity": {
+              "krippendorff_alpha_nominal": 0.0064,
+              "raw_pairwise_agreement": 0.47,
+              "tie_rate": 0.2527
+            }
+          },
+          "true_preference": 0.85
+        }
+      ],
+      "rater_sd_logit": 0.44999999999999996,
+      "tie_rate": 0.25
+    }
+  ],
+  "seed": 23017,
+  "simulation_version": "2.4.0",
+  "trials_per_point": 4000
+}

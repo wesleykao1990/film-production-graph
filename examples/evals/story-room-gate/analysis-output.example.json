@@ -1,0 +1,453 @@
+{
+  "analysis_version": "2.4.0",
+  "continuity": {
+    "best_baseline_mean": 1.0,
+    "mean_hard_violations_by_condition": {
+      "equal_information": 2.2222,
+      "fixed_budget_conventional": 1.0,
+      "story_room": 0.0
+    },
+    "non_inferior": true,
+    "story_room_mean": 0.0
+  },
+  "cost_latency": {
+    "actual_B_to_C_cost_ratio": 1.5,
+    "equal_information": {
+      "mean_cost_usd": 0.35,
+      "mean_latency_seconds": 30.0,
+      "sample_count": 9,
+      "total_cost_usd": 3.15
+    },
+    "fixed_budget_conventional": {
+      "mean_cost_usd": 0.9,
+      "mean_latency_seconds": 55.0,
+      "sample_count": 9,
+      "total_cost_usd": 8.1
+    },
+    "story_room": {
+      "mean_cost_usd": 0.6,
+      "mean_latency_seconds": 75.0,
+      "sample_count": 9,
+      "total_cost_usd": 5.4
+    }
+  },
+  "decision": "PASS",
+  "decision_mode": "exploratory_product_heuristic",
+  "evidence_strength": "standard",
+  "instrument_check": {
+    "assigned_rater_count": 6,
+    "failure_outcome": "INCONCLUSIVE",
+    "per_dimension": {
+      "causal_progression": {
+        "comparison": "strictly_greater",
+        "counts": {
+          "degraded": 0,
+          "intact": 6,
+          "total": 6
+        },
+        "direction_passed": true,
+        "intact_preference": 1.0,
+        "passed": true,
+        "per_dimension_intact_preference_floor": 0.5
+      },
+      "character_voice": {
+        "comparison": "strictly_greater",
+        "counts": {
+          "degraded": 0,
+          "intact": 6,
+          "total": 6
+        },
+        "direction_passed": true,
+        "intact_preference": 1.0,
+        "passed": true,
+        "per_dimension_intact_preference_floor": 0.5
+      },
+      "specificity": {
+        "comparison": "strictly_greater",
+        "counts": {
+          "degraded": 1,
+          "intact": 5,
+          "total": 6
+        },
+        "direction_passed": true,
+        "intact_preference": 0.8333333333333334,
+        "passed": true,
+        "per_dimension_intact_preference_floor": 0.5
+      }
+    },
+    "pooled": {
+      "counts": {
+        "degraded": 1,
+        "intact": 17,
+        "total": 18
+      },
+      "intact_preference": 0.9444444444444444,
+      "minimum_intact_preference": 0.75,
+      "passed": true
+    },
+    "response_mode": "forced_choice",
+    "technical_issue_policy": "abort_replace_not_score",
+    "valid": true
+  },
+  "mixed_repeat_plan": {
+    "affected_dimensions": [],
+    "eligible": false,
+    "instrument_policy": "inherit_if_same_rater_pool_else_repeat_anchors",
+    "previously_passing_dimensions": [
+      "specificity",
+      "character_voice",
+      "causal_progression"
+    ],
+    "round_one_pooling": "report_separately_do_not_pool",
+    "runs_per_condition": 5,
+    "threshold_policy": "same_as_primary_aggregate"
+  },
+  "preference_results_withheld": false,
+  "preferences": {
+    "causal_progression": {
+      "against_equal_information": {
+        "counts": {
+          "baseline": 9,
+          "non_tie_denominator": 27,
+          "story_room": 18,
+          "ties": 0
+        },
+        "preference": 0.6667
+      },
+      "against_fixed_budget_conventional": {
+        "counts": {
+          "baseline": 9,
+          "non_tie_denominator": 27,
+          "story_room": 18,
+          "ties": 0
+        },
+        "preference": 0.6667
+      },
+      "aggregate_against_both_passed": true,
+      "briefs_clearing_threshold": 2,
+      "briefs_required": 2,
+      "per_brief": {
+        "blue-pen": {
+          "equal_information": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          },
+          "fixed_budget_conventional": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          }
+        },
+        "closed-platform": {
+          "equal_information": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          },
+          "fixed_budget_conventional": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          }
+        },
+        "genre-contrast": {
+          "equal_information": {
+            "counts": {
+              "baseline": 9,
+              "non_tie_denominator": 9,
+              "story_room": 0,
+              "ties": 0
+            },
+            "preference": 0.0
+          },
+          "fixed_budget_conventional": {
+            "counts": {
+              "baseline": 9,
+              "non_tie_denominator": 9,
+              "story_room": 0,
+              "ties": 0
+            },
+            "preference": 0.0
+          }
+        }
+      },
+      "per_brief_baseline_policy": "stronger_aggregate_baseline",
+      "per_brief_clear": {
+        "blue-pen": true,
+        "closed-platform": true,
+        "genre-contrast": false
+      },
+      "per_brief_comparison": "strictly_greater",
+      "per_brief_preference_floor": 0.5,
+      "requirement_passed": true,
+      "stronger_baseline": "fixed_budget_conventional",
+      "stronger_baseline_preference": 0.6667,
+      "threshold": 0.55
+    },
+    "character_voice": {
+      "against_equal_information": {
+        "counts": {
+          "baseline": 6,
+          "non_tie_denominator": 27,
+          "story_room": 21,
+          "ties": 0
+        },
+        "preference": 0.7778
+      },
+      "against_fixed_budget_conventional": {
+        "counts": {
+          "baseline": 6,
+          "non_tie_denominator": 27,
+          "story_room": 21,
+          "ties": 0
+        },
+        "preference": 0.7778
+      },
+      "aggregate_against_both_passed": true,
+      "briefs_clearing_threshold": 2,
+      "briefs_required": 2,
+      "per_brief": {
+        "blue-pen": {
+          "equal_information": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          },
+          "fixed_budget_conventional": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          }
+        },
+        "closed-platform": {
+          "equal_information": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          },
+          "fixed_budget_conventional": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          }
+        },
+        "genre-contrast": {
+          "equal_information": {
+            "counts": {
+              "baseline": 6,
+              "non_tie_denominator": 9,
+              "story_room": 3,
+              "ties": 0
+            },
+            "preference": 0.3333
+          },
+          "fixed_budget_conventional": {
+            "counts": {
+              "baseline": 6,
+              "non_tie_denominator": 9,
+              "story_room": 3,
+              "ties": 0
+            },
+            "preference": 0.3333
+          }
+        }
+      },
+      "per_brief_baseline_policy": "stronger_aggregate_baseline",
+      "per_brief_clear": {
+        "blue-pen": true,
+        "closed-platform": true,
+        "genre-contrast": false
+      },
+      "per_brief_comparison": "strictly_greater",
+      "per_brief_preference_floor": 0.5,
+      "requirement_passed": true,
+      "stronger_baseline": "fixed_budget_conventional",
+      "stronger_baseline_preference": 0.7778,
+      "threshold": 0.6
+    },
+    "specificity": {
+      "against_equal_information": {
+        "counts": {
+          "baseline": 6,
+          "non_tie_denominator": 27,
+          "story_room": 21,
+          "ties": 0
+        },
+        "preference": 0.7778
+      },
+      "against_fixed_budget_conventional": {
+        "counts": {
+          "baseline": 6,
+          "non_tie_denominator": 27,
+          "story_room": 21,
+          "ties": 0
+        },
+        "preference": 0.7778
+      },
+      "aggregate_against_both_passed": true,
+      "briefs_clearing_threshold": 2,
+      "briefs_required": 2,
+      "per_brief": {
+        "blue-pen": {
+          "equal_information": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          },
+          "fixed_budget_conventional": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          }
+        },
+        "closed-platform": {
+          "equal_information": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          },
+          "fixed_budget_conventional": {
+            "counts": {
+              "baseline": 0,
+              "non_tie_denominator": 9,
+              "story_room": 9,
+              "ties": 0
+            },
+            "preference": 1.0
+          }
+        },
+        "genre-contrast": {
+          "equal_information": {
+            "counts": {
+              "baseline": 6,
+              "non_tie_denominator": 9,
+              "story_room": 3,
+              "ties": 0
+            },
+            "preference": 0.3333
+          },
+          "fixed_budget_conventional": {
+            "counts": {
+              "baseline": 6,
+              "non_tie_denominator": 9,
+              "story_room": 3,
+              "ties": 0
+            },
+            "preference": 0.3333
+          }
+        }
+      },
+      "per_brief_baseline_policy": "stronger_aggregate_baseline",
+      "per_brief_clear": {
+        "blue-pen": true,
+        "closed-platform": true,
+        "genre-contrast": false
+      },
+      "per_brief_comparison": "strictly_greater",
+      "per_brief_preference_floor": 0.5,
+      "requirement_passed": true,
+      "stronger_baseline": "fixed_budget_conventional",
+      "stronger_baseline_preference": 0.7778,
+      "threshold": 0.6
+    }
+  },
+  "primary_requirements": {
+    "causal_progression": true,
+    "character_voice": true,
+    "specificity": true
+  },
+  "rater_count": 6,
+  "rater_workload": {
+    "anchor_tasks_by_rater": {
+      "R1": 2,
+      "R2": 2,
+      "R3": 2,
+      "R4": 2,
+      "R5": 2,
+      "R6": 2
+    },
+    "minutes_by_rater": {
+      "R1": 32.75,
+      "R2": 26.75,
+      "R3": 26.75,
+      "R4": 26.75,
+      "R5": 32.75,
+      "R6": 32.75
+    },
+    "triplets_by_rater": {
+      "R1": 5,
+      "R2": 4,
+      "R3": 4,
+      "R4": 4,
+      "R5": 5,
+      "R6": 5
+    }
+  },
+  "reliability_diagnostics": {
+    "causal_progression": {
+      "gating": false,
+      "krippendorff_alpha_nominal": 1.0,
+      "raw_pairwise_agreement": 1.0,
+      "tie_rate": 0.0
+    },
+    "character_voice": {
+      "gating": false,
+      "krippendorff_alpha_nominal": 1.0,
+      "raw_pairwise_agreement": 1.0,
+      "tie_rate": 0.0
+    },
+    "specificity": {
+      "gating": false,
+      "krippendorff_alpha_nominal": 1.0,
+      "raw_pairwise_agreement": 1.0,
+      "tie_rate": 0.0
+    }
+  },
+  "run_mode": "standard_six",
+  "warnings": []
+}

@@ -1,0 +1,22 @@
+cases:
+  - id: shared-knowledge-exposition
+    input_fixture: fixtures/shared-knowledge.json
+    expected:
+      status: proposed
+      invariants:
+        - no_new_entities
+        - same_scene_outcome
+        - same_character_knowledge
+        - patch_scope_respected
+
+  - id: missing-scene-turn
+    input_fixture: fixtures/missing-turn.json
+    expected:
+      status: blocked
+      finding_rule: missing_scene_contract_turn
+
+  - id: requires-new-secret
+    input_fixture: fixtures/requires-new-secret.json
+    expected:
+      status: blocked
+      finding_rule: undeclared_fact_required

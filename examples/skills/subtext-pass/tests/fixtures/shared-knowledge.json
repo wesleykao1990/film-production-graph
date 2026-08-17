@@ -1,0 +1,8 @@
+{
+  "scene_contract_version_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  "screenplay_scene_version_id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+  "character_version_ids": ["cccccccc-cccc-4ccc-8ccc-cccccccccccc"],
+  "relationship_version_ids": ["dddddddd-dddd-4ddd-8ddd-dddddddddddd"],
+  "allowed_paths": ["/dialogue/4", "/dialogue/5"],
+  "review_notes": "Replace shared-knowledge exposition without changing the scene turn."
+}

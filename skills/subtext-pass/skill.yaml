@@ -1,0 +1,33 @@
+activation: auto
+stage: screenplay_revision
+contracts:
+  input: schemas/input.schema.json
+  output: schemas/output.schema.json
+permissions:
+  artifacts:
+    read:
+      - scene_contract
+      - screenplay_scene
+      - character
+      - relationship
+    propose:
+      - screenplay_patch
+      - critic_finding
+  tools:
+    - read_artifact
+    - read_skill_resource
+    - propose_patch
+  providers:
+    - llm
+  network_hosts: []
+  shell: false
+  media: false
+resources:
+  allow:
+    - references/method.md
+budgets:
+  max_model_calls: 3
+  max_cost_usd: 1.0
+tests:
+  routing: tests/trigger_cases.yaml
+  contracts: tests/contract_cases.yaml

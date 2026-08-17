@@ -1,0 +1,306 @@
+plan_version: 2.4.0
+presentation_mode: matched_triplet
+positive_control_anchors:
+  task_ids:
+  - ANCHOR-SPECIFICITY-VOICE
+  - ANCHOR-CAUSALITY
+  assignment_policy: every_completed_primary_rater_rates_every_anchor
+  estimated_additional_minutes_per_rater: 4
+standard_target_six_raters:
+  target_raters: 6
+  minimum_qualified_raters: 5
+  triplets:
+    T01:
+    - R1
+    - R2
+    - R3
+    T02:
+    - R4
+    - R5
+    - R6
+    T03:
+    - R1
+    - R4
+    - R5
+    T04:
+    - R2
+    - R3
+    - R6
+    T05:
+    - R1
+    - R2
+    - R4
+    T06:
+    - R3
+    - R5
+    - R6
+    T07:
+    - R1
+    - R3
+    - R5
+    T08:
+    - R2
+    - R4
+    - R6
+    T09:
+    - R1
+    - R5
+    - R6
+  checks:
+    ratings_per_triplet: 3
+    max_triplets_per_rater: 5
+    target_minutes_per_rater_max: 45
+standard_timing_fallback_seven_raters:
+  use_only_when: The pilot shows five triplets plus two anchor tasks per rater cannot
+    fit within 45 minutes.
+  triplets:
+    T01:
+    - R1
+    - R2
+    - R3
+    T02:
+    - R4
+    - R5
+    - R6
+    T03:
+    - R7
+    - R1
+    - R4
+    T04:
+    - R2
+    - R5
+    - R7
+    T05:
+    - R3
+    - R6
+    - R1
+    T06:
+    - R4
+    - R2
+    - R6
+    T07:
+    - R5
+    - R3
+    - R7
+    T08:
+    - R1
+    - R2
+    - R5
+    T09:
+    - R3
+    - R4
+    - R6
+  checks:
+    ratings_per_triplet: 3
+    max_triplets_per_rater: 4
+    target_minutes_per_rater_max: 45
+standard_fallback_five_raters:
+  use_only_when: A sixth qualified rater cannot be recruited before the frozen deadline.
+  triplets:
+    T01:
+    - R1
+    - R2
+    - R3
+    T02:
+    - R1
+    - R4
+    - R5
+    T03:
+    - R2
+    - R3
+    - R4
+    T04:
+    - R1
+    - R3
+    - R5
+    T05:
+    - R2
+    - R4
+    - R5
+    T06:
+    - R1
+    - R2
+    - R4
+    T07:
+    - R2
+    - R3
+    - R5
+    T08:
+    - R1
+    - R3
+    - R4
+    T09:
+    - R1
+    - R2
+    - R5
+  checks:
+    ratings_per_triplet: 3
+    max_triplets_per_rater: 6
+    target_minutes_per_rater_max: 45
+secondary_subsample:
+  gating: false
+  triplets_by_rater:
+    R1:
+    - T01
+    - T07
+    R2:
+    - T04
+    - T08
+    R3:
+    - T01
+    - T06
+    R4:
+    - T03
+    - T08
+    R5:
+    - T02
+    - T09
+    R6:
+    - T04
+    - T06
+  max_triplets_per_rater: 2
+degraded_three_rater_mode:
+  evidence_strength: degraded_rater_diversity
+  use_only_when: Five qualified raters cannot be recruited after documented attempts.
+  triplets:
+    T01:
+    - R1
+    - R2
+    - R3
+    T02:
+    - R1
+    - R2
+    - R3
+    T03:
+    - R1
+    - R2
+    - R3
+    T04:
+    - R1
+    - R2
+    - R3
+    T05:
+    - R1
+    - R2
+    - R3
+    T06:
+    - R1
+    - R2
+    - R3
+    T07:
+    - R1
+    - R2
+    - R3
+    T08:
+    - R1
+    - R2
+    - R3
+    T09:
+    - R1
+    - R2
+    - R3
+  checks:
+    ratings_per_triplet: 3
+    triplets_per_rater: 9
+    maximum_sessions_per_rater: 2
+    target_minutes_per_session_max: 45
+  consequence:
+    thresholds: same_as_standard
+    label: degraded_rater_diversity
+    publication_claims: prohibited_without_powered_follow_up
+mixed_repeat_assignments:
+  runs_per_condition: 5
+  ratings_per_triplet: 3
+  same_primary_rater_pool_preferred: true
+  standard_six:
+    MR01:
+    - R1
+    - R2
+    - R3
+    MR02:
+    - R4
+    - R5
+    - R6
+    MR03:
+    - R1
+    - R4
+    - R5
+    MR04:
+    - R2
+    - R3
+    - R6
+    MR05:
+    - R1
+    - R2
+    - R4
+  standard_seven:
+    MR01:
+    - R1
+    - R2
+    - R3
+    MR02:
+    - R4
+    - R5
+    - R6
+    MR03:
+    - R7
+    - R1
+    - R4
+    MR04:
+    - R2
+    - R5
+    - R7
+    MR05:
+    - R3
+    - R6
+    - R1
+  standard_five:
+    MR01:
+    - R1
+    - R2
+    - R3
+    MR02:
+    - R1
+    - R4
+    - R5
+    MR03:
+    - R2
+    - R3
+    - R4
+    MR04:
+    - R1
+    - R3
+    - R5
+    MR05:
+    - R2
+    - R4
+    - R5
+  degraded_three:
+    MR01:
+    - R1
+    - R2
+    - R3
+    MR02:
+    - R1
+    - R2
+    - R3
+    MR03:
+    - R1
+    - R2
+    - R3
+    MR04:
+    - R1
+    - R2
+    - R3
+    MR05:
+    - R1
+    - R2
+    - R3
+freeze_requirements:
+- Replace R1..R7 with opaque rater IDs.
+- Freeze the selected primary and repeat assignments before primary ratings begin.
+- Every completed primary rater must rate both positive-control anchors.
+- If the timing pilot fails, recruit a seventh rater or shorten the rated scene within
+  the frozen page range; do not reduce ratings per triplet.
+- Do not reassign completed triplets after looking at ratings.
+- Record withdrawals and missing assignments; do not silently impute ratings.

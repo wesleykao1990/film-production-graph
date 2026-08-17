@@ -1,0 +1,24 @@
+delivery_spec_id: DELIVERY_BLUE_PEN_V1
+aspect_ratio: "2.39:1"
+width: 1920
+height: 804
+frame_rate: "24/1"
+pixel_format: yuv420p
+color_space: rec709
+audio_sample_rate_hz: 48000
+audio_channels: stereo
+loudness_target_lufs: -14
+true_peak_max_dbtp: -1
+minimum_duration_seconds: 60
+maximum_duration_seconds: 90
+subtitle_languages:
+  - en
+  - ja
+required_exports:
+  - review_h264
+  - srt
+  - vtt
+  - provenance_sidecar
+target_platform_or_festival: deterministic_test_fixture
+notes:
+  - Media bytes are fake/frozen fixtures.

@@ -1,0 +1,40 @@
+characters:
+  - character_id: MARA
+    name: Mara
+    public_mask: Procedurally calm and helpful.
+    private_desire: Keep her brother out of the fraud investigation.
+    immediate_goal: Obtain Ivo's signature without revealing she has the missing audit copy.
+    false_self_explanation: She is only delaying disclosure until the facts are clearer.
+    fear: Becoming the person who sacrifices family to protect an institution.
+    shame: She already removed the original file.
+    capabilities:
+      - understands audit procedure
+      - reads small material inconsistencies
+    blind_spots:
+      - assumes Ivo still wants her protection
+    pressure_behaviors:
+      - becomes excessively precise
+      - turns objects until labels face away
+    voice_fingerprint:
+      cadence: short statement followed by qualifying clause
+      avoidance: answers procedural questions instead of personal ones
+
+  - character_id: IVO
+    name: Ivo
+    public_mask: Tired compliance.
+    private_desire: Force Mara to admit that her protection is also control.
+    immediate_goal: Learn who removed the original and make Mara choose a side.
+    false_self_explanation: He only wants the audit corrected.
+    fear: Owing Mara enough that he can never refuse her version of events.
+    shame: He took public blame for her seven years earlier.
+    capabilities:
+      - notices paper and ink differences
+      - withholds knowledge patiently
+    blind_spots:
+      - believes exposing Mara will free both of them
+    pressure_behaviors:
+      - deliberately misunderstands direct requests
+      - waits past the socially acceptable silence
+    voice_fingerprint:
+      cadence: plain statements with delayed questions
+      avoidance: never names the shared debt directly

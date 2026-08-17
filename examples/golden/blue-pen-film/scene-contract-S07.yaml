@@ -1,0 +1,86 @@
+scene_id: S07
+sequence_id: SEQ_03
+source_beat_ids:
+- B10
+- B12
+- B14
+purpose:
+  dramatic_question: Will Mara protect her brother by taking away Ivo's choice?
+  forces_choice_between:
+  - protecting her brother
+  - telling Ivo enough to choose knowingly
+  sequence_function: relationship reversal
+start_state:
+  world:
+    location: XRAY_ARCHIVE
+    time: NIGHT
+    weather: RAIN
+  dramatic:
+    power:
+      MARA: -1
+      IVO: 1
+    trust: -1
+  audience:
+    knows:
+    - Mara has a copy of the missing file.
+    suspects:
+    - Ivo may know more than he says.
+objectives:
+  MARA: Obtain Ivo's signature without revealing the copy.
+  IVO: Discover who removed the original and force Mara to choose.
+tactics:
+  MARA:
+    initial: procedural politeness
+    escalation: invoke their shared work history without naming the debt
+  IVO:
+    initial: deliberate misunderstanding
+    escalation: demonstrate hidden knowledge
+visible_engine:
+  action: The signing pen fails; Mara refills it with the blue ink stored beside the
+    missing file.
+  prop_refs:
+  - PROP_BLUE_PEN
+  - PROP_BLUE_INK
+  location_refs:
+  - XRAY_ARCHIVE
+turn:
+  trigger: Ivo names the supposedly secret audit file.
+  irreversible_choice: Mara lies that her brother never saw it.
+  information_reveal: Ivo already knew Mara had a copy.
+end_state:
+  dramatic:
+    power:
+      MARA: -3
+      IVO: 3
+    trust: -3
+    mara_commitment: irreversible lie
+  audience:
+    questions:
+    - Did Ivo deliberately sign to create evidence?
+required:
+  setup_ids:
+  - SETUP_BLUE_INK
+  payoff_ids:
+  - SETUP_BLUE_INK
+  facts:
+  - Ivo knows Mara has a copy before the scene begins.
+  character_ids:
+  - MARA
+  - IVO
+  prop_ids:
+  - PROP_BLUE_PEN
+  - PROP_BLUE_INK
+forbidden:
+- explanatory monologue
+- generic threat
+- direct statement of the seven-year debt
+- introduction of a new document
+failure_conditions:
+- no visible power shift
+- Mara reveals the copy voluntarily
+- Ivo explains facts both already know
+- the blue pen is decorative rather than causal
+evidence_refs:
+- EV-001
+- EV-002
+estimated_duration_seconds: 72

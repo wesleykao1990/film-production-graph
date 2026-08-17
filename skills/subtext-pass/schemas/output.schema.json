@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Subtext Pass Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "patches",
+    "findings",
+    "preservation_checks"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "proposed",
+        "blocked"
+      ]
+    },
+    "patches": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "op",
+          "path"
+        ],
+        "properties": {
+          "op": {
+            "enum": [
+              "add",
+              "remove",
+              "replace"
+            ]
+          },
+          "path": {
+            "type": "string",
+            "pattern": "^/"
+          },
+          "value": {}
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "severity",
+          "rule",
+          "explanation"
+        ],
+        "properties": {
+          "severity": {
+            "enum": [
+              "blocking",
+              "warning",
+              "info"
+            ]
+          },
+          "rule": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "explanation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "preservation_checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scene_outcome",
+        "knowledge_state",
+        "setup_payoff",
+        "entities"
+      ],
+      "properties": {
+        "scene_outcome": {
+          "type": "boolean"
+        },
+        "knowledge_state": {
+          "type": "boolean"
+        },
+        "setup_payoff": {
+          "type": "boolean"
+        },
+        "entities": {
+          "type": "boolean"
+        }
+      }
+    },
+    "summary": {
+      "type": "string"
+    }
+  }
+}

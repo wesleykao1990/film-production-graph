@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:provider-policy:1",
+  "title": "Provider Policy Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "provider_policy_id",
+    "provider",
+    "captured_at",
+    "commercial_use_status",
+    "retention_training_status",
+    "allowed_for_project"
+  ],
+  "properties": {
+    "provider_policy_id": {
+      "type": "string"
+    },
+    "provider": {
+      "type": "string"
+    },
+    "model_or_service": {
+      "type": "string"
+    },
+    "captured_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_url_or_document_ref": {
+      "type": "string"
+    },
+    "commercial_use_status": {
+      "enum": [
+        "allowed",
+        "restricted",
+        "unknown",
+        "disallowed"
+      ]
+    },
+    "retention_training_status": {
+      "enum": [
+        "no_training",
+        "opt_out_configured",
+        "may_train",
+        "unknown"
+      ]
+    },
+    "voice_likeness_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "distribution_constraints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowed_for_project": {
+      "type": "boolean"
+    },
+    "block_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

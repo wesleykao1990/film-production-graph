@@ -1,0 +1,35 @@
+{
+  "spec_version": "1.0",
+  "project_id": "BLUE_PEN_FIXTURE",
+  "release_id": "RELEASE_BLUE_PEN_FIXTURE_V1",
+  "created_at": "2026-08-17T00:00:00Z",
+  "master_assets": [
+    {
+      "asset_ref": "ASSET_FAKE_MASTER_V1",
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "media_type": "video/mp4"
+    }
+  ],
+  "artifact_version_ids": ["DELIVERY_BLUE_PEN_V1", "TIMELINE_BLUE_PEN_FIXTURE_V1"],
+  "provider_runs": [
+    {
+      "run_id": "ATT_MANUAL_UNKNOWN_METADATA",
+      "provider": "manual-import",
+      "resolved_model": null,
+      "unknown_fields": ["resolved_model", "seed", "provider_settings"]
+    }
+  ],
+  "skills": [
+    {
+      "name": "subtext-pass",
+      "source_commit": "abcdef1234567890",
+      "content_hash": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  ],
+  "human_decision_ids": ["DECISION_FIXTURE_SELECT_01"],
+  "rights_summary": {"status": "cleared", "record_count": 3},
+  "ai_disclosure_ref": "DISCLOSURE_BLUE_PEN_FIXTURE_V1",
+  "subtitle_asset_refs": ["SUB_BLUE_PEN_EN_V1"],
+  "c2pa": {"status": "not_configured", "manifest_ref": null, "signer_ref": null},
+  "public_verification_ref": null
+}

@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:delivery-spec:1",
+  "title": "Delivery Specification",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "delivery_spec_id",
+    "aspect_ratio",
+    "width",
+    "height",
+    "frame_rate",
+    "audio_sample_rate_hz",
+    "audio_channels",
+    "loudness_target_lufs",
+    "true_peak_max_dbtp",
+    "maximum_duration_seconds",
+    "required_exports"
+  ],
+  "properties": {
+    "delivery_spec_id": {
+      "type": "string"
+    },
+    "aspect_ratio": {
+      "type": "string"
+    },
+    "width": {
+      "type": "integer",
+      "minimum": 16
+    },
+    "height": {
+      "type": "integer",
+      "minimum": 16
+    },
+    "frame_rate": {
+      "type": "string",
+      "pattern": "^[0-9]+/[0-9]+$"
+    },
+    "pixel_format": {
+      "type": "string"
+    },
+    "color_space": {
+      "type": "string"
+    },
+    "audio_sample_rate_hz": {
+      "type": "integer",
+      "enum": [
+        44100,
+        48000,
+        96000
+      ]
+    },
+    "audio_channels": {
+      "enum": [
+        "mono",
+        "stereo",
+        "5.1",
+        "7.1"
+      ]
+    },
+    "loudness_target_lufs": {
+      "type": "number"
+    },
+    "true_peak_max_dbtp": {
+      "type": "number"
+    },
+    "maximum_duration_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "minimum_duration_seconds": {
+      "type": "number",
+      "minimum": 0
+    },
+    "subtitle_languages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z]{2,3}(?:-[A-Z]{2})?$"
+      },
+      "uniqueItems": true
+    },
+    "required_exports": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "review_h264",
+          "master_prores",
+          "clean_master",
+          "texted_master",
+          "audio_stems",
+          "srt",
+          "vtt",
+          "provenance_sidecar",
+          "c2pa_signed_master"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "target_platform_or_festival": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

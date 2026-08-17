@@ -1,0 +1,54 @@
+fixture_name: blue-pen-fixture
+fixture_version: 2.1.0
+mode: deterministic_every_pr
+external_calls_allowed: false
+purpose:
+  - canonical artifact and lineage tests
+  - impact-record behavior
+  - repository skill execution
+  - canonical/native dialogue policy tests
+  - audio continuity and picture replacement
+  - rights, delivery, subtitles, cost, and provenance gates
+validation:
+  schema_instances:
+    - file: sequence.yaml
+      schema: schemas/sequence.schema.json
+    - file: scene-contract-S07.yaml
+      schema: schemas/scene-contract.schema.json
+    - file: shot-contracts.yaml
+      schema: schemas/shot-contracts-collection.schema.json
+    - file: audio-bible.yaml
+      schema: schemas/audio-bible.schema.json
+    - file: delivery-spec.yaml
+      schema: schemas/delivery-spec.schema.json
+    - file: subtitle-track.yaml
+      schema: schemas/subtitle-track.schema.json
+    - file: rights-records.yaml
+      schema: schemas/rights-records-collection.schema.json
+    - file: provider-policies.yaml
+      schema: schemas/provider-policies-collection.schema.json
+    - file: budget-plan.yaml
+      schema: schemas/budget-plan.schema.json
+    - file: cost-ledger.yaml
+      schema: schemas/cost-ledger-collection.schema.json
+    - file: impact-records.yaml
+      schema: schemas/impact-records-collection.schema.json
+    - file: ai-disclosure.yaml
+      schema: schemas/ai-disclosure.schema.json
+    - file: release-manifest.yaml
+      schema: schemas/release-manifest.schema.json
+    - file: provenance-sidecar.json
+      schema: schemas/provenance-sidecar.schema.json
+  parse_only:
+    - creative-constitution.yaml
+    - evidence.yaml
+    - characters.yaml
+    - relationship.yaml
+    - beats.yaml
+    - generation-attempts.yaml
+invariants:
+  - no billable call
+  - native dialogue transcript matches locked line in selected fixture
+  - picture replacement preserves soundtrack references
+  - generated music disabled
+  - release fails if rights or delivery artifact is removed

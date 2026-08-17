@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:m4-rating-form:4",
+  "title": "Story Room Rating Record v2.4",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/tripletRating"
+    },
+    {
+      "$ref": "#/$defs/anchorRating"
+    }
+  ],
+  "$defs": {
+    "choice": {
+      "enum": [
+        "left",
+        "right",
+        "tie"
+      ]
+    },
+    "pairwiseRating": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dimension",
+        "pair_id",
+        "left_sample_id",
+        "right_sample_id",
+        "choice"
+      ],
+      "properties": {
+        "dimension": {
+          "enum": [
+            "specificity",
+            "character_voice",
+            "causal_progression",
+            "coherence",
+            "relationship_pressure",
+            "subtext",
+            "emotional_engagement",
+            "predictability"
+          ]
+        },
+        "pair_id": {
+          "type": "string"
+        },
+        "left_sample_id": {
+          "type": "string"
+        },
+        "right_sample_id": {
+          "type": "string"
+        },
+        "choice": {
+          "$ref": "#/$defs/choice"
+        }
+      }
+    },
+    "anchorPairwiseRating": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dimension",
+        "pair_id",
+        "left_sample_id",
+        "right_sample_id",
+        "choice"
+      ],
+      "properties": {
+        "dimension": {
+          "enum": [
+            "specificity",
+            "character_voice",
+            "causal_progression"
+          ]
+        },
+        "pair_id": {
+          "type": "string"
+        },
+        "left_sample_id": {
+          "type": "string"
+        },
+        "right_sample_id": {
+          "type": "string"
+        },
+        "choice": {
+          "$ref": "#/$defs/anchorChoice"
+        }
+      }
+    },
+    "tripletRating": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "rater_id",
+        "assignment_id",
+        "brief_id",
+        "run_index",
+        "triplet_id",
+        "primary_ratings",
+        "duration_seconds"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "triplet"
+        },
+        "rater_id": {
+          "type": "string"
+        },
+        "assignment_id": {
+          "type": "string"
+        },
+        "brief_id": {
+          "type": "string"
+        },
+        "run_index": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "triplet_id": {
+          "type": "string"
+        },
+        "primary_ratings": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "$ref": "#/$defs/pairwiseRating"
+          }
+        },
+        "secondary_ratings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/pairwiseRating"
+          }
+        },
+        "duration_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "anchorRating": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_type",
+        "rater_id",
+        "assignment_id",
+        "anchor_id",
+        "anchor_ratings",
+        "duration_seconds"
+      ],
+      "properties": {
+        "record_type": {
+          "const": "anchor"
+        },
+        "rater_id": {
+          "type": "string"
+        },
+        "assignment_id": {
+          "type": "string"
+        },
+        "anchor_id": {
+          "type": "string"
+        },
+        "anchor_ratings": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/anchorPairwiseRating"
+          }
+        },
+        "duration_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "anchorChoice": {
+      "enum": [
+        "left",
+        "right"
+      ]
+    }
+  }
+}

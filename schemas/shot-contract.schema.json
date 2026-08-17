@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:shot-contract:2",
+  "title": "Shot Contract v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "shot_id",
+    "scene_id",
+    "sequence_id",
+    "story_function",
+    "information_delta",
+    "visible_action",
+    "continuity_state",
+    "duration_target_seconds",
+    "audio_policy",
+    "forbidden_additions"
+  ],
+  "properties": {
+    "shot_id": {
+      "type": "string"
+    },
+    "scene_id": {
+      "type": "string"
+    },
+    "sequence_id": {
+      "type": "string"
+    },
+    "story_function": {
+      "type": "string",
+      "minLength": 1
+    },
+    "information_delta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "audience_gains",
+        "withheld"
+      ],
+      "properties": {
+        "audience_gains": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "audience_loses_or_revises": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "withheld": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "character_focus": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "visible_action": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reaction_priority": {
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "continuity_state": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "screen_direction": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "duration_target_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "camera_intent": {
+      "type": "string"
+    },
+    "camera_constraints": {
+      "type": "object"
+    },
+    "audio_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dialogue_source",
+        "native_audio",
+        "music_cue_ref",
+        "ambience_profile_ref"
+      ],
+      "properties": {
+        "dialogue_source": {
+          "enum": [
+            "canonical_tts",
+            "human_recording",
+            "native_provider_dialogue",
+            "no_on_camera_dialogue"
+          ]
+        },
+        "dialogue_line_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dialogue_asset_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "music_cue_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ambience_profile_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "foley_cue_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sfx_cue_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "native_audio": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dialogue",
+            "foley",
+            "sfx",
+            "ambience",
+            "music"
+          ],
+          "properties": {
+            "dialogue": {
+              "enum": [
+                "discard",
+                "candidate",
+                "preferred"
+              ]
+            },
+            "foley": {
+              "enum": [
+                "discard",
+                "candidate",
+                "preferred"
+              ]
+            },
+            "sfx": {
+              "enum": [
+                "discard",
+                "candidate",
+                "preferred"
+              ]
+            },
+            "ambience": {
+              "enum": [
+                "discard",
+                "candidate",
+                "preferred"
+              ]
+            },
+            "music": {
+              "const": "discard"
+            }
+          }
+        },
+        "native_dialogue_validation": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "locked_line_ref": {
+              "type": "string"
+            },
+            "asr_required": {
+              "type": "boolean"
+            },
+            "material_difference_requires_revision": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "delivery_spec_ref": {
+      "type": "string"
+    },
+    "forbidden_additions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

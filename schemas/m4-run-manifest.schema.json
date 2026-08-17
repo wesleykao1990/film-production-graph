@@ -1,0 +1,193 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:m4-run-manifest:3",
+  "title": "M04 Run Manifest v2.4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_manifest_version",
+    "protocol_hash",
+    "run_mode",
+    "unblinding_confidential",
+    "anchor_manifest_hash",
+    "anchor_tasks",
+    "triplets"
+  ],
+  "properties": {
+    "run_manifest_version": {
+      "type": "string"
+    },
+    "protocol_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "run_mode": {
+      "enum": [
+        "standard_seven",
+        "standard_six",
+        "standard_five",
+        "degraded_three"
+      ]
+    },
+    "unblinding_confidential": {
+      "const": true
+    },
+    "triplets": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "$ref": "#/$defs/triplet"
+      }
+    },
+    "anchor_manifest_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "anchor_tasks": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/anchorTask"
+      }
+    }
+  },
+  "$defs": {
+    "triplet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "triplet_id",
+        "brief_id",
+        "run_index",
+        "samples"
+      ],
+      "properties": {
+        "triplet_id": {
+          "type": "string"
+        },
+        "brief_id": {
+          "type": "string"
+        },
+        "run_index": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        },
+        "samples": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": {
+            "$ref": "#/$defs/sample"
+          }
+        }
+      }
+    },
+    "sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_id",
+        "condition",
+        "valid",
+        "hard_violation_count",
+        "cost_usd",
+        "latency_seconds"
+      ],
+      "properties": {
+        "sample_id": {
+          "type": "string"
+        },
+        "condition": {
+          "enum": [
+            "equal_information",
+            "fixed_budget_conventional",
+            "story_room"
+          ]
+        },
+        "valid": {
+          "type": "boolean"
+        },
+        "invalid_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target_scene_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target_scene_hash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "hard_violation_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cost_usd": {
+          "type": "number",
+          "minimum": 0
+        },
+        "latency_seconds": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "anchorTask": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "anchor_id",
+        "dimensions",
+        "left_sample_id",
+        "right_sample_id",
+        "intact_sample_id",
+        "degraded_sample_id",
+        "response_mode"
+      ],
+      "properties": {
+        "anchor_id": {
+          "type": "string"
+        },
+        "dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "specificity",
+              "character_voice",
+              "causal_progression"
+            ]
+          }
+        },
+        "left_sample_id": {
+          "type": "string"
+        },
+        "right_sample_id": {
+          "type": "string"
+        },
+        "intact_sample_id": {
+          "type": "string"
+        },
+        "degraded_sample_id": {
+          "type": "string"
+        },
+        "response_mode": {
+          "const": "forced_choice"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:cost-projection:1",
+  "title": "Cost Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "projection_id",
+    "price_snapshot_at",
+    "currency",
+    "projected_by_stage",
+    "assumptions"
+  ],
+  "properties": {
+    "projection_id": {
+      "type": "string"
+    },
+    "price_snapshot_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "projected_by_stage": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0
+      }
+    },
+    "remaining_shots": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "observed_attempts_per_selected_shot": {
+      "type": "number",
+      "minimum": 0
+    },
+    "assumptions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_ledger_entry_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

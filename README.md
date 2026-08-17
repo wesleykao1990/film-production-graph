@@ -1,0 +1,108 @@
+# AI Film Production Graph — Final Build Package v3.0.0
+
+This package is the reviewed implementation handoff for a story-first AI film production system. It combines the final Product Requirements Document, milestone implementation plan, runnable reference prototype, schemas, custom-skill format, experiment tooling, and a ready-to-use initiating prompt for a coding agent.
+
+The governing rule is:
+
+> Typed artifacts in Postgres are canon. Agents propose. Validators block invalid changes. Humans approve. Prompts and media are compiled downstream.
+
+## Four primary entry points
+
+1. [`PRD.md`](PRD.md) — what the product must do and why.
+2. [`IMPLEMENTATION_PLAN.md`](IMPLEMENTATION_PLAN.md) — milestone sequence, tests, and exit gates.
+3. [`prototype/README.md`](prototype/README.md) — a runnable local demonstration of the core interaction model.
+4. [`INITIAL_PROMPT.md`](INITIAL_PROMPT.md) — the prompt to give a greenfield coding agent.
+
+Use [`prompts/01_EXISTING_REPOSITORY_PROMPT.md`](prompts/01_EXISTING_REPOSITORY_PROMPT.md) instead when integrating with an existing codebase.
+
+## Quick verification
+
+```bash
+make bootstrap
+make db-reset
+make check
+```
+
+These commands validate the production M00 foundation and the preserved reference
+prototype. See [`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md) for prerequisites
+and service details.
+
+Run the prototype:
+
+```bash
+cd prototype
+python -m uvicorn app.main:app --reload --port 8000
+```
+
+Open `http://127.0.0.1:8000`.
+
+## What the prototype demonstrates
+
+The prototype is an executable behavioral specification. It shows:
+
+- immutable artifact payload versions;
+- locked canon and explicit human approval;
+- evidence/character/beat/scene/screenplay/audio/shot lineage;
+- impact records after an upstream revision;
+- whole-directory repository-skill hashing;
+- a typed `screenplay_patch` proposal;
+- a declarative workflow that pauses for human approval;
+- zero live model or media-provider calls.
+
+It deliberately uses SQLite, a deterministic mock agent, and a static UI. The production implementation still begins at M00 with Next.js, FastAPI, Supabase Postgres, committed contracts, fake providers, CI, and no premature workflow engine.
+
+## Build order
+
+```text
+Release A — prove story quality
+M00 → M01 → M02 → M03 → M04a gate → M04b only after PASS
+
+Release B — prove one film path
+M05 → M06 → M07 → M08
+
+Release C — production runtime and studio
+M09 → M10
+
+Release D — evaluation and hosted-platform hardening
+M11 → M12
+```
+
+The first coding-agent run must implement **M00 only**, prove its exit gate, and stop.
+
+## M00 production foundation
+
+The production scaffold now lives beside—never inside—the reference prototype. See [`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md) for prerequisites, one-command workflows, architecture boundaries, and local Supabase setup.
+
+## Package map
+
+```text
+.
+├── PRD.md
+├── IMPLEMENTATION_PLAN.md
+├── INITIAL_PROMPT.md
+├── START_HERE.md
+├── AGENTS.md
+├── FINAL_REVIEW_STATUS.md
+├── apps/                      # M00 FastAPI and Next.js entry points
+├── packages/                  # M00 typed Python workspace packages
+├── infra/supabase/            # local database config, migration, seed, and pgTAP
+├── prototype/                 # runnable reference implementation
+├── docs/                      # architecture and specialist specifications
+├── prompts/                   # greenfield, existing-repo, and milestone prompts
+├── skills/                    # installable repository skill example
+├── workflows/                 # declarative workflow examples
+├── schemas/                   # Draft 2020-12 typed contracts
+├── examples/                  # golden fixture, real-film skeleton, M04 fixtures
+├── scripts/                   # package validation and M04 analysis/simulation
+├── templates/
+├── machine-readable/
+└── research/
+```
+
+## Review status
+
+The architecture, sequencing, M04 decision rule, instrument controls, and package mechanics completed five review passes. The final reviewer’s position was to stop adding theoretical controls and proceed to the calibration brief and two-rater pilot. See [`FINAL_REVIEW_STATUS.md`](FINAL_REVIEW_STATUS.md).
+
+## License and rights
+
+This package is an original implementation specification and prototype. Independently verify licenses and release rights before incorporating third-party code, prompts, models, reference media, voices, music, or generated assets.

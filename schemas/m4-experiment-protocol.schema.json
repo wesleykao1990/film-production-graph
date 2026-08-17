@@ -1,0 +1,753 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:m4-experiment-protocol:5",
+  "title": "M04 Story Room Experiment Protocol v2.4",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "protocol_version",
+    "status",
+    "frozen_at",
+    "decision_mode",
+    "conditions",
+    "calibration_brief",
+    "primary_briefs",
+    "reserve_brief_commitment",
+    "runs_per_condition",
+    "sample_policy",
+    "presentation",
+    "raters",
+    "primary_dimensions",
+    "secondary_dimensions",
+    "secondary_sampling",
+    "instrument_validity",
+    "budget_freeze",
+    "operating_characteristics",
+    "pass_rule",
+    "mixed_repeat",
+    "inconclusive_rerun",
+    "failure_branches"
+  ],
+  "properties": {
+    "protocol_version": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "calibrated",
+        "frozen"
+      ]
+    },
+    "frozen_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "decision_mode": {
+      "const": "exploratory_product_heuristic"
+    },
+    "conditions": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "prompt_path",
+          "budget_policy"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "prompt_path": {
+            "type": "string"
+          },
+          "budget_policy": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "calibration_brief": {
+      "type": "string"
+    },
+    "primary_briefs": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "string"
+      }
+    },
+    "reserve_brief_commitment": {
+      "type": "string"
+    },
+    "runs_per_condition": {
+      "type": "integer",
+      "const": 3
+    },
+    "sample_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generated_scenes",
+        "rated_scene_position",
+        "rated_scene_target_pages_min",
+        "rated_scene_target_pages_max"
+      ],
+      "properties": {
+        "generated_scenes": {
+          "type": "integer",
+          "minimum": 3
+        },
+        "rated_scene_position": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rated_scene_target_pages_min": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rated_scene_target_pages_max": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "assignment_plan",
+        "target_minutes_per_rater_max"
+      ],
+      "properties": {
+        "mode": {
+          "const": "matched_triplet"
+        },
+        "assignment_plan": {
+          "type": "string"
+        },
+        "target_minutes_per_rater_max": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 45
+        }
+      }
+    },
+    "raters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "standard_target",
+        "standard_timing_fallback",
+        "standard_minimum",
+        "standard_ratings_per_triplet",
+        "degraded_minimum",
+        "degraded_ratings_per_triplet",
+        "max_triplets_per_rater_with_seven",
+        "max_triplets_per_rater_with_six",
+        "max_triplets_per_rater_with_five",
+        "max_triplets_per_rater_degraded",
+        "max_sessions_per_degraded_rater"
+      ],
+      "properties": {
+        "standard_target": {
+          "type": "integer",
+          "minimum": 6
+        },
+        "standard_timing_fallback": {
+          "type": "integer",
+          "const": 7
+        },
+        "standard_minimum": {
+          "type": "integer",
+          "minimum": 5
+        },
+        "standard_ratings_per_triplet": {
+          "type": "integer",
+          "const": 3
+        },
+        "degraded_minimum": {
+          "type": "integer",
+          "const": 3
+        },
+        "degraded_ratings_per_triplet": {
+          "type": "integer",
+          "const": 3
+        },
+        "max_triplets_per_rater_with_seven": {
+          "type": "integer",
+          "const": 4
+        },
+        "max_triplets_per_rater_with_six": {
+          "type": "integer",
+          "const": 5
+        },
+        "max_triplets_per_rater_with_five": {
+          "type": "integer",
+          "const": 6
+        },
+        "max_triplets_per_rater_degraded": {
+          "type": "integer",
+          "const": 9
+        },
+        "max_sessions_per_degraded_rater": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2
+        }
+      }
+    },
+    "primary_dimensions": {
+      "type": "array",
+      "const": [
+        "specificity",
+        "character_voice",
+        "causal_progression"
+      ]
+    },
+    "secondary_dimensions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "secondary_sampling": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gating",
+        "max_triplets_per_rater"
+      ],
+      "properties": {
+        "gating": {
+          "const": false
+        },
+        "max_triplets_per_rater": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 2
+        }
+      }
+    },
+    "budget_freeze": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "calibration_required",
+        "projected_story_room_cap_usd_per_sample",
+        "fixed_budget_conventional_multiplier",
+        "provider_price_snapshot_ref"
+      ],
+      "properties": {
+        "calibration_required": {
+          "const": true
+        },
+        "projected_story_room_cap_usd_per_sample": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "fixed_budget_conventional_multiplier": {
+          "type": "number",
+          "minimum": 1
+        },
+        "provider_price_snapshot_ref": {
+          "type": "string"
+        }
+      }
+    },
+    "operating_characteristics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_before_freeze",
+        "script_path",
+        "planned_output_path",
+        "example_output_path",
+        "required_true_preferences",
+        "trials_minimum",
+        "calibration_inputs",
+        "sensitivity_required",
+        "reviewed_by",
+        "reviewed_at",
+        "output_hash",
+        "mandatory_reliability_mode"
+      ],
+      "properties": {
+        "required_before_freeze": {
+          "const": true
+        },
+        "script_path": {
+          "type": "string"
+        },
+        "planned_output_path": {
+          "type": "string"
+        },
+        "example_output_path": {
+          "type": "string"
+        },
+        "required_true_preferences": {
+          "type": "array",
+          "minItems": 3,
+          "items": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "exclusiveMaximum": 1
+          }
+        },
+        "trials_minimum": {
+          "type": "integer",
+          "minimum": 4000
+        },
+        "calibration_inputs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "tie_rate",
+            "rater_sd_logit",
+            "brief_sd_logit",
+            "anchor_true_preference",
+            "anchor_rater_sd_logit"
+          ],
+          "properties": {
+            "tie_rate": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0,
+              "maximum": 1
+            },
+            "rater_sd_logit": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "brief_sd_logit": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "anchor_true_preference": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "exclusiveMinimum": 0,
+              "exclusiveMaximum": 1
+            },
+            "anchor_rater_sd_logit": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            }
+          }
+        },
+        "sensitivity_required": {
+          "const": true
+        },
+        "reviewed_by": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reviewed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "output_hash": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "mandatory_reliability_mode": {
+          "const": "simulate"
+        }
+      }
+    },
+    "pass_rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "aggregate_baselines_required",
+        "per_brief_baseline_policy",
+        "per_brief_preference_floor",
+        "per_brief_comparison",
+        "stronger_baseline_tie_break",
+        "continuity_non_inferiority"
+      ],
+      "properties": {
+        "primary": {
+          "$ref": "#/$defs/thresholdSet"
+        },
+        "aggregate_baselines_required": {
+          "const": "both"
+        },
+        "per_brief_baseline_policy": {
+          "const": "stronger_aggregate_baseline"
+        },
+        "stronger_baseline_tie_break": {
+          "const": "fixed_budget_conventional"
+        },
+        "continuity_non_inferiority": {
+          "const": true
+        },
+        "per_brief_preference_floor": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "per_brief_comparison": {
+          "const": "strictly_greater"
+        }
+      }
+    },
+    "mixed_repeat": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reserve_brief_only",
+        "affected_dimension_threshold_policy",
+        "previously_passing_dimension_floor",
+        "aggregate_baselines_required",
+        "per_brief_requirement",
+        "round_one_pooling",
+        "maximum_skill_or_contract_changes",
+        "runs_per_condition",
+        "ratings_per_triplet",
+        "instrument_policy"
+      ],
+      "properties": {
+        "reserve_brief_only": {
+          "const": true
+        },
+        "affected_dimension_threshold_policy": {
+          "const": "same_as_primary"
+        },
+        "previously_passing_dimension_floor": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "aggregate_baselines_required": {
+          "const": "both"
+        },
+        "per_brief_requirement": {
+          "const": false
+        },
+        "round_one_pooling": {
+          "const": false
+        },
+        "maximum_skill_or_contract_changes": {
+          "const": 1
+        },
+        "runs_per_condition": {
+          "type": "integer",
+          "const": 5
+        },
+        "ratings_per_triplet": {
+          "type": "integer",
+          "const": 3
+        },
+        "instrument_policy": {
+          "const": "inherit_if_same_rater_pool_else_repeat_anchors"
+        }
+      }
+    },
+    "failure_branches": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass",
+        "mixed",
+        "fail",
+        "inconclusive"
+      ],
+      "properties": {
+        "pass": {
+          "type": "string"
+        },
+        "mixed": {
+          "type": "string"
+        },
+        "fail": {
+          "type": "string"
+        },
+        "inconclusive": {
+          "type": "string"
+        }
+      }
+    },
+    "instrument_validity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pilot",
+        "positive_control",
+        "diagnostics"
+      ],
+      "properties": {
+        "pilot": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "deliberately_spans_quality_range",
+            "minimum_non_builder_raters",
+            "target_direction_required_for_each_dimension"
+          ],
+          "properties": {
+            "deliberately_spans_quality_range": {
+              "const": true
+            },
+            "minimum_non_builder_raters": {
+              "type": "integer",
+              "minimum": 2
+            },
+            "target_direction_required_for_each_dimension": {
+              "const": "unanimous_or_revise_instrument"
+            }
+          }
+        },
+        "positive_control": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "anchor_manifest",
+            "all_completed_primary_raters_required",
+            "response_mode",
+            "tie_option_available",
+            "technical_issue_policy",
+            "per_dimension_intact_preference_floor",
+            "per_dimension_comparison",
+            "pooled_intact_preference_minimum",
+            "failure_outcome"
+          ],
+          "properties": {
+            "anchor_manifest": {
+              "type": "string"
+            },
+            "all_completed_primary_raters_required": {
+              "const": true
+            },
+            "per_dimension_intact_preference_floor": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 1
+            },
+            "per_dimension_comparison": {
+              "const": "strictly_greater"
+            },
+            "pooled_intact_preference_minimum": {
+              "type": "number",
+              "minimum": 0.5,
+              "maximum": 1
+            },
+            "failure_outcome": {
+              "const": "inconclusive"
+            },
+            "response_mode": {
+              "const": "forced_choice"
+            },
+            "tie_option_available": {
+              "const": false
+            },
+            "technical_issue_policy": {
+              "const": "abort_replace_not_score"
+            }
+          }
+        },
+        "diagnostics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "raw_pairwise_agreement",
+            "krippendorff_alpha_nominal",
+            "tie_rate",
+            "gating"
+          ],
+          "properties": {
+            "raw_pairwise_agreement": {
+              "const": true
+            },
+            "krippendorff_alpha_nominal": {
+              "const": true
+            },
+            "tie_rate": {
+              "const": true
+            },
+            "gating": {
+              "const": false
+            }
+          }
+        }
+      }
+    },
+    "inconclusive_rerun": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "new_protocol_version_required",
+        "reuse_frozen_primary_samples_policy",
+        "attestations",
+        "fresh_rater_pool_required",
+        "rerandomized_labels_required",
+        "if_any_attestation_unknown"
+      ],
+      "properties": {
+        "new_protocol_version_required": {
+          "const": true
+        },
+        "reuse_frozen_primary_samples_policy": {
+          "const": "allowed_only_if_all_attestations_true"
+        },
+        "attestations": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "preference_results_withheld",
+            "unblinding_map_never_opened",
+            "no_cross_condition_inspection_by_creative_authority",
+            "creative_pipeline_unchanged"
+          ],
+          "properties": {
+            "preference_results_withheld": {
+              "const": true
+            },
+            "unblinding_map_never_opened": {
+              "const": true
+            },
+            "no_cross_condition_inspection_by_creative_authority": {
+              "const": true
+            },
+            "creative_pipeline_unchanged": {
+              "const": true
+            }
+          }
+        },
+        "fresh_rater_pool_required": {
+          "const": true
+        },
+        "rerandomized_labels_required": {
+          "const": true
+        },
+        "if_any_attestation_unknown": {
+          "const": "use_fresh_primary_briefs_and_samples"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "thresholdSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "specificity",
+        "character_voice",
+        "causal_progression",
+        "briefs_required_to_clear_each_primary"
+      ],
+      "properties": {
+        "specificity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "character_voice": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "causal_progression": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "briefs_required_to_clear_each_primary": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "frozen"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "frozen_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "budget_freeze": {
+            "properties": {
+              "projected_story_room_cap_usd_per_sample": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              }
+            }
+          },
+          "operating_characteristics": {
+            "properties": {
+              "calibration_inputs": {
+                "properties": {
+                  "tie_rate": {
+                    "type": "number"
+                  },
+                  "rater_sd_logit": {
+                    "type": "number"
+                  },
+                  "brief_sd_logit": {
+                    "type": "number"
+                  }
+                }
+              },
+              "reviewed_by": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reviewed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "output_hash": {
+                "type": "string",
+                "pattern": "^sha256:[0-9a-f]{64}$"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+reserve_brief_id: REPLACE_BEFORE_FREEZE
+status: template_not_committed
+sha256_commitment: sha256:0000000000000000000000000000000000000000000000000000000000000000
+custodian_or_location_ref: REPLACE_WITH_LOCATION_OUTSIDE_DEVELOPMENT_AGENT_CONTEXT
+created_at: null
+revealed_at: null
+rules:
+  - Commit the real hash before primary generation.
+  - Do not expose reserve contents to skill or prompt authors before MIXED.
+  - Reveal only after the first-round decision is immutably recorded as MIXED.

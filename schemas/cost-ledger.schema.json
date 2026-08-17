@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:cost-ledger:1",
+  "title": "Cost Ledger Entry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "entry_id",
+    "project_id",
+    "stage",
+    "amount",
+    "currency",
+    "estimated",
+    "recorded_at"
+  ],
+  "properties": {
+    "entry_id": {
+      "type": "string"
+    },
+    "project_id": {
+      "type": "string"
+    },
+    "stage": {
+      "type": "string"
+    },
+    "run_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "asset_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provider": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0
+    },
+    "currency": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "estimated": {
+      "type": "boolean"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

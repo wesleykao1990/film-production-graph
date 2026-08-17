@@ -1,0 +1,13 @@
+entries:
+  - entry_id: COST_FAKE_STORY_001
+    project_id: BLUE_PEN_FIXTURE
+    stage: story
+    run_id: RUN_FAKE_STORY_001
+    asset_ref: null
+    provider: fake-llm
+    amount: 0
+    currency: USD
+    estimated: false
+    recorded_at: "2026-08-17T00:00:00Z"
+    source_ref: fake-provider-contract
+    notes: []

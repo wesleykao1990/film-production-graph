@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Film Production Graph Prototype</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">RUNNABLE REFERENCE PROTOTYPE</p>
+      <h1>Film Production Graph</h1>
+      <p class="subtitle">Canon, lineage, skills, impact, and human approval—without a live model call.</p>
+    </div>
+    <div class="header-actions">
+      <button id="refreshButton" class="button secondary">Refresh</button>
+      <button id="resetButton" class="button danger">Reset demo</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="metric-grid" id="metrics"></section>
+
+    <section class="layout">
+      <aside class="panel artifact-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">CANONICAL ARTIFACTS</p>
+            <h2>Current versions</h2>
+          </div>
+          <button id="reviseSceneButton" class="button small">Revise scene contract</button>
+        </div>
+        <div id="artifactList" class="artifact-list"></div>
+      </aside>
+
+      <section class="panel graph-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">LINEAGE VIEW</p>
+            <h2>Evidence → contract → screenplay → shot</h2>
+          </div>
+        </div>
+        <div class="graph-wrap">
+          <svg id="lineageGraph" role="img" aria-label="Artifact lineage graph"></svg>
+        </div>
+        <div class="legend">
+          <span><i class="dot locked"></i>Locked</span>
+          <span><i class="dot approved"></i>Approved</span>
+          <span><i class="dot proposed"></i>Proposed</span>
+          <span><i class="dot draft"></i>Draft</span>
+        </div>
+      </section>
+
+      <aside class="panel inspector-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">INSPECTOR</p>
+            <h2 id="inspectorTitle">Select an artifact</h2>
+          </div>
+        </div>
+        <div id="inspectorStatus" class="status-pill hidden"></div>
+        <pre id="inspectorJson" class="json-view">Click a node or artifact card.</pre>
+        <div class="button-row">
+          <button id="approveVersionButton" class="button" disabled>Approve version</button>
+          <button id="lockVersionButton" class="button secondary" disabled>Lock version</button>
+        </div>
+      </aside>
+    </section>
+
+    <section class="two-column">
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">EXTENSIBLE AGENT SYSTEM</p>
+            <h2>Repository skills</h2>
+          </div>
+        </div>
+        <div id="skillsList" class="stack"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">HUMAN-IN-THE-LOOP</p>
+            <h2>Prototype workflow</h2>
+          </div>
+        </div>
+        <p class="body-copy">
+          Run a deterministic <code>subtext-pass</code>. The agent may propose a patch, but it cannot approve it.
+        </p>
+        <div class="button-row">
+          <button id="runWorkflowButton" class="button">Run subtext workflow</button>
+          <button id="approveWorkflowButton" class="button secondary" disabled>Approve proposed patch</button>
+        </div>
+        <pre id="workflowOutput" class="json-view compact">No workflow run yet.</pre>
+      </section>
+    </section>
+
+    <section class="panel impacts-panel">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">CHANGE IMPACT</p>
+          <h2>Potentially affected descendants</h2>
+        </div>
+      </div>
+      <div id="impactList" class="impact-list"></div>
+    </section>
+  </main>
+
+  <div id="toast" class="toast hidden" role="status"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>

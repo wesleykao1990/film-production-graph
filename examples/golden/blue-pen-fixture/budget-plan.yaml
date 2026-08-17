@@ -1,0 +1,11 @@
+budget_plan_id: BUDGET_BLUE_PEN_FIXTURE_V1
+currency: USD
+total_limit: 0
+stage_limits:
+  story: 0
+  audio: 0
+  video: 0
+  post: 0
+approval_threshold: 0
+notes:
+  - PR fixture must never make billable calls.

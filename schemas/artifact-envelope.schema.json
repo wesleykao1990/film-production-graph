@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:artifact-envelope:2",
+  "title": "Artifact Envelope v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "version_id",
+    "project_id",
+    "artifact_type",
+    "schema_version",
+    "revision",
+    "lifecycle_status",
+    "payload",
+    "content_hash",
+    "created_by",
+    "created_at"
+  ],
+  "properties": {
+    "artifact_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "version_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "project_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "artifact_type": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{1,63}$"
+    },
+    "schema_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+(?:\\.[0-9]+)?$"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "lifecycle_status": {
+      "enum": [
+        "draft",
+        "validated",
+        "human_review",
+        "approved",
+        "locked",
+        "rejected",
+        "deprecated"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    },
+    "content_hash": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "parent_version_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "uuid"
+    },
+    "created_by": {
+      "$ref": "#/$defs/actorRef"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    }
+  },
+  "$defs": {
+    "actorRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "actor_type",
+        "actor_id"
+      ],
+      "properties": {
+        "actor_type": {
+          "enum": [
+            "user",
+            "agent",
+            "workflow",
+            "system",
+            "import"
+          ]
+        },
+        "actor_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "display_name": {
+          "type": "string"
+        }
+      }
+    },
+    "skillRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "source_path",
+        "source_commit",
+        "content_hash"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "metadata_version": {
+          "type": "string"
+        },
+        "source_path": {
+          "type": "string"
+        },
+        "source_commit": {
+          "type": "string",
+          "minLength": 7
+        },
+        "content_hash": {
+          "type": "string",
+          "pattern": "^(sha256:)?[a-f0-9]{64}$"
+        }
+      }
+    },
+    "cost": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "amount",
+        "currency"
+      ],
+      "properties": {
+        "amount": {
+          "type": "number",
+          "minimum": 0
+        },
+        "currency": {
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "estimated": {
+          "type": "boolean"
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "input_version_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "uniqueItems": true
+        },
+        "input_hashes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/skillRef"
+          }
+        },
+        "code_version": {
+          "type": "string"
+        },
+        "model_alias": {
+          "type": "string"
+        },
+        "resolved_provider": {
+          "type": "string"
+        },
+        "resolved_model": {
+          "type": "string"
+        },
+        "prompt_bundle_hash": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "cost": {
+          "$ref": "#/$defs/cost"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

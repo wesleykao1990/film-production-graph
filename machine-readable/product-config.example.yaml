@@ -1,0 +1,79 @@
+schema_version: 3.0
+project_mode: private_single_owner
+productization_status: not_yet_approved
+story_gate:
+  required_before_production_platform: true
+  protocol_path: examples/evals/story-room-gate/protocol.yaml
+  current_decision: not_run
+  allowed_decisions:
+  - pass
+  - mixed
+  - fail
+  - inconclusive
+  decision_mode: exploratory_product_heuristic
+  operating_characteristics_required_before_freeze: true
+  shared_rule_path: scripts/m4_rules.py
+  simulator_path: scripts/simulate_m4.py
+  analyzer_path: scripts/analyze_m4.py
+  per_brief_baseline_policy: stronger_aggregate_baseline
+  degraded_mode_thresholds: same_as_standard
+  ratings_per_triplet: 3
+artifact_policy:
+  lifecycle_statuses:
+  - draft
+  - validated
+  - human_review
+  - approved
+  - locked
+  - rejected
+  - deprecated
+  impacts_separate_from_lifecycle: true
+  invalidation_mode: coarse_reachability
+skill_policy:
+  source_mode: repository_only
+  lock_file: skills.lock
+  allow_instruction_skills: true
+  allow_declarative_workflows: true
+  allow_uploaded_executable_code: false
+  hosted_registry_enabled: false
+workflow_policy:
+  durable_runtime_before_m04a: none
+  runtime_after_m04b: adr_required
+  default_candidate: dbos
+model_routing:
+  gateway_service_enabled: false
+  record_alias_and_resolved_model: true
+rights_policy:
+  require_rights_block_before_asset_approval: true
+  require_cleared_rights_before_release: true
+  generated_music_enabled: false
+audio_policy:
+  allowed_dialogue_sources:
+  - canonical_tts
+  - human_recording
+  - native_provider_dialogue
+  - no_on_camera_dialogue
+  native_dialogue_requires_asr: true
+  material_dialogue_difference_requires_screenplay_revision: true
+  music_scope: sequence_or_scene
+provider_policy:
+  first_video_path: manual_import
+  block_on_incompatible_terms: true
+delivery_policy:
+  locked_spec_required_before_final_generation: true
+  subtitles_required: true
+  provenance_sidecar_required: true
+  human_ai_disclosure_required: true
+  c2pa: optional_when_configured
+budget_policy:
+  currency: USD
+  pr_ci_billable_calls_allowed: false
+  pre_request_budget_check: true
+  append_only_cost_ledger: true
+prototype_policy:
+  path: prototype
+  role: executable_behavioral_reference
+  production_dependency_allowed: false
+  sqlite_is_production_canon: false
+  live_provider_calls_allowed: false
+  tests_must_remain_green: true

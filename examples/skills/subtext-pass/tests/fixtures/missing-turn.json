@@ -1,0 +1,8 @@
+{
+  "scene_contract_version_id": "eeeeeeee-eeee-4eee-8eee-eeeeeeeeeeee",
+  "screenplay_scene_version_id": "ffffffff-ffff-4fff-8fff-ffffffffffff",
+  "character_version_ids": [],
+  "relationship_version_ids": [],
+  "allowed_paths": ["/dialogue"],
+  "review_notes": "The Scene Contract has no approved turn; the skill must block."
+}

@@ -1,0 +1,218 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:scene-contract:2",
+  "title": "Scene Contract v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scene_id",
+    "sequence_id",
+    "source_beat_ids",
+    "purpose",
+    "start_state",
+    "objectives",
+    "tactics",
+    "visible_engine",
+    "turn",
+    "end_state",
+    "required",
+    "forbidden",
+    "failure_conditions"
+  ],
+  "properties": {
+    "scene_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_-]+$"
+    },
+    "sequence_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_-]+$"
+    },
+    "source_beat_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "purpose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "dramatic_question"
+      ],
+      "properties": {
+        "dramatic_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "forces_choice_between": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "sequence_function": {
+          "type": "string"
+        }
+      }
+    },
+    "start_state": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Typed state object whose concrete schema may be specialized by the platform."
+    },
+    "objectives": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "tactics": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "initial"
+        ],
+        "properties": {
+          "initial": {
+            "type": "string"
+          },
+          "escalation": {
+            "type": "string"
+          },
+          "fallback": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "visible_engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action"
+      ],
+      "properties": {
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "prop_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "location_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "turn": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "trigger",
+        "irreversible_choice"
+      ],
+      "properties": {
+        "trigger": {
+          "type": "string",
+          "minLength": 1
+        },
+        "irreversible_choice": {
+          "type": "string",
+          "minLength": 1
+        },
+        "information_reveal": {
+          "type": "string"
+        }
+      }
+    },
+    "end_state": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Typed state object whose concrete schema may be specialized by the platform."
+    },
+    "required": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "setup_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "payoff_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "facts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "character_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "prop_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "forbidden": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "failure_conditions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "estimated_duration_seconds": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    }
+  }
+}

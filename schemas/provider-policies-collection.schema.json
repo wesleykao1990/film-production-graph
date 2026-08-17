@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:provider-policies-collection:1",
+  "title": "Provider Policy Collection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "provider_policies"
+  ],
+  "properties": {
+    "provider_policies": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "urn:film-production-graph:schema:provider-policy:1"
+      }
+    }
+  }
+}

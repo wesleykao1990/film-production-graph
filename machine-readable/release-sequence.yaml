@@ -1,0 +1,40 @@
+package_version: 3.0.0
+reviewed_specification_baseline: 2.4.0
+releases:
+- id: A
+  question: Does it write better?
+  milestones:
+  - M00
+  - M01
+  - M02
+  - M03
+  - M04a
+  - M04b
+  gate: M04a PASS under a reviewed positive-control and operating-characteristic freeze, followed by conditional
+    M04b completion; MIXED permits one five-run reserve-brief repeat
+- id: B
+  question: Can it become a film?
+  milestones:
+  - M05
+  - M06
+  - M07
+  - M08
+  gate: finished 60-180 second film through manual adapter
+- id: C
+  question: Can production scale?
+  milestones:
+  - M09
+  - M10
+  gate: provider-neutral production and editor round trip
+- id: D
+  question: Can it become a hosted product?
+  milestones:
+  - M11
+  - M12
+  gate: explicit product decision plus isolation/security/recovery
+parallel_learning:
+- id: PF01
+  alongside: M04a
+  condition: first film requires visible dialogue
+  deliverable: manual 5-15 second speaking-character feasibility record including attempts to first acceptable
+    take

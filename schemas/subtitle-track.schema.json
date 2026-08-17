@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:subtitle-track:1",
+  "title": "Subtitle Track",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "subtitle_track_id",
+    "language",
+    "timeline_version_id",
+    "source_dialogue_version_ids",
+    "cues",
+    "review_status"
+  ],
+  "properties": {
+    "subtitle_track_id": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "timeline_version_id": {
+      "type": "string"
+    },
+    "source_dialogue_version_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "cues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "start_ms",
+          "end_ms",
+          "text"
+        ],
+        "properties": {
+          "start_ms": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "end_ms": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          },
+          "speaker_ref": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "kind": {
+            "enum": [
+              "dialogue",
+              "sound_description",
+              "music_description",
+              "other"
+            ]
+          }
+        }
+      }
+    },
+    "review_status": {
+      "enum": [
+        "draft",
+        "reviewed",
+        "approved"
+      ]
+    },
+    "burn_in_style_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

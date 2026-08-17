@@ -1,0 +1,11 @@
+release_id: RELEASE_BLUE_PEN_FIXTURE_V1
+timeline_version_id: TIMELINE_BLUE_PEN_FIXTURE_V1
+delivery_spec_version_id: DELIVERY_BLUE_PEN_V1
+master_asset_refs: [ASSET_FAKE_MASTER_V1]
+subtitle_track_refs: [SUB_BLUE_PEN_EN_V1]
+rights_status: cleared
+delivery_validation_status: passed
+provenance_sidecar_ref: PROVENANCE_BLUE_PEN_FIXTURE_V1
+ai_disclosure_ref: DISCLOSURE_BLUE_PEN_FIXTURE_V1
+c2pa_status: not_configured
+released_at: "2026-08-17T00:00:00Z"

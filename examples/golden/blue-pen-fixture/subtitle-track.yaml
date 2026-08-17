@@ -1,0 +1,13 @@
+subtitle_track_id: SUB_BLUE_PEN_EN_V1
+language: en
+timeline_version_id: TIMELINE_BLUE_PEN_FIXTURE_V1
+source_dialogue_version_ids:
+  - DIALOGUE_MARA_L047_V2
+cues:
+  - start_ms: 12100
+    end_ms: 13900
+    text: You already knew.
+    speaker_ref: MARA
+    kind: dialogue
+review_status: approved
+burn_in_style_ref: null

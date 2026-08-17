@@ -1,0 +1,39 @@
+api_version: film.workflow/v2
+name: dialogue-development
+version: 2.0.0
+inputs:
+  scene_contract_version_id: string
+  screenplay_scene_version_id: string
+outputs:
+  approved_patch_version_id: string
+steps:
+  - id: dialogue-pass
+    type: agent_run
+    skill: dialogue-pass
+    input_map:
+      scene_contract: $inputs.scene_contract_version_id
+      screenplay_scene: $inputs.screenplay_scene_version_id
+    max_attempts: 2
+    budget:
+      max_cost_usd: 2.0
+  - id: subtext-pass
+    type: agent_run
+    skill: subtext-pass
+    needs: [dialogue-pass]
+    max_attempts: 2
+  - id: continuity-review
+    type: validator
+    validator: continuity-core-v1
+    needs: [subtext-pass]
+  - id: approval
+    type: human_approval
+    needs: [continuity-review]
+    reject_route: subtext-pass
+    max_revisions: 2
+    human_policy:
+      role: owner_or_reviewer
+  - id: emit
+    type: emit_artifact
+    needs: [approval]
+    output_map:
+      approved_patch_version_id: $steps.subtext-pass.output_version_id

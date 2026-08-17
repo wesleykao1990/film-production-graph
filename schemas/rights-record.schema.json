@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:rights-record:1",
+  "title": "Rights Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "rights_record_id",
+    "subject_ref",
+    "status",
+    "source_type",
+    "holder",
+    "permitted_uses",
+    "territories",
+    "reviewed_at"
+  ],
+  "properties": {
+    "rights_record_id": {
+      "type": "string"
+    },
+    "subject_ref": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "unverified",
+        "declared",
+        "cleared",
+        "restricted",
+        "expired",
+        "rejected"
+      ]
+    },
+    "source_type": {
+      "enum": [
+        "self_created",
+        "licensed",
+        "public_domain",
+        "provider_generated",
+        "commissioned",
+        "consented_voice",
+        "consented_likeness",
+        "unknown"
+      ]
+    },
+    "holder": {
+      "type": "string"
+    },
+    "license_or_permission": {
+      "type": "string"
+    },
+    "permitted_uses": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "internal_development",
+          "festival",
+          "streaming",
+          "commercial_distribution",
+          "advertising",
+          "film_tv",
+          "games",
+          "social_media",
+          "training"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "territories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "starts_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "attribution": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "evidence_asset_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "consent_record_refs": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "provider_policy_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewed_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

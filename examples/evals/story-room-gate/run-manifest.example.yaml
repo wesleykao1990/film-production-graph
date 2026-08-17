@@ -1,0 +1,303 @@
+run_manifest_version: 2.4.0-example
+protocol_hash: sha256:40e008ad9b700fcb1aa9ce7fbedfa5274012b7f7015ca6f184bd24c9c0c0d0d1
+run_mode: standard_six
+unblinding_confidential: true
+anchor_manifest_hash: sha256:73952ed55739af7481287a2c51bb4dd86aa2bed937d276ccbc1da7c4782d521c
+anchor_tasks:
+- anchor_id: ANCHOR-SPECIFICITY-VOICE
+  dimensions:
+  - specificity
+  - character_voice
+  left_sample_id: ANCHOR_DEGRADED_SV
+  right_sample_id: ANCHOR_INTACT
+  intact_sample_id: ANCHOR_INTACT
+  degraded_sample_id: ANCHOR_DEGRADED_SV
+  response_mode: forced_choice
+- anchor_id: ANCHOR-CAUSALITY
+  dimensions:
+  - causal_progression
+  left_sample_id: ANCHOR_INTACT
+  right_sample_id: ANCHOR_DEGRADED_CAUSAL
+  intact_sample_id: ANCHOR_INTACT
+  degraded_sample_id: ANCHOR_DEGRADED_CAUSAL
+  response_mode: forced_choice
+triplets:
+- triplet_id: T01
+  brief_id: blue-pen
+  run_index: 1
+  samples:
+  - sample_id: S01A30
+    condition: story_room
+    valid: true
+    invalid_reason: null
+    target_scene_id: T01-SC02
+    target_scene_hash: sha256:6f4f01a3109bc5519e8ca9b75914b81b3851e8345fe935d657ff0de0d07df44a
+    hard_violation_count: 0
+    cost_usd: 0.6
+    latency_seconds: 71
+  - sample_id: S01B43
+    condition: equal_information
+    valid: true
+    invalid_reason: null
+    target_scene_id: T01-SC02
+    target_scene_hash: sha256:157b78a3becc10fbf787c6ce047bb8b5320c8a294f18e14bbdb50950623dcc1a
+    hard_violation_count: 2
+    cost_usd: 0.35
+    latency_seconds: 26
+  - sample_id: S01C56
+    condition: fixed_budget_conventional
+    valid: true
+    invalid_reason: null
+    target_scene_id: T01-SC02
+    target_scene_hash: sha256:12739bdac069dea748d4b6d2782c31bb26128c2223665158b79c16a3c07f346c
+    hard_violation_count: 1
+    cost_usd: 0.9
+    latency_seconds: 51
+- triplet_id: T02
+  brief_id: blue-pen
+  run_index: 2
+  samples:
+  - sample_id: S02A47
+    condition: fixed_budget_conventional
+    valid: true
+    invalid_reason: null
+    target_scene_id: T02-SC02
+    target_scene_hash: sha256:fe68bb28130ebb3f8f68f929dcd9eacce8580c7b74506750bb5b6856fd5058a7
+    hard_violation_count: 1
+    cost_usd: 0.9
+    latency_seconds: 52
+  - sample_id: S02B60
+    condition: story_room
+    valid: true
+    invalid_reason: null
+    target_scene_id: T02-SC02
+    target_scene_hash: sha256:8dbfc67c18bf3897546b5b59c48935a2d48668e9700b77a838658a7dd70be725
+    hard_violation_count: 0
+    cost_usd: 0.6
+    latency_seconds: 72
+  - sample_id: S02C73
+    condition: equal_information
+    valid: true
+    invalid_reason: null
+    target_scene_id: T02-SC02
+    target_scene_hash: sha256:74f29d7a58a7200b8494a140f8ee8417b9b1a9c2c1cef2bf4cc254bc1c0a1205
+    hard_violation_count: 2
+    cost_usd: 0.35
+    latency_seconds: 27
+- triplet_id: T03
+  brief_id: blue-pen
+  run_index: 3
+  samples:
+  - sample_id: S03A64
+    condition: equal_information
+    valid: true
+    invalid_reason: null
+    target_scene_id: T03-SC02
+    target_scene_hash: sha256:a5013cbf15e3c774a7de0a17cede49ef325fee68444aa352b448224dfc0dd44a
+    hard_violation_count: 3
+    cost_usd: 0.35
+    latency_seconds: 28
+  - sample_id: S03B77
+    condition: fixed_budget_conventional
+    valid: true
+    invalid_reason: null
+    target_scene_id: T03-SC02
+    target_scene_hash: sha256:c55b345eeaee39d9ada0fa2ac06f4c950aea0f269fb2c592f668be3c68ae8ba6
+    hard_violation_count: 1
+    cost_usd: 0.9
+    latency_seconds: 53
+  - sample_id: S03C90
+    condition: story_room
+    valid: true
+    invalid_reason: null
+    target_scene_id: T03-SC02
+    target_scene_hash: sha256:129afcd82c6f3af7fef0b2f5ea7d7fcee5e885fc02c0d6542c9e04b3dc16b5cf
+    hard_violation_count: 0
+    cost_usd: 0.6
+    latency_seconds: 73
+- triplet_id: T04
+  brief_id: closed-platform
+  run_index: 1
+  samples:
+  - sample_id: S04A81
+    condition: story_room
+    valid: true
+    invalid_reason: null
+    target_scene_id: T04-SC02
+    target_scene_hash: sha256:2e39b1cdfbea97e48b9cbcffaf4b103ac16c53db6ef55a722c3a8f05a0dfe249
+    hard_violation_count: 0
+    cost_usd: 0.6
+    latency_seconds: 74
+  - sample_id: S04B94
+    condition: fixed_budget_conventional
+    valid: true
+    invalid_reason: null
+    target_scene_id: T04-SC02
+    target_scene_hash: sha256:b8244bdf32059f81f160caa9674e748d8ae5402514bfa2183d24c4fca85ae516
+    hard_violation_count: 1
+    cost_usd: 0.9
+    latency_seconds: 54
+  - sample_id: S04C10
+    condition: equal_information
+    valid: true
+    invalid_reason: null
+    target_scene_id: T04-SC02
+    target_scene_hash: sha256:2cde480438cb928a91380b33e1a4e96151fb09d4f50c1e3e9c0584ca4b5b42d3
+    hard_violation_count: 2
+    cost_usd: 0.35
+    latency_seconds: 29
+- triplet_id: T05
+  brief_id: closed-platform
+  run_index: 2
+  samples:
+  - sample_id: S05A01
+    condition: fixed_budget_conventional
+    valid: true
+    invalid_reason: null
+    target_scene_id: T05-SC02
+    target_scene_hash: sha256:157d2e6430d6af35d561ba378beb5145757a50100636ac39a2b6b92b5ee26933
+    hard_violation_count: 1
+    cost_usd: 0.9
+    latency_seconds: 55
+  - sample_id: S05B14
+    condition: equal_information
+    valid: true
+    invalid_reason: null
+    target_scene_id: T05-SC02
+    target_scene_hash: sha256:abe8ecc42452dc07297a4cc784cd1869a4b516b2d5ee8ee6ba360107f1cd9a98
+    hard_violation_count: 2
+    cost_usd: 0.35
+    latency_seconds: 30
+  - sample_id: S05C27
+    condition: story_room
+    valid: true
+    invalid_reason: null
+    target_scene_id: T05-SC02
+    target_scene_hash: sha256:808b8b8e8acd080bea77dbde6703051a8eb024543f0d85e0216b2dd64d8d04a1
+    hard_violation_count: 0
+    cost_usd: 0.6
+    latency_seconds: 75
+- triplet_id: T06
+  brief_id: closed-platform
+  run_index: 3
+  samples:
+  - sample_id: S06A18
+    condition: equal_information
+    valid: true
+    invalid_reason: null
+    target_scene_id: T06-SC02
+    target_scene_hash: sha256:442fad12ebc8e8094f4fe1f779d49068b87c33c17de77883346971ca2c74dc17
+    hard_violation_count: 2
+    cost_usd: 0.35
+    latency_seconds: 31
+  - sample_id: S06B31
+    condition: story_room
+    valid: true
+    invalid_reason: null
+    target_scene_id: T06-SC02
+    target_scene_hash: sha256:2d496c595c5d48a217e35835e7f20c14b40351c63bc1a333f2883bfd42c00f92
+    hard_violation_count: 0
+    cost_usd: 0.6
+    latency_seconds: 76
+  - sample_id: S06C44
+    condition: fixed_budget_conventional
+    valid: true
+    invalid_reason: null
+    target_scene_id: T06-SC02
+    target_scene_hash: sha256:9340d1813b7f65c52844a6e079d27b8bff14147d044b7e597639c70acae4672b
+    hard_violation_count: 1
+    cost_usd: 0.9
+    latency_seconds: 56
+- triplet_id: T07
+  brief_id: genre-contrast
+  run_index: 1
+  samples:
+  - sample_id: S07A35
+    condition: fixed_budget_conventional
+    valid: true
+    invalid_reason: null
+    target_scene_id: T07-SC02
+    target_scene_hash: sha256:c4c3b1e663512748916d97d74382dc31fca5135ee0c38e94b7e028a0385d9b1d
+    hard_violation_count: 1
+    cost_usd: 0.9
+    latency_seconds: 57
+  - sample_id: S07B48
+    condition: story_room
+    valid: true
+    invalid_reason: null
+    target_scene_id: T07-SC02
+    target_scene_hash: sha256:94aee0434e5c6f59a5aef30e8dd41e029f658794213066b2e2f7c86b5dc54084
+    hard_violation_count: 0
+    cost_usd: 0.6
+    latency_seconds: 77
+  - sample_id: S07C61
+    condition: equal_information
+    valid: true
+    invalid_reason: null
+    target_scene_id: T07-SC02
+    target_scene_hash: sha256:82ba89d5c39e24faa7d5bb1c3d83ae334e0883b6aa3dc3bf3769477ba6326978
+    hard_violation_count: 2
+    cost_usd: 0.35
+    latency_seconds: 32
+- triplet_id: T08
+  brief_id: genre-contrast
+  run_index: 2
+  samples:
+  - sample_id: S08A52
+    condition: story_room
+    valid: true
+    invalid_reason: null
+    target_scene_id: T08-SC02
+    target_scene_hash: sha256:af814ac05a6c119bc18b63bf0a72b2b3e4e5882a3b9c45c832e7f47762320e90
+    hard_violation_count: 0
+    cost_usd: 0.6
+    latency_seconds: 78
+  - sample_id: S08B65
+    condition: equal_information
+    valid: true
+    invalid_reason: null
+    target_scene_id: T08-SC02
+    target_scene_hash: sha256:967479e085dcb6377df6d36189884f0b9f5cf31209e9cf7b0fc83c90706aa9d4
+    hard_violation_count: 3
+    cost_usd: 0.35
+    latency_seconds: 33
+  - sample_id: S08C78
+    condition: fixed_budget_conventional
+    valid: true
+    invalid_reason: null
+    target_scene_id: T08-SC02
+    target_scene_hash: sha256:2048dac17bab12be5fdfbb74cfd14e1bdba9c488da872e1699384a4eb4f82e6b
+    hard_violation_count: 1
+    cost_usd: 0.9
+    latency_seconds: 58
+- triplet_id: T09
+  brief_id: genre-contrast
+  run_index: 3
+  samples:
+  - sample_id: S09A69
+    condition: equal_information
+    valid: true
+    invalid_reason: null
+    target_scene_id: T09-SC02
+    target_scene_hash: sha256:d8369d0ee3a6504ce7f5266ec9c561ba21e38f3a751bbcaefd98af0bb21a8b2d
+    hard_violation_count: 2
+    cost_usd: 0.35
+    latency_seconds: 34
+  - sample_id: S09B82
+    condition: fixed_budget_conventional
+    valid: true
+    invalid_reason: null
+    target_scene_id: T09-SC02
+    target_scene_hash: sha256:9ef09a9b4014baa9b24bda941fbb7ee709ee2d3cf8117ad9c8832620b3c393c9
+    hard_violation_count: 1
+    cost_usd: 0.9
+    latency_seconds: 59
+  - sample_id: S09C95
+    condition: story_room
+    valid: true
+    invalid_reason: null
+    target_scene_id: T09-SC02
+    target_scene_hash: sha256:001c8791f8085fa675c5f8c8367eead8a98bdd4858c1998a47e5bfbf6c9a2021
+    hard_violation_count: 0
+    cost_usd: 0.6
+    latency_seconds: 79

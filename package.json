@@ -1,0 +1,20 @@
+{
+  "name": "film-production-graph",
+  "version": "0.0.0",
+  "private": true,
+  "description": "M00 Foundation Lite workspace",
+  "packageManager": "npm@11.17.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "workspaces": [
+    "apps/studio-web"
+  ],
+  "scripts": {
+    "dev:studio": "npm run dev --workspace @film-production-graph/studio-web",
+    "build": "npm run build --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present"
+  }
+}

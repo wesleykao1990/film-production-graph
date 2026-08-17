@@ -1,0 +1,7 @@
+lock_version: 1
+skills:
+  subtext-pass:
+    source_path: examples/skills/subtext-pass
+    source_commit: abcdef1234567890
+    content_hash: sha256:bc6dac92028b8c9cab9f10baae4df4192f7f14877d1b36d90c93b65e0f24482e
+    metadata_version: 1.0.0

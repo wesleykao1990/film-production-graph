@@ -1,0 +1,18 @@
+relationship_id: REL_MARA_IVO
+from_character: MARA
+to_character: IVO
+power: -1
+trust: -2
+intimacy: 3
+debt: 2
+resentment: 4
+knowledge_asymmetry:
+  mara_knows:
+    - Ivo took public blame for her seven years ago.
+    - The original audit file is missing.
+  ivo_knows:
+    - Mara has a copy of the missing audit file.
+    - The blue ink bottle was stored beside the original.
+unresolved_history:
+  - Ivo accepted blame for a reporting error to protect Mara.
+current_tension: Mara interprets protection as repayment; Ivo experiences it as renewed control.

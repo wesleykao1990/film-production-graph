@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:m4-anchor-manifest:2",
+  "title": "M04 Forced-Choice Positive-Control Anchor Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "anchor_manifest_version",
+    "anchor_set_id",
+    "purpose",
+    "source_material_policy",
+    "created_before_primary_generation",
+    "samples",
+    "tasks",
+    "response_contract",
+    "blinding"
+  ],
+  "properties": {
+    "anchor_manifest_version": {
+      "type": "string"
+    },
+    "anchor_set_id": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "source_material_policy": {
+      "type": "string"
+    },
+    "created_before_primary_generation": {
+      "const": true
+    },
+    "samples": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/sample"
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/task"
+      }
+    },
+    "blinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "opaque_labels_required",
+        "anchor_identity_hidden_until_analysis",
+        "interspersed_with_scored_tasks"
+      ],
+      "properties": {
+        "opaque_labels_required": {
+          "const": true
+        },
+        "anchor_identity_hidden_until_analysis": {
+          "const": true
+        },
+        "interspersed_with_scored_tasks": {
+          "const": true
+        }
+      }
+    },
+    "response_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "choice_mode",
+        "tie_option_available",
+        "technical_issue_action"
+      ],
+      "properties": {
+        "choice_mode": {
+          "const": "forced_choice"
+        },
+        "tie_option_available": {
+          "const": false
+        },
+        "technical_issue_action": {
+          "const": "abort_and_replace_before_dataset_freeze"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_id",
+        "path",
+        "sha256",
+        "rights_status"
+      ],
+      "properties": {
+        "sample_id": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "rights_status": {
+          "const": "synthetic_cleared"
+        }
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "anchor_id",
+        "intact_sample_id",
+        "degraded_sample_id",
+        "dimensions",
+        "degradation_recipe"
+      ],
+      "properties": {
+        "anchor_id": {
+          "type": "string"
+        },
+        "intact_sample_id": {
+          "type": "string"
+        },
+        "degraded_sample_id": {
+          "type": "string"
+        },
+        "dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "specificity",
+              "character_voice",
+              "causal_progression"
+            ]
+          }
+        },
+        "degradation_recipe": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

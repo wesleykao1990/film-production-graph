@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:impact-record:1",
+  "title": "Impact Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "cause_version_id",
+    "affected_version_id",
+    "classification",
+    "resolution_status",
+    "created_at"
+  ],
+  "properties": {
+    "cause_version_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "affected_version_id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "classification": {
+      "enum": [
+        "possibly_stale",
+        "contradicted",
+        "reviewed_valid",
+        "rederive_requested",
+        "resolved"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "validator_finding_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "resolution_status": {
+      "enum": [
+        "unresolved",
+        "acknowledged",
+        "revalidate_requested",
+        "rederive_requested",
+        "resolved"
+      ]
+    },
+    "resolved_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "resolved_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  }
+}

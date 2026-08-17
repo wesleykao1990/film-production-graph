@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:film-production-graph:schema:audio-bible:2",
+  "title": "Audio Bible v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "audio_bible_id",
+    "voice_profiles",
+    "music_bible",
+    "location_acoustics",
+    "sfx_bible",
+    "technical_policy",
+    "rights_policy"
+  ],
+  "properties": {
+    "audio_bible_id": {
+      "type": "string"
+    },
+    "voice_profiles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "voice_profile_id",
+          "character_id",
+          "rights_record_ref"
+        ]
+      }
+    },
+    "music_bible": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "principle",
+        "source_policy",
+        "rights_record_refs"
+      ]
+    },
+    "location_acoustics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "acoustic_profile_id",
+          "location_state_ref"
+        ]
+      }
+    },
+    "sfx_bible": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "cue_id",
+          "source_entity_ref",
+          "story_function"
+        ]
+      }
+    },
+    "technical_policy": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "sample_rate_hz",
+        "channel_layout",
+        "loudness_target_lufs",
+        "true_peak_max_dbtp"
+      ]
+    },
+    "rights_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "generated_music_enabled",
+        "rights_required_for_approval",
+        "rights_required_for_release"
+      ],
+      "properties": {
+        "generated_music_enabled": {
+          "type": "boolean"
+        },
+        "rights_required_for_approval": {
+          "const": true
+        },
+        "rights_required_for_release": {
+          "const": true
+        }
+      }
+    }
+  }
+}
