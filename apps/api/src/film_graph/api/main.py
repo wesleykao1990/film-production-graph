@@ -4,12 +4,14 @@ from __future__ import annotations
 
 import os
 from datetime import datetime
+from pathlib import Path
 from typing import Any
 from uuid import UUID
 
 from fastapi import FastAPI, HTTPException
 from film_graph.application import (
     ApproveAssetCommand,
+    BindProjectSkillCommand,
     BulkResolveImpactsCommand,
     CreateArtifactCommand,
     CreateAssetCommand,
@@ -42,6 +44,7 @@ from film_graph.domain import (
 )
 from film_graph.persistence import PostgresGraphRepository
 from film_graph.persistence.errors import PersistenceUnavailable
+from film_graph.skills import SkillError, SkillRegistry
 from pydantic import BaseModel, ConfigDict, Field
 
 SERVICE_NAME = "film-production-graph-api"
@@ -152,6 +155,21 @@ class RunRequest(_Request):
     disposition: str = "completed"
 
 
+class SkillReloadRequest(_Request):
+    actor: ActorRequest
+
+
+class SkillBindingRequest(_Request):
+    agent_ref: str = Field(min_length=1)
+    skill_name: str = Field(min_length=1)
+    actor: ActorRequest
+
+
+class SkillFakeRunRequest(_Request):
+    agent_ref: str = Field(min_length=1)
+    actor: ActorRequest
+
+
 class ProviderPolicyRequest(_Request):
     provider: str = Field(min_length=1)
     captured_at: str
@@ -179,14 +197,35 @@ def _health_payload() -> dict[str, str]:
     return {"status": "ok", "service": SERVICE_NAME, "version": SERVICE_VERSION}
 
 
-def create_app(service: FilmGraphApplicationService | None = None) -> FastAPI:
+def _configured_skill_registry() -> SkillRegistry | None:
+    raw_repository = os.getenv("FPG_REPOSITORY_ROOT")
+    if not raw_repository:
+        return None
+    repository = Path(raw_repository)
+    raw_roots = os.getenv("FPG_SKILL_ROOTS", "skills")
+    roots = [Path(item.strip()) for item in raw_roots.split(",") if item.strip()]
+    registry = SkillRegistry(
+        repository_root=repository,
+        skill_roots=roots,
+        lock_path=Path(os.getenv("FPG_SKILLS_LOCK", "skills.lock")),
+    )
+    registry.reload()
+    return registry
+
+
+def create_app(
+    service: FilmGraphApplicationService | None = None,
+    skill_registry: SkillRegistry | None = None,
+) -> FastAPI:
     if service is None and os.getenv("FPG_DATABASE_URL"):
         service = FilmGraphApplicationService(PostgresGraphRepository())
+    if skill_registry is None:
+        skill_registry = _configured_skill_registry()
     application = FastAPI(
         title="Film Production Graph API",
         version=SERVICE_VERSION,
         description=(
-            "M01 Artifact, Lineage, Impact, Rights, and provenance API; "
+            "M01 Artifact, Lineage, Impact, Rights, provenance, and M02 skills API; "
             "no provider calls are made."
         ),
     )
@@ -205,6 +244,11 @@ def create_app(service: FilmGraphApplicationService | None = None) -> FastAPI:
             raise HTTPException(status_code=503, detail="Postgres persistence is not configured")
         return service
 
+    def _skills() -> SkillRegistry:
+        if skill_registry is None:
+            raise HTTPException(status_code=503, detail="repository skills are not configured")
+        return skill_registry
+
     def _error(exc: Exception) -> HTTPException:
         if isinstance(exc, PersistenceUnavailable):
             return HTTPException(status_code=503, detail=str(exc))
@@ -216,7 +260,120 @@ def create_app(service: FilmGraphApplicationService | None = None) -> FastAPI:
             )
         if isinstance(exc, (TypeError, ValueError)):
             return HTTPException(status_code=422, detail=str(exc))
+        if isinstance(exc, SkillError):
+            return HTTPException(status_code=409, detail=str(exc))
         return HTTPException(status_code=400, detail=str(exc))
+
+    @application.get("/api/skills", tags=["skills"])
+    def list_skills() -> dict[str, Any]:
+        try:
+            snapshot = _skills().snapshot
+            return {
+                "snapshot_hash": snapshot.snapshot_hash,
+                "skills": [skill.as_dict() for skill in snapshot.list()],
+            }
+        except SkillError as exc:
+            raise _error(exc) from exc
+
+    @application.post("/api/skills/reload", tags=["skills"])
+    def reload_skills(request: SkillReloadRequest) -> dict[str, Any]:
+        try:
+            request.actor.domain().require_human()
+            snapshot = _skills().reload()
+            return {
+                "snapshot_hash": snapshot.snapshot_hash,
+                "skills": [skill.as_dict() for skill in snapshot.list()],
+            }
+        except (SkillError, TypeError, ValueError) as exc:
+            raise _error(exc) from exc
+
+    @application.post(
+        "/api/projects/{project_id}/skill-bindings", tags=["skills"], status_code=201
+    )
+    def bind_project_skill(
+        project_id: UUID, request: SkillBindingRequest
+    ) -> dict[str, Any]:
+        try:
+            snapshot = _skills().snapshot
+            skill = snapshot.get(request.skill_name)
+            ref = skill.locked_ref
+            binding = _service().bind_project_skill(
+                BindProjectSkillCommand(
+                    project_id=project_id,
+                    agent_ref=request.agent_ref,
+                    skill_name=ref.name,
+                    source_path=ref.source_path,
+                    source_commit=ref.source_commit,
+                    content_hash=ref.content_hash,
+                    metadata_version=ref.metadata_version,
+                    snapshot_hash=snapshot.snapshot_hash,
+                    actor=request.actor.domain(),
+                )
+            )
+            return binding.as_dict()
+        except (ApplicationError, SkillError, TypeError, ValueError) as exc:
+            raise _error(exc) from exc
+
+    @application.get("/api/projects/{project_id}/skill-bindings", tags=["skills"])
+    def list_project_skill_bindings(
+        project_id: UUID, agent_ref: str | None = None
+    ) -> list[dict[str, Any]]:
+        try:
+            return [
+                binding.as_dict()
+                for binding in _service().list_project_skill_bindings(
+                    project_id, agent_ref=agent_ref
+                )
+            ]
+        except (ApplicationError, TypeError, ValueError) as exc:
+            raise _error(exc) from exc
+
+    @application.post(
+        "/api/projects/{project_id}/skills/{skill_name}/fake-run",
+        tags=["skills"],
+        status_code=201,
+    )
+    def fake_run_skill(
+        project_id: UUID, skill_name: str, request: SkillFakeRunRequest
+    ) -> dict[str, Any]:
+        try:
+            snapshot = _skills().snapshot
+            skill = snapshot.get(skill_name)
+            binding = _service().get_project_skill_binding(
+                project_id, request.agent_ref, skill_name
+            )
+            exact_ref = skill.locked_ref.as_dict()
+            bound_ref = {
+                "name": binding.skill_name,
+                "source_path": binding.source_path,
+                "source_commit": binding.source_commit,
+                "content_hash": binding.content_hash,
+                "metadata_version": binding.metadata_version,
+            }
+            if binding.snapshot_hash != snapshot.snapshot_hash or bound_ref != exact_ref:
+                raise ConflictError("skill binding does not match the current exact snapshot")
+            provenance = {
+                "mode": "fake_no_provider",
+                "agent_ref": request.agent_ref,
+                "resolved_skill_set_hash": snapshot.snapshot_hash,
+                "skills": [exact_ref],
+            }
+            run = _service().create_run(
+                CreateRunCommand(
+                    project_id=project_id,
+                    actor=request.actor.domain(),
+                    provenance=provenance,
+                    disposition="completed",
+                )
+            )
+            return {
+                "run_id": str(run.id),
+                "project_id": str(run.project_id),
+                "disposition": run.disposition,
+                "provenance": provenance,
+            }
+        except (ApplicationError, SkillError, TypeError, ValueError) as exc:
+            raise _error(exc) from exc
 
     def _artifact_response(identity: Any, version: Any) -> dict[str, Any]:
         return {

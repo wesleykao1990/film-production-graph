@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
@@ -27,6 +28,10 @@ EDGE_TYPES: frozenset[str] = frozenset(
 )
 INITIAL_EDGE_TYPES = EDGE_TYPES
 
+_SKILL_NAME_PATTERN = re.compile(r"^[a-z][a-z0-9-]{1,63}$")
+_GIT_COMMIT_PATTERN = re.compile(r"^[0-9a-f]{7,40}$")
+_SHA256_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
+
 
 @dataclass(frozen=True, slots=True)
 class Project:
@@ -39,6 +44,79 @@ class Project:
         if not name.strip():
             raise ValueError("project name must not be empty")
         return cls(project_id or uuid4(), name.strip(), datetime.now(UTC))
+
+
+@dataclass(frozen=True, slots=True)
+class ProjectSkillBinding:
+    """An immutable, exact skill reference bound to a project agent.
+
+    The loader owns resolving a skill snapshot. This domain value stores the
+    exact reference that was resolved, together with the snapshot hash, so a
+    later lookup can never silently float to a different package revision.
+    """
+
+    id: UUID
+    project_id: UUID
+    agent_ref: str
+    skill_name: str
+    source_path: str
+    source_commit: str
+    content_hash: str
+    metadata_version: str
+    snapshot_hash: str
+    bound_by: ActorRef
+    created_at: datetime
+
+    def __post_init__(self) -> None:
+        for label in (
+            "agent_ref",
+            "skill_name",
+            "source_path",
+            "source_commit",
+            "content_hash",
+            "metadata_version",
+            "snapshot_hash",
+        ):
+            value = getattr(self, label)
+            if not isinstance(value, str) or not value.strip():
+                raise ValueError(f"{label} must be a non-empty string")
+            object.__setattr__(self, label, value.strip())
+        if not _SKILL_NAME_PATTERN.fullmatch(self.skill_name):
+            raise ValueError("skill_name must be a lowercase package name")
+        if self.source_path.startswith("/") or "\\" in self.source_path:
+            raise ValueError("source_path must be a relative POSIX path")
+        parts = self.source_path.split("/")
+        if any(part in {"", ".", ".."} for part in parts):
+            raise ValueError("source_path must not contain empty or traversal segments")
+        if not _GIT_COMMIT_PATTERN.fullmatch(self.source_commit):
+            raise ValueError("source_commit must be a lowercase Git SHA")
+        if not _SHA256_PATTERN.fullmatch(self.content_hash):
+            raise ValueError("content_hash must be a sha256 digest")
+        if not _SHA256_PATTERN.fullmatch(self.snapshot_hash):
+            raise ValueError("snapshot_hash must be a sha256 digest")
+        self.bound_by.require_human()
+        if self.created_at.tzinfo is None:
+            raise ValueError("created_at must be timezone-aware")
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "binding_id": str(self.id),
+            "project_id": str(self.project_id),
+            "agent_ref": self.agent_ref,
+            "skill_name": self.skill_name,
+            "source_path": self.source_path,
+            "source_commit": self.source_commit,
+            "content_hash": self.content_hash,
+            "metadata_version": self.metadata_version,
+            "snapshot_hash": self.snapshot_hash,
+            "bound_by": self.bound_by.as_dict(),
+            "created_at": self.created_at.astimezone(UTC).isoformat(),
+        }
+
+
+# M02's first API draft called these records "skill locks". Keep the alias so
+# adapters can use the domain's binding vocabulary without breaking that port.
+ProjectSkillLock = ProjectSkillBinding
 
 
 @dataclass(frozen=True, slots=True)

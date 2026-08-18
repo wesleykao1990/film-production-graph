@@ -16,6 +16,7 @@ SOURCE_DIRS = (
     ROOT / "packages/media/src",
     ROOT / "packages/agent-runtime/src",
     ROOT / "packages/persistence/src",
+    ROOT / "packages/skill-loader/src",
 )
 for source_dir in reversed(SOURCE_DIRS):
     source = str(source_dir)

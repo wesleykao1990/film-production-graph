@@ -25,6 +25,7 @@ from film_graph.domain import (
     LifecycleStatus,
     Project,
     ProjectEvent,
+    ProjectSkillBinding,
     ProviderPolicy,
     RightsRecord,
     RightsStatus,
@@ -40,6 +41,7 @@ class InMemoryGraphRepository:
 
     def __init__(self) -> None:
         self.projects: dict[UUID, Project] = {}
+        self.project_skill_bindings: dict[UUID, ProjectSkillBinding] = {}
         self.identities: dict[UUID, ArtifactIdentity] = {}
         self.versions: dict[UUID, ArtifactVersion] = {}
         self.current_by_artifact: dict[UUID, UUID] = {}
@@ -66,6 +68,47 @@ class InMemoryGraphRepository:
 
     def get_project(self, project_id: UUID) -> Project | None:
         return self.projects.get(project_id)
+
+    def create_project_skill_binding(
+        self, binding: ProjectSkillBinding
+    ) -> ProjectSkillBinding:
+        self._require_project(binding.project_id)
+        if any(item.id == binding.id for item in self.project_skill_bindings.values()):
+            raise ConflictError(f"project skill binding already exists: {binding.id}")
+        if any(
+            item.project_id == binding.project_id
+            and item.agent_ref == binding.agent_ref
+            and item.skill_name == binding.skill_name
+            and item.snapshot_hash == binding.snapshot_hash
+            for item in self.project_skill_bindings.values()
+        ):
+            raise ConflictError("project skill snapshot is already bound to this agent")
+        self.project_skill_bindings[binding.id] = binding
+        return binding
+
+    def get_project_skill_binding(
+        self, project_id: UUID, agent_ref: str, skill_name: str
+    ) -> ProjectSkillBinding | None:
+        self._require_project(project_id)
+        matches = [
+            item
+            for item in self.project_skill_bindings.values()
+            if item.project_id == project_id
+            and item.agent_ref == agent_ref
+            and item.skill_name == skill_name
+        ]
+        return max(matches, key=lambda item: (item.created_at, item.id)) if matches else None
+
+    def list_project_skill_bindings(
+        self, project_id: UUID, *, agent_ref: str | None = None
+    ) -> list[ProjectSkillBinding]:
+        self._require_project(project_id)
+        records = [
+            item
+            for item in self.project_skill_bindings.values()
+            if item.project_id == project_id and (agent_ref is None or item.agent_ref == agent_ref)
+        ]
+        return sorted(records, key=lambda item: (item.agent_ref, item.skill_name, item.created_at))
 
     def _require_project(self, project_id: UUID) -> Project:
         project = self.projects.get(project_id)

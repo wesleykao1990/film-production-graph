@@ -23,9 +23,9 @@ make db-reset
 make check
 ```
 
-These commands validate the production M01 artifact/lineage core and the preserved
-reference prototype. See [`docs/M01_CORE.md`](docs/M01_CORE.md) for the M01 behavior
-and [`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md) for prerequisites.
+These commands validate the production M01 core, M02 repository skills, and the
+preserved prototype. See
+[`docs/M02_REPOSITORY_SKILLS.md`](docs/M02_REPOSITORY_SKILLS.md) for M02 behavior.
 
 Run the prototype:
 
@@ -50,9 +50,9 @@ The prototype is an executable behavioral specification. It shows:
 - zero live model or media-provider calls.
 
 It deliberately uses SQLite, a deterministic mock agent, and a static UI. The
-production implementation now includes the M00 foundation plus the M01 Postgres
-artifact, lineage, impact, rights, provider-policy, and provenance core. It does
-not yet include the M02 skill loader or a workflow engine.
+production implementation includes the M00 foundation, M01 Postgres core, and M02
+reviewed-skill loading, exact bindings, reload, and provenance. It does not yet
+include the M03 agent runtime or a workflow engine.
 
 ## Build order
 
@@ -70,15 +70,16 @@ Release D — evaluation and hosted-platform hardening
 M11 → M12
 ```
 
-M00 and M01 are implemented locally. The next milestone is M02, which must be
-implemented and proven independently before work proceeds to M03.
+M00 through M02 are implemented locally. M03 remains the next milestone.
 
-## Production foundation and M01 core
+## Production foundation through M02
 
 The production code lives beside—never inside—the reference prototype. See
 [`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md) for the scaffold and local
 Supabase setup, and [`docs/M01_CORE.md`](docs/M01_CORE.md) for the canonical
 artifact, lineage, impact, rights, and provenance behavior.
+Repository-skill behavior is documented in
+[`docs/M02_REPOSITORY_SKILLS.md`](docs/M02_REPOSITORY_SKILLS.md).
 
 ## Package map
 

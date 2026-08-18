@@ -25,6 +25,7 @@ from film_graph.domain import (
     LifecycleStatus,
     Project,
     ProjectEvent,
+    ProjectSkillBinding,
     ProviderPolicy,
     RightsRecord,
     RightsStatus,
@@ -149,6 +150,85 @@ class PostgresGraphRepository:
                 "select id, name, created_at from public.projects where id = %s", (project_id,)
             ).fetchone()
         return self._row_project(row) if row else None
+
+    @staticmethod
+    def _row_project_skill_binding(row: Mapping[str, Any]) -> ProjectSkillBinding:
+        return ProjectSkillBinding(
+            id=UUID(str(row["id"])),
+            project_id=UUID(str(row["project_id"])),
+            agent_ref=str(row["agent_ref"]),
+            skill_name=str(row["skill_name"]),
+            source_path=str(row["source_path"]),
+            source_commit=str(row["source_commit"]),
+            content_hash=str(row["content_hash"]),
+            metadata_version=str(row["metadata_version"]),
+            snapshot_hash=str(row["snapshot_hash"]),
+            bound_by=ActorRef(
+                ActorType(str(row["bound_by_actor_type"])),
+                str(row["bound_by_actor_id"]),
+            ),
+            created_at=_utc(row["created_at"]),
+        )
+
+    def create_project_skill_binding(
+        self, binding: ProjectSkillBinding
+    ) -> ProjectSkillBinding:
+        with self._scope() as connection:
+            try:
+                connection.execute(
+                    """
+                    insert into public.project_skill_locks (
+                        id, project_id, agent_ref, skill_name, source_path, source_commit,
+                        content_hash, metadata_version, snapshot_hash,
+                        bound_by_actor_type, bound_by_actor_id, created_at
+                    ) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    """,
+                    (
+                        binding.id,
+                        binding.project_id,
+                        binding.agent_ref,
+                        binding.skill_name,
+                        binding.source_path,
+                        binding.source_commit,
+                        binding.content_hash,
+                        binding.metadata_version,
+                        binding.snapshot_hash,
+                        binding.bound_by.actor_type.value,
+                        binding.bound_by.actor_id,
+                        binding.created_at,
+                    ),
+                )
+            except Exception as exc:
+                raise ConflictError("could not create project skill binding") from exc
+        return binding
+
+    def get_project_skill_binding(
+        self, project_id: UUID, agent_ref: str, skill_name: str
+    ) -> ProjectSkillBinding | None:
+        with self._scope() as connection:
+            row = connection.execute(
+                """
+                select * from public.project_skill_locks
+                 where project_id = %s and agent_ref = %s and skill_name = %s
+                 order by created_at desc, id desc
+                 limit 1
+                """,
+                (project_id, agent_ref, skill_name),
+            ).fetchone()
+        return self._row_project_skill_binding(row) if row else None
+
+    def list_project_skill_bindings(
+        self, project_id: UUID, *, agent_ref: str | None = None
+    ) -> list[ProjectSkillBinding]:
+        query = "select * from public.project_skill_locks where project_id = %s"
+        args: list[Any] = [project_id]
+        if agent_ref is not None:
+            query += " and agent_ref = %s"
+            args.append(agent_ref)
+        query += " order by agent_ref, skill_name, created_at, id"
+        with self._scope() as connection:
+            rows = connection.execute(query, args).fetchall()
+        return [self._row_project_skill_binding(row) for row in rows]
 
     def get_identity(self, artifact_id: UUID) -> ArtifactIdentity | None:
         with self._scope() as connection:

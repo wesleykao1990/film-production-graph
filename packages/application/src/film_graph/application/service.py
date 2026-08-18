@@ -18,6 +18,7 @@ from film_graph.domain import (
     LifecycleStatus,
     Project,
     ProjectEvent,
+    ProjectSkillBinding,
     ProviderPolicy,
     RightsRecord,
     RightsStatus,
@@ -27,6 +28,7 @@ from film_graph.domain import (
 
 from .commands import (
     ApproveAssetCommand,
+    BindProjectSkillCommand,
     BulkResolveImpactsCommand,
     CreateArtifactCommand,
     CreateAssetCommand,
@@ -57,6 +59,50 @@ class FilmGraphApplicationService:
 
     def list_projects(self) -> list[Project]:
         return self.repository.list_projects()
+
+    def bind_project_skill(self, command: BindProjectSkillCommand) -> ProjectSkillBinding:
+        """Persist an exact, human-attested skill reference for a project agent."""
+
+        if self.repository.get_project(command.project_id) is None:
+            raise NotFoundError(f"project not found: {command.project_id}")
+        command.actor.require_human()
+        try:
+            binding = ProjectSkillBinding(
+                id=command.binding_id or uuid4(),
+                project_id=command.project_id,
+                agent_ref=command.agent_ref,
+                skill_name=command.skill_name,
+                source_path=command.source_path,
+                source_commit=command.source_commit,
+                content_hash=command.content_hash,
+                metadata_version=command.metadata_version,
+                snapshot_hash=command.snapshot_hash,
+                bound_by=command.actor,
+                created_at=command.created_at or datetime.now(UTC),
+            )
+        except (TypeError, ValueError) as exc:
+            raise ValidationError(str(exc)) from exc
+        return self.repository.create_project_skill_binding(binding)
+
+    def get_project_skill_binding(
+        self, project_id: Any, agent_ref: str, skill_name: str
+    ) -> ProjectSkillBinding:
+        if self.repository.get_project(project_id) is None:
+            raise NotFoundError(f"project not found: {project_id}")
+        binding = self.repository.get_project_skill_binding(project_id, agent_ref, skill_name)
+        if binding is None:
+            raise NotFoundError(
+                "skill binding not found for project "
+                f"{project_id}, agent {agent_ref}, skill {skill_name}"
+            )
+        return binding
+
+    def list_project_skill_bindings(
+        self, project_id: Any, *, agent_ref: str | None = None
+    ) -> list[ProjectSkillBinding]:
+        if self.repository.get_project(project_id) is None:
+            raise NotFoundError(f"project not found: {project_id}")
+        return self.repository.list_project_skill_bindings(project_id, agent_ref=agent_ref)
 
     def create_artifact(self, command: CreateArtifactCommand) -> ArtifactVersion:
         if command.actor.actor_type.value not in {"user", "agent", "workflow", "system", "import"}:

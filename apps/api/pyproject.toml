@@ -13,6 +13,7 @@ dependencies = [
   "film-graph-application==0.1.0",
   "film-graph-domain==0.1.0",
   "film-graph-persistence==0.1.0",
+  "film-graph-skill-loader==0.1.0",
 ]
 
 [project.optional-dependencies]

@@ -2,6 +2,7 @@
 
 from .commands import (
     ApproveAssetCommand,
+    BindProjectSkillCommand,
     BulkResolveImpactsCommand,
     CreateArtifactCommand,
     CreateAssetCommand,
@@ -24,6 +25,7 @@ from .service import FilmGraphApplicationService
 
 __all__ = [
     "ApproveAssetCommand",
+    "BindProjectSkillCommand",
     "ApplicationModelResolver",
     "ApplicationError",
     "ConflictError",

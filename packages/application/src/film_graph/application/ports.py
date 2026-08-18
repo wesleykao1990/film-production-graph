@@ -16,6 +16,7 @@ from film_graph.domain import (
     ImpactRecord,
     Project,
     ProjectEvent,
+    ProjectSkillBinding,
     ProviderPolicy,
     RightsRecord,
     RunRecord,
@@ -38,6 +39,16 @@ class GraphRepository(Protocol):
     def list_projects(self) -> list[Project]: ...
 
     def get_project(self, project_id: UUID) -> Project | None: ...
+
+    def create_project_skill_binding(self, binding: ProjectSkillBinding) -> ProjectSkillBinding: ...
+
+    def get_project_skill_binding(
+        self, project_id: UUID, agent_ref: str, skill_name: str
+    ) -> ProjectSkillBinding | None: ...
+
+    def list_project_skill_bindings(
+        self, project_id: UUID, *, agent_ref: str | None = None
+    ) -> list[ProjectSkillBinding]: ...
 
     def create_artifact(
         self, identity: ArtifactIdentity, version: ArtifactVersion

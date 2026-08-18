@@ -38,7 +38,8 @@ typecheck:
 	  -p film_graph.media \
 	  -p film_graph.model_routing \
 	  -p film_graph.persistence \
-	  -p film_graph.provider_contracts
+	  -p film_graph.provider_contracts \
+	  -p film_graph.skills
 	uv run mypy tests/python tests/integration
 	npm run typecheck
 

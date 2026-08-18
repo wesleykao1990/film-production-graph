@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "film-graph-skill-loader"
+version = "0.1.0"
+description = "Safe repository skill discovery, validation, locking, and snapshots"
+requires-python = ">=3.11"
+dependencies = [
+  "film-graph-domain==0.1.0",
+  "jsonschema>=4.23,<5",
+  "PyYAML>=6,<7",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"film_graph.skills" = ["py.typed"]

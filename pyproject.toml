@@ -16,6 +16,7 @@ dependencies = [
   "film-graph-media==0.1.0",
   "film-graph-model-routing==0.1.0",
   "film-graph-provider-contracts==0.1.0",
+  "film-graph-skill-loader==0.1.0",
   "film-graph-persistence==0.1.0",
   "psycopg[binary]>=3.2,<4",
   "jsonschema>=4.23,<5",
@@ -48,6 +49,7 @@ members = [
   "packages/media",
   "packages/agent-runtime",
   "packages/persistence",
+  "packages/skill-loader",
 ]
 
 [tool.uv.sources]
@@ -59,6 +61,7 @@ film-graph-domain = { workspace = true }
 film-graph-media = { workspace = true }
 film-graph-model-routing = { workspace = true }
 film-graph-provider-contracts = { workspace = true }
+film-graph-skill-loader = { workspace = true }
 film-graph-persistence = { workspace = true }
 
 [tool.pytest.ini_options]

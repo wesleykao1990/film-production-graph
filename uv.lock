@@ -18,6 +18,7 @@ members = [
     "film-graph-model-routing",
     "film-graph-persistence",
     "film-graph-provider-contracts",
+    "film-graph-skill-loader",
     "film-production-graph-dev",
 ]
 
@@ -131,6 +132,7 @@ dependencies = [
     { name = "film-graph-application" },
     { name = "film-graph-domain" },
     { name = "film-graph-persistence" },
+    { name = "film-graph-skill-loader" },
     { name = "pydantic" },
 ]
 
@@ -146,6 +148,7 @@ requires-dist = [
     { name = "film-graph-application", editable = "packages/application" },
     { name = "film-graph-domain", editable = "packages/domain" },
     { name = "film-graph-persistence", editable = "packages/persistence" },
+    { name = "film-graph-skill-loader", editable = "packages/skill-loader" },
     { name = "httpx", marker = "extra == 'dev'", specifier = ">=0.27" },
     { name = "pydantic", specifier = ">=2,<3" },
     { name = "uvicorn", marker = "extra == 'dev'", specifier = ">=0.30" },
@@ -230,6 +233,23 @@ dependencies = [
 requires-dist = [{ name = "film-graph-contracts", editable = "packages/contracts" }]
 
 [[package]]
+name = "film-graph-skill-loader"
+version = "0.1.0"
+source = { editable = "packages/skill-loader" }
+dependencies = [
+    { name = "film-graph-domain" },
+    { name = "jsonschema" },
+    { name = "pyyaml" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "film-graph-domain", editable = "packages/domain" },
+    { name = "jsonschema", specifier = ">=4.23,<5" },
+    { name = "pyyaml", specifier = ">=6,<7" },
+]
+
+[[package]]
 name = "film-production-graph-dev"
 version = "0.0.0"
 source = { editable = "." }
@@ -243,6 +263,7 @@ dependencies = [
     { name = "film-graph-model-routing" },
     { name = "film-graph-persistence" },
     { name = "film-graph-provider-contracts" },
+    { name = "film-graph-skill-loader" },
     { name = "jsonschema" },
     { name = "psycopg", extra = ["binary"] },
     { name = "pydantic-ai-slim" },
@@ -271,6 +292,7 @@ requires-dist = [
     { name = "film-graph-model-routing", editable = "packages/model-routing" },
     { name = "film-graph-persistence", editable = "packages/persistence" },
     { name = "film-graph-provider-contracts", editable = "packages/provider-contracts" },
+    { name = "film-graph-skill-loader", editable = "packages/skill-loader" },
     { name = "jsonschema", specifier = ">=4.23,<5" },
     { name = "psycopg", extras = ["binary"], specifier = ">=3.2,<4" },
     { name = "pydantic-ai-slim", specifier = ">=1,<2" },

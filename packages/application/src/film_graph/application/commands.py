@@ -24,6 +24,23 @@ class CreateProjectCommand:
 
 
 @dataclass(frozen=True, slots=True)
+class BindProjectSkillCommand:
+    """Bind one resolved skill reference to an agent in a project."""
+
+    project_id: UUID
+    agent_ref: str
+    skill_name: str
+    source_path: str
+    source_commit: str
+    content_hash: str
+    metadata_version: str
+    snapshot_hash: str
+    actor: ActorRef
+    binding_id: UUID | None = None
+    created_at: datetime | None = None
+
+
+@dataclass(frozen=True, slots=True)
 class CreateArtifactCommand:
     project_id: UUID
     artifact_type: str
