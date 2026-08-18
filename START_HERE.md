@@ -28,8 +28,9 @@ make check
 ```
 
 This verifies the M01 production core, M02 repository skills, M03 typed-agent
-security boundary, and the preserved prototype. M03 behavior is documented in
-[`docs/M03_AGENT_RUNTIME_SECURITY.md`](docs/M03_AGENT_RUNTIME_SECURITY.md).
+security boundary, the M04a offline engineering checkpoint, and the preserved
+prototype. M04a engineering behavior and its remaining protected gate are documented
+in [`docs/M04A_ENGINEERING_CHECKPOINT.md`](docs/M04A_ENGINEERING_CHECKPOINT.md).
 
 The checked-in M04 analysis outputs are mechanical fixtures, not evidence that the product thesis has passed.
 
@@ -110,5 +111,7 @@ M12   Hosted skills, multi-tenancy, security, deployment, and recovery
 
 ## 8. Continue the milestone sequence
 
-M00 through M03 are implemented locally. Continue with M04a only through its
-calibrated decision-gate prompt and stop before M04b unless the gate passes.
+M00 through M03 and the offline M04a engineering checkpoint are implemented locally.
+Continue M04a with calibration, non-builder pilot ratings, named operating-characteristic
+review, frozen generation, and protected human ratings. Stop before M04b unless the
+recorded M04a decision is `PASS`.

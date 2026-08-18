@@ -22,6 +22,13 @@ from .in_memory import InMemoryGraphRepository
 from .model_aliases import ApplicationModelResolver, resolve_model_alias
 from .ports import GraphRepository, MediaRunner, ModelRunner
 from .service import FilmGraphApplicationService
+from .story_room import SelectPremiseCandidateCommand, StoryRoomApplicationService
+from .story_room_gate import (
+    AnchorTaskRecord,
+    GateSampleRecord,
+    build_rater_projection,
+    build_run_manifest,
+)
 
 __all__ = [
     "ApproveAssetCommand",
@@ -50,4 +57,10 @@ __all__ = [
     "TransitionVersionCommand",
     "ValidationError",
     "resolve_model_alias",
+    "SelectPremiseCandidateCommand",
+    "StoryRoomApplicationService",
+    "AnchorTaskRecord",
+    "GateSampleRecord",
+    "build_rater_projection",
+    "build_run_manifest",
 ]

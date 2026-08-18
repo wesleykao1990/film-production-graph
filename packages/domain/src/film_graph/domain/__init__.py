@@ -38,6 +38,22 @@ from .lifecycle import (
     validate_transition,
 )
 from .rights import PermittedUse, RightsRecord, RightsSourceType, RightsStatus
+from .story_room import (
+    CausalBeat,
+    KnowledgeDelta,
+    SceneContractSpec,
+    SceneReaction,
+    SceneRealization,
+    StoryRoomFinding,
+    StoryRoomValidationReport,
+    SubtextPatchSpec,
+    ValidationFinding,
+    ValidationReport,
+    validate_causal_beat,
+    validate_scene_contract,
+    validate_scene_realization,
+    validate_subtext_patch,
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -89,4 +105,18 @@ __all__ = [
     "content_hash",
     "to_json_compatible",
     "validate_transition",
+    "CausalBeat",
+    "KnowledgeDelta",
+    "SceneContractSpec",
+    "SceneReaction",
+    "SceneRealization",
+    "StoryRoomFinding",
+    "StoryRoomValidationReport",
+    "SubtextPatchSpec",
+    "ValidationFinding",
+    "ValidationReport",
+    "validate_causal_beat",
+    "validate_scene_contract",
+    "validate_scene_realization",
+    "validate_subtext_patch",
 ]

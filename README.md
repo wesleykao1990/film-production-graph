@@ -24,8 +24,8 @@ make check
 ```
 
 These commands validate the production M01 core, M02 repository skills, M03 typed
-agent security boundary, and the preserved prototype. See
-[`docs/M03_AGENT_RUNTIME_SECURITY.md`](docs/M03_AGENT_RUNTIME_SECURITY.md).
+agent security boundary, the M04a offline engineering checkpoint, and the preserved
+prototype. See [`docs/M04A_ENGINEERING_CHECKPOINT.md`](docs/M04A_ENGINEERING_CHECKPOINT.md).
 
 Run the prototype:
 
@@ -50,9 +50,10 @@ The prototype is an executable behavioral specification. It shows:
 - zero live model or media-provider calls.
 
 It deliberately uses SQLite, a deterministic mock agent, and a static UI. The
-production implementation includes M00 through M03: the Postgres core, reviewed
-repository skills, and an offline typed agent runtime/security gate. It does not
-yet include the M04a Story Room gate or a workflow engine.
+production implementation includes M00 through M03 plus the offline M04a Story Room
+engineering checkpoint: hard validators, human premise selection, gate-manifest
+projection, and a blinded review fixture. The protected calibration, human-rating
+run, and final M04a product decision have not run. There is no workflow engine.
 
 ## Build order
 
@@ -70,9 +71,11 @@ Release D — evaluation and hosted-platform hardening
 M11 → M12
 ```
 
-M00 through M03 are implemented locally. M04a remains the next gated milestone.
+M00 through M03 and the offline M04a engineering checkpoint are implemented locally.
+M04a remains open until its protected human experiment records exactly one product
+decision. M04b must not start before a recorded `PASS`.
 
-## Production foundation through M03
+## Production foundation and M04a engineering checkpoint
 
 The production code lives beside—never inside—the reference prototype. See
 [`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md) for the scaffold and local
@@ -82,6 +85,8 @@ Repository-skill behavior is documented in
 [`docs/M02_REPOSITORY_SKILLS.md`](docs/M02_REPOSITORY_SKILLS.md).
 The typed agent and injection boundary is documented in
 [`docs/M03_AGENT_RUNTIME_SECURITY.md`](docs/M03_AGENT_RUNTIME_SECURITY.md).
+The Story Room validator, blinding, and remaining human-gate boundary is documented
+in [`docs/M04A_ENGINEERING_CHECKPOINT.md`](docs/M04A_ENGINEERING_CHECKPOINT.md).
 
 ## Package map
 
