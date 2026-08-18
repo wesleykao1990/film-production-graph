@@ -136,6 +136,7 @@ class CreateRunCommand:
     resolved_provider: str | None = None
     resolved_model: str | None = None
     disposition: str = "completed"
+    run_id: UUID | None = None
 
 
 @dataclass(frozen=True, slots=True)

@@ -17,7 +17,7 @@ For an existing repository, first use [`prompts/01_EXISTING_REPOSITORY_PROMPT.md
 7. [`docs/TEST_STRATEGY.md`](docs/TEST_STRATEGY.md)
 8. [`prototype/README.md`](prototype/README.md)
 
-Read [`docs/M4_EXPERIMENT_PROTOCOL.md`](docs/M4_EXPERIMENT_PROTOCOL.md) before implementing M03 or M04.
+Read [`docs/M4_EXPERIMENT_PROTOCOL.md`](docs/M4_EXPERIMENT_PROTOCOL.md) before implementing M04.
 
 ## 3. Verify the package
 
@@ -27,9 +27,9 @@ make db-reset
 make check
 ```
 
-This verifies the M01 production core, M02 repository skills, and the preserved
-prototype. M02 behavior is documented in
-[`docs/M02_REPOSITORY_SKILLS.md`](docs/M02_REPOSITORY_SKILLS.md).
+This verifies the M01 production core, M02 repository skills, M03 typed-agent
+security boundary, and the preserved prototype. M03 behavior is documented in
+[`docs/M03_AGENT_RUNTIME_SECURITY.md`](docs/M03_AGENT_RUNTIME_SECURITY.md).
 
 The checked-in M04 analysis outputs are mechanical fixtures, not evidence that the product thesis has passed.
 
@@ -110,5 +110,5 @@ M12   Hosted skills, multi-tenancy, security, deployment, and recovery
 
 ## 8. Continue the milestone sequence
 
-M00 through M02 are implemented locally. Continue with M03 only after reviewing
-the M02 exit-gate evidence and M03 security boundary.
+M00 through M03 are implemented locally. Continue with M04a only through its
+calibrated decision-gate prompt and stop before M04b unless the gate passes.

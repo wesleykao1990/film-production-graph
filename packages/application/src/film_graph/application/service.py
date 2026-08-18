@@ -287,7 +287,7 @@ class FilmGraphApplicationService:
 
     def create_run(self, command: CreateRunCommand) -> RunRecord:
         run = RunRecord(
-            id=uuid4(),
+            id=command.run_id or uuid4(),
             project_id=command.project_id,
             model_alias=command.model_alias,
             resolved_provider=command.resolved_provider,

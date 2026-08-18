@@ -23,9 +23,9 @@ make db-reset
 make check
 ```
 
-These commands validate the production M01 core, M02 repository skills, and the
-preserved prototype. See
-[`docs/M02_REPOSITORY_SKILLS.md`](docs/M02_REPOSITORY_SKILLS.md) for M02 behavior.
+These commands validate the production M01 core, M02 repository skills, M03 typed
+agent security boundary, and the preserved prototype. See
+[`docs/M03_AGENT_RUNTIME_SECURITY.md`](docs/M03_AGENT_RUNTIME_SECURITY.md).
 
 Run the prototype:
 
@@ -50,9 +50,9 @@ The prototype is an executable behavioral specification. It shows:
 - zero live model or media-provider calls.
 
 It deliberately uses SQLite, a deterministic mock agent, and a static UI. The
-production implementation includes the M00 foundation, M01 Postgres core, and M02
-reviewed-skill loading, exact bindings, reload, and provenance. It does not yet
-include the M03 agent runtime or a workflow engine.
+production implementation includes M00 through M03: the Postgres core, reviewed
+repository skills, and an offline typed agent runtime/security gate. It does not
+yet include the M04a Story Room gate or a workflow engine.
 
 ## Build order
 
@@ -70,9 +70,9 @@ Release D — evaluation and hosted-platform hardening
 M11 → M12
 ```
 
-M00 through M02 are implemented locally. M03 remains the next milestone.
+M00 through M03 are implemented locally. M04a remains the next gated milestone.
 
-## Production foundation through M02
+## Production foundation through M03
 
 The production code lives beside—never inside—the reference prototype. See
 [`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md) for the scaffold and local
@@ -80,6 +80,8 @@ Supabase setup, and [`docs/M01_CORE.md`](docs/M01_CORE.md) for the canonical
 artifact, lineage, impact, rights, and provenance behavior.
 Repository-skill behavior is documented in
 [`docs/M02_REPOSITORY_SKILLS.md`](docs/M02_REPOSITORY_SKILLS.md).
+The typed agent and injection boundary is documented in
+[`docs/M03_AGENT_RUNTIME_SECURITY.md`](docs/M03_AGENT_RUNTIME_SECURITY.md).
 
 ## Package map
 

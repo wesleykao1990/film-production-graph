@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "film-production-graph-dev"
 version = "0.0.0"
-description = "M01 artifact, lineage, impact, and rights development workspace"
+description = "Film Production Graph development workspace through M03"
 requires-python = ">=3.11"
 dependencies = [
   "film-graph-agent-runtime==0.1.0",

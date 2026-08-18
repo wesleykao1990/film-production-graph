@@ -45,7 +45,8 @@ def refresh_lock(repository: Path) -> None:
 
 
 def test_loads_valid_package_and_exact_lock() -> None:
-    snapshot = registry(ROOT).reload()
+    loader = registry(ROOT)
+    snapshot = loader.reload()
     skill = snapshot.get("subtext-pass")
 
     assert skill.locked_ref.source_commit == SOURCE_COMMIT
@@ -56,6 +57,11 @@ def test_loads_valid_package_and_exact_lock() -> None:
     assert skill.routing_report.negative_count == 3
     assert skill.routing_report.adjacent_negative_count == 2
     assert skill.contract_report.case_count == 3
+    assert "exposition" in loader.read_resource(
+        "subtext-pass", "references/method.md"
+    ).lower()
+    with pytest.raises(SkillSecurityError, match="not allowlisted"):
+        loader.read_resource("subtext-pass", "SKILL.md")
 
 
 def test_generate_lock_is_deterministic(tmp_path: Path) -> None:
@@ -84,6 +90,8 @@ def test_failed_reload_preserves_previous_snapshot_and_detects_reference_drift(
     assert loader.snapshot.get("subtext-pass").instructions == previous.get(
         "subtext-pass"
     ).instructions
+    with pytest.raises(SkillLockError, match="changed after"):
+        loader.read_resource("subtext-pass", "references/method.md")
 
 
 def test_explicit_reload_adopts_only_new_valid_locked_snapshot(tmp_path: Path) -> None:

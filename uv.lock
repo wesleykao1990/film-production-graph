@@ -114,13 +114,19 @@ version = "0.1.0"
 source = { editable = "packages/agent-runtime" }
 dependencies = [
     { name = "film-graph-contracts" },
+    { name = "film-graph-model-routing" },
     { name = "film-graph-provider-contracts" },
+    { name = "pydantic" },
+    { name = "pydantic-ai-slim" },
 ]
 
 [package.metadata]
 requires-dist = [
     { name = "film-graph-contracts", editable = "packages/contracts" },
+    { name = "film-graph-model-routing", editable = "packages/model-routing" },
     { name = "film-graph-provider-contracts", editable = "packages/provider-contracts" },
+    { name = "pydantic", specifier = ">=2,<3" },
+    { name = "pydantic-ai-slim", specifier = ">=1,<2" },
 ]
 
 [[package]]

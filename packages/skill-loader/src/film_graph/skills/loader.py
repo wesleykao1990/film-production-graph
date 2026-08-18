@@ -521,6 +521,40 @@ class SkillRegistry:
         self._snapshot = candidate
         return candidate
 
+    def read_resource(self, skill_name: str, resource_path: str) -> str:
+        """Read one allowlisted text resource from the exact active package."""
+
+        skill = self._snapshot.get(skill_name)
+        allowed = skill.manifest["resources"]["allow"]
+        if resource_path not in allowed:
+            raise SkillSecurityError(
+                f"resource is not allowlisted for skill {skill_name}: {resource_path}"
+            )
+        root = self.repository_root / skill.locked_ref.source_path
+        before = package_hash(root, enumerate_package(root, self.limits))
+        if before != skill.locked_ref.content_hash:
+            raise SkillLockError(f"skill {skill_name} changed after the active snapshot")
+        resource = _safe_relative_file(root, resource_path, label="skill resource")
+        try:
+            content = resource.read_text(encoding="utf-8")
+        except (OSError, UnicodeError) as exc:
+            raise SkillValidationError(
+                f"skill resource must be readable UTF-8 text: {resource_path}"
+            ) from exc
+        after = package_hash(root, enumerate_package(root, self.limits))
+        if after != before:
+            raise SkillLockError(f"skill {skill_name} changed while reading a resource")
+        return content
+
+    def read_all_resources(self, skill_name: str) -> Mapping[str, str]:
+        """Return the active package's declared resources without directory access."""
+
+        skill = self._snapshot.get(skill_name)
+        return {
+            str(path): self.read_resource(skill_name, str(path))
+            for path in skill.manifest["resources"]["allow"]
+        }
+
     def generate_lock(self, source_commit: str) -> dict[str, Any]:
         if not COMMIT_PATTERN.fullmatch(source_commit):
             raise SkillLockError("source_commit must be a lowercase Git SHA")
