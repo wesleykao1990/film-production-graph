@@ -24,3 +24,5 @@ fi
 
 supabase db reset --local --workdir infra
 supabase test db --workdir infra
+FPG_DATABASE_URL="${FPG_DATABASE_URL:-postgresql://postgres:postgres@127.0.0.1:55322/postgres}" \
+  uv run pytest tests/integration

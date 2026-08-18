@@ -3,18 +3,18 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "film-graph-application"
+name = "film-graph-persistence"
 version = "0.1.0"
-description = "Framework-independent application services for Film Production Graph"
+description = "Psycopg 3 Postgres persistence for Film Production Graph M01"
 requires-python = ">=3.11"
 dependencies = [
   "film-graph-domain==0.1.0",
-  "film-graph-contracts==0.1.0",
-  "film-graph-model-routing==0.1.0",
+  "film-graph-application==0.1.0",
+  "psycopg[binary]>=3.2,<4",
 ]
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-"film_graph.application" = ["py.typed"]
+"film_graph.persistence" = ["py.typed"]

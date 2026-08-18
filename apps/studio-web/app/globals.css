@@ -45,6 +45,21 @@ pre {
   margin-bottom: 2.25rem;
 }
 
+.snapshot-notice {
+  max-width: 48rem;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.72);
+  font-size: 0.9rem;
+}
+
+.snapshot-notice strong {
+  color: var(--ink);
+}
+
 .eyebrow {
   margin: 0 0 0.65rem;
   color: var(--accent);
@@ -82,6 +97,7 @@ h1 {
 }
 
 .panel {
+  margin-bottom: 1.25rem;
   padding: clamp(1.25rem, 4vw, 2.25rem);
   border: 1px solid var(--line);
   border-radius: 1.25rem;
@@ -97,6 +113,16 @@ h1 {
   margin-bottom: 2rem;
 }
 
+.section-intro {
+  max-width: 60rem;
+  margin: -0.75rem 0 1.5rem;
+  color: var(--muted);
+}
+
+.section-intro strong {
+  color: var(--ink);
+}
+
 h2 {
   margin-bottom: 0;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
@@ -105,7 +131,9 @@ h2 {
 }
 
 .status-badge {
+  display: inline-flex;
   flex: 0 0 auto;
+  align-items: center;
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   color: var(--success);
@@ -114,6 +142,34 @@ h2 {
   font-weight: 750;
   letter-spacing: 0.04em;
   text-transform: uppercase;
+}
+
+.status-locked {
+  color: #285c78;
+  background: #e4f0f5;
+}
+
+.status-ready,
+.status-reviewed_valid {
+  color: var(--success);
+  background: #e5f2ec;
+}
+
+.status-possibly_stale,
+.status-unresolved {
+  color: #72531c;
+  background: #f8efd8;
+}
+
+.status-rederive_requested,
+.status-blocked {
+  color: #8b3d2b;
+  background: var(--accent-soft);
+}
+
+.status-contradicted {
+  color: #8b2f42;
+  background: #f8e3e8;
 }
 
 .contract-list {
@@ -136,6 +192,274 @@ h2 {
 
 .contract-list dd {
   margin: 0;
+}
+
+.selected-chip {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 0.55rem;
+  color: var(--muted);
+  background: #f8fafb;
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 0.7rem;
+}
+
+.data-table {
+  width: 100%;
+  min-width: 42rem;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.87rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.data-table tr:last-child th,
+.data-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.data-table thead th {
+  color: var(--muted);
+  background: #f8fafb;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.data-table tbody th {
+  min-width: 10rem;
+  font-weight: 700;
+}
+
+.data-table .status-badge {
+  font-size: 0.67rem;
+  white-space: nowrap;
+}
+
+.hash {
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.authority-note {
+  margin: 1.25rem 0 0;
+  padding: 0.85rem 1rem;
+  border-left: 0.25rem solid var(--success);
+  color: var(--muted);
+  background: #edf7f2;
+  font-size: 0.9rem;
+}
+
+.authority-note strong {
+  color: var(--ink);
+}
+
+.lineage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.lineage-card {
+  padding: 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  background: #fbfcfc;
+}
+
+.lineage-card .eyebrow {
+  margin-bottom: 0.45rem;
+  font-size: 0.68rem;
+}
+
+.lineage-card h3 {
+  margin: 0 0 1rem;
+  font-size: 1.2rem;
+  letter-spacing: -0.025em;
+}
+
+.lineage-list {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lineage-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.lineage-node {
+  font-weight: 700;
+}
+
+.lineage-relation {
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
+}
+
+.empty-state {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.impact-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: -0.35rem 0 1rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.impact-key strong {
+  color: var(--ink);
+}
+
+.impact-table {
+  min-width: 52rem;
+}
+
+.impact-status-stack {
+  display: grid;
+  justify-items: start;
+  gap: 0.4rem;
+}
+
+.resolution-text {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.resolution-text strong {
+  color: var(--ink);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.impact-path {
+  display: block;
+  min-width: 12rem;
+  font-weight: 700;
+}
+
+.human-review-label {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.rights-card {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.75fr) minmax(18rem, 1.25fr);
+  gap: 1.25rem 2rem;
+  padding: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 0.8rem;
+  background: #fbfcfc;
+}
+
+.rights-card h3 {
+  margin: 0 0 0.3rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.03em;
+}
+
+.muted {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.rights-list {
+  margin: 0;
+}
+
+.rights-list > div {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 0.75rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.rights-list > div:last-child {
+  border-bottom: 0;
+}
+
+.rights-list dt {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.rights-list dd {
+  margin: 0;
+  font-size: 0.86rem;
+}
+
+.rights-list .status-badge {
+  font-size: 0.68rem;
+}
+
+.blocked-note {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 0.85rem 1rem;
+  border-left: 0.25rem solid var(--accent);
+  color: var(--muted);
+  background: var(--accent-soft);
+  font-size: 0.88rem;
+}
+
+.blocked-note strong {
+  color: var(--ink);
+}
+
+.health-panel {
+  margin-bottom: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 code {
@@ -192,6 +516,23 @@ pre {
 
   .contract-list dt {
     margin-bottom: 0.5rem;
+  }
+
+  .lineage-grid,
+  .rights-card {
+    grid-template-columns: 1fr;
+  }
+
+  .rights-list > div {
+    display: block;
+  }
+
+  .rights-list dt {
+    margin-bottom: 0.35rem;
+  }
+
+  .blocked-note {
+    grid-column: auto;
   }
 }
 

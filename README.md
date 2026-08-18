@@ -23,9 +23,9 @@ make db-reset
 make check
 ```
 
-These commands validate the production M00 foundation and the preserved reference
-prototype. See [`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md) for prerequisites
-and service details.
+These commands validate the production M01 artifact/lineage core and the preserved
+reference prototype. See [`docs/M01_CORE.md`](docs/M01_CORE.md) for the M01 behavior
+and [`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md) for prerequisites.
 
 Run the prototype:
 
@@ -49,7 +49,10 @@ The prototype is an executable behavioral specification. It shows:
 - a declarative workflow that pauses for human approval;
 - zero live model or media-provider calls.
 
-It deliberately uses SQLite, a deterministic mock agent, and a static UI. The production implementation still begins at M00 with Next.js, FastAPI, Supabase Postgres, committed contracts, fake providers, CI, and no premature workflow engine.
+It deliberately uses SQLite, a deterministic mock agent, and a static UI. The
+production implementation now includes the M00 foundation plus the M01 Postgres
+artifact, lineage, impact, rights, provider-policy, and provenance core. It does
+not yet include the M02 skill loader or a workflow engine.
 
 ## Build order
 
@@ -67,11 +70,15 @@ Release D — evaluation and hosted-platform hardening
 M11 → M12
 ```
 
-The first coding-agent run must implement **M00 only**, prove its exit gate, and stop.
+M00 and M01 are implemented locally. The next milestone is M02, which must be
+implemented and proven independently before work proceeds to M03.
 
-## M00 production foundation
+## Production foundation and M01 core
 
-The production scaffold now lives beside—never inside—the reference prototype. See [`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md) for prerequisites, one-command workflows, architecture boundaries, and local Supabase setup.
+The production code lives beside—never inside—the reference prototype. See
+[`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md) for the scaffold and local
+Supabase setup, and [`docs/M01_CORE.md`](docs/M01_CORE.md) for the canonical
+artifact, lineage, impact, rights, and provenance behavior.
 
 ## Package map
 
@@ -83,8 +90,8 @@ The production scaffold now lives beside—never inside—the reference prototyp
 ├── START_HERE.md
 ├── AGENTS.md
 ├── FINAL_REVIEW_STATUS.md
-├── apps/                      # M00 FastAPI and Next.js entry points
-├── packages/                  # M00 typed Python workspace packages
+├── apps/                      # FastAPI M01 API and Next.js review studio
+├── packages/                  # typed domain, application, and persistence packages
 ├── infra/supabase/            # local database config, migration, seed, and pgTAP
 ├── prototype/                 # runnable reference implementation
 ├── docs/                      # architecture and specialist specifications

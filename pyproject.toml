@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "film-production-graph-dev"
 version = "0.0.0"
-description = "M00 Foundation Lite development workspace"
+description = "M01 artifact, lineage, impact, and rights development workspace"
 requires-python = ">=3.11"
 dependencies = [
   "film-graph-agent-runtime==0.1.0",
@@ -16,6 +16,8 @@ dependencies = [
   "film-graph-media==0.1.0",
   "film-graph-model-routing==0.1.0",
   "film-graph-provider-contracts==0.1.0",
+  "film-graph-persistence==0.1.0",
+  "psycopg[binary]>=3.2,<4",
   "jsonschema>=4.23,<5",
   "pydantic-ai-slim>=1,<2",
   "PyYAML>=6,<7",
@@ -45,6 +47,7 @@ members = [
   "packages/provider-contracts",
   "packages/media",
   "packages/agent-runtime",
+  "packages/persistence",
 ]
 
 [tool.uv.sources]
@@ -56,6 +59,7 @@ film-graph-domain = { workspace = true }
 film-graph-media = { workspace = true }
 film-graph-model-routing = { workspace = true }
 film-graph-provider-contracts = { workspace = true }
+film-graph-persistence = { workspace = true }
 
 [tool.pytest.ini_options]
 testpaths = ["tests", "prototype/tests"]

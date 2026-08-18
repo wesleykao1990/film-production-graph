@@ -31,13 +31,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
       - uses: supabase/setup-cli@v1
         with:
           version: 2.114.0
+      - run: uv sync --all-packages --all-groups --locked
       - run: >-
           supabase start --workdir infra --exclude
           gotrue,realtime,storage-api,imgproxy,kong,mailpit,postgrest,postgres-meta,studio,edge-runtime,logflare,vector,supavisor
-      - run: supabase db reset --local --workdir infra
-      - run: supabase test db --workdir infra
+      - run: make db-reset
       - if: always()
         run: supabase stop --workdir infra --no-backup

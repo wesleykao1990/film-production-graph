@@ -27,8 +27,9 @@ make db-reset
 make check
 ```
 
-This verifies the M00 production scaffold and the preserved prototype. Prerequisites
-and the exact database-only Supabase boundary are documented in
+This verifies the M01 production core and the preserved prototype. M01 behavior is
+documented in [`docs/M01_CORE.md`](docs/M01_CORE.md); prerequisites and the exact
+database-only Supabase boundary remain in
 [`docs/M00_FOUNDATION.md`](docs/M00_FOUNDATION.md).
 
 The checked-in M04 analysis outputs are mechanical fixtures, not evidence that the product thesis has passed.
@@ -108,6 +109,8 @@ M11   Evaluation, observability, and regression gates
 M12   Hosted skills, multi-tenancy, security, deployment, and recovery
 ```
 
-## 8. Start the coding agent
+## 8. Continue the milestone sequence
 
-Give the agent [`INITIAL_PROMPT.md`](INITIAL_PROMPT.md). It must implement **M00 Foundation Lite only**, show the required commands and exit-gate evidence, then stop.
+M00 and M01 are implemented locally. For the next bounded coding run, use
+[`prompts/milestones/M02_REPOSITORY_SKILLS.md`](prompts/milestones/M02_REPOSITORY_SKILLS.md),
+show the M02 commands and exit-gate evidence, then stop before M03.

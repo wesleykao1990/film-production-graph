@@ -4,7 +4,8 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Film Production Graph Foundation Lite",
-  description: "The offline-safe M00 review studio for Film Production Graph.",
+  description:
+    "The offline-safe M01 canonical review studio for Film Production Graph.",
 };
 
 export default function RootLayout({
