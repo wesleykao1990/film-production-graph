@@ -10,7 +10,7 @@ conditions:
   prompt_path: baseline_fixed_budget.md
   budget_policy: fixed_before_final_generation_at_1_5x_projected_story_room_cap
 - id: story_room
-  prompt_path: ../../../docs/M4_EXPERIMENT_PROTOCOL.md
+  prompt_path: story_room_condition.md
   budget_policy: frozen_from_non_test_calibration
 calibration_brief: briefs/calibration.yaml
 primary_briefs:
@@ -78,6 +78,16 @@ budget_freeze:
   projected_story_room_cap_usd_per_sample: null
   fixed_budget_conventional_multiplier: 1.5
   provider_price_snapshot_ref: REPLACE_BEFORE_FREEZE
+  condition_budgets:
+    equal_information:
+      max_model_calls: null
+      max_cost_usd: null
+    fixed_budget_conventional:
+      max_model_calls: null
+      max_cost_usd: null
+    story_room:
+      max_model_calls: null
+      max_cost_usd: null
 operating_characteristics:
   required_before_freeze: true
   script_path: ../../../scripts/simulate_m4.py

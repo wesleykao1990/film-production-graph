@@ -87,6 +87,8 @@ The typed agent and injection boundary is documented in
 [`docs/M03_AGENT_RUNTIME_SECURITY.md`](docs/M03_AGENT_RUNTIME_SECURITY.md).
 The Story Room validator, blinding, and remaining human-gate boundary is documented
 in [`docs/M04A_ENGINEERING_CHECKPOINT.md`](docs/M04A_ENGINEERING_CHECKPOINT.md).
+The pre-credential protected workflow and human evidence packet are documented in
+[`docs/M04A_PROTECTED_EXPERIMENT_RUNBOOK.md`](docs/M04A_PROTECTED_EXPERIMENT_RUNBOOK.md).
 
 ## Package map
 

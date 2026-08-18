@@ -23,6 +23,21 @@ from .model_aliases import ApplicationModelResolver, resolve_model_alias
 from .ports import GraphRepository, MediaRunner, ModelRunner
 from .service import FilmGraphApplicationService
 from .story_room import SelectPremiseCandidateCommand, StoryRoomApplicationService
+from .story_room_experiment import (
+    CANONICAL_CONDITIONS,
+    ConditionBudget,
+    ExperimentBudget,
+    ExperimentFileRef,
+    ExperimentModelIdentity,
+    ExperimentPreflightError,
+    ExperimentPreflightReport,
+    ExperimentRequestDescriptor,
+    ExperimentRequestPlan,
+    ProvenanceDestination,
+    compile_request_plan,
+    preflight_experiment,
+    verify_file_ref,
+)
 from .story_room_gate import (
     AnchorTaskRecord,
     GateSampleRecord,
@@ -63,4 +78,17 @@ __all__ = [
     "GateSampleRecord",
     "build_rater_projection",
     "build_run_manifest",
+    "CANONICAL_CONDITIONS",
+    "ConditionBudget",
+    "ExperimentBudget",
+    "ExperimentFileRef",
+    "ExperimentModelIdentity",
+    "ExperimentPreflightError",
+    "ExperimentPreflightReport",
+    "ExperimentRequestDescriptor",
+    "ExperimentRequestPlan",
+    "ProvenanceDestination",
+    "compile_request_plan",
+    "preflight_experiment",
+    "verify_file_ref",
 ]

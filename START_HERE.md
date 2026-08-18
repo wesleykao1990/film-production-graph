@@ -115,3 +115,9 @@ M00 through M03 and the offline M04a engineering checkpoint are implemented loca
 Continue M04a with calibration, non-builder pilot ratings, named operating-characteristic
 review, frozen generation, and protected human ratings. Stop before M04b unless the
 recorded M04a decision is `PASS`.
+
+Before a model credential is supplied, use
+[`docs/M04A_PROTECTED_EXPERIMENT_RUNBOOK.md`](docs/M04A_PROTECTED_EXPERIMENT_RUNBOOK.md)
+and the offline `scripts/prepare_m4.py` compiler to verify the request matrix, hashes,
+model declaration, and budgets. These checks make no provider calls and are not
+creative-quality evidence.

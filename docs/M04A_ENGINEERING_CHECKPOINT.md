@@ -23,10 +23,19 @@ product decision.
 - an offline Story Room review route showing candidate review, artifact status,
   matched comparisons, forced-choice instrument tasks, technical-problem handling,
   workload metadata, and preference withholding after instrument failure.
+- a provider-neutral protected-generation preflight that binds the supplied protocol
+  mapping to its pinned YAML bytes, verifies stage-appropriate hashes and budgets,
+  compiles exactly three calibration or 27 primary request descriptors, keeps
+  ordinary dry-runs credential-free, and makes no provider call.
+- draft calibration, two-rater pilot, operating-characteristic review, and operator
+  runbook artifacts that remain visibly incomplete until protected humans fill them.
 
 The analyzer, simulator, shared rule module, protocol schemas, assignments, anchors,
 and mechanical examples remain the authoritative evaluation implementation. This
 checkpoint does not duplicate their decision rules.
+
+The pre-key operating sequence is documented in
+[`M04A_PROTECTED_EXPERIMENT_RUNBOOK.md`](M04A_PROTECTED_EXPERIMENT_RUNBOOK.md).
 
 ## Required before M04a can close
 

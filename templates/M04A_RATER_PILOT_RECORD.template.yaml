@@ -1,0 +1,141 @@
+# M04a deliberately varied two-rater pilot template.
+# This is a draft form, not a completed pilot or instrument validation claim.
+# At protected execution, supply any authorized provider secret only through
+# the named environment variable M04A_PROVIDER_SECRET; never record its value.
+# Do not place rater contact details, source IDs, control truth, or condition
+# mappings in this file.
+
+status: draft
+record_type: M04A_RATER_PILOT_RECORD
+template_version: REPLACE_BEFORE_EXECUTION
+
+pilot:
+  brief_ref: null
+  sample_set_ref: null
+  brief_content_hash: null
+  sample_content_hashes: []
+  deliberately_varied_quality_range: null
+  quality_range_design_ref: null
+  guide_version_ref: null
+  started_at: null
+  completed_at: null
+  execution_status: draft
+  primary_round_started_before_completion: null
+
+raters:
+  minimum_required: 2
+  records:
+    - role: non_builder_rater
+      rater_ref: null
+      qualification_evidence_ref: null
+      language_fluency_evidence_ref: null
+      implementation_conflict_declared: null
+      sample_authorship_conflict_declared: null
+      prior_primary_output_access_declared: null
+      prior_control_truth_access_declared: null
+      completed: null
+      withdrawal_or_exclusion_reason: null
+      dimension_orientation:
+        specificity:
+          intended_direction_identified: null
+          explanation_evidence_ref: null
+          ambiguity_notes_ref: null
+        character_voice:
+          intended_direction_identified: null
+          explanation_evidence_ref: null
+          ambiguity_notes_ref: null
+        causal_progression:
+          intended_direction_identified: null
+          explanation_evidence_ref: null
+          ambiguity_notes_ref: null
+      task_timing:
+        scored_task_count: null
+        forced_choice_task_count: null
+        elapsed_seconds: null
+        timing_evidence_ref: null
+      accessibility_or_technical_issues: []
+      comments_evidence_ref: null
+
+    - role: non_builder_rater
+      rater_ref: null
+      qualification_evidence_ref: null
+      language_fluency_evidence_ref: null
+      implementation_conflict_declared: null
+      sample_authorship_conflict_declared: null
+      prior_primary_output_access_declared: null
+      prior_control_truth_access_declared: null
+      completed: null
+      withdrawal_or_exclusion_reason: null
+      dimension_orientation:
+        specificity:
+          intended_direction_identified: null
+          explanation_evidence_ref: null
+          ambiguity_notes_ref: null
+        character_voice:
+          intended_direction_identified: null
+          explanation_evidence_ref: null
+          ambiguity_notes_ref: null
+        causal_progression:
+          intended_direction_identified: null
+          explanation_evidence_ref: null
+          ambiguity_notes_ref: null
+      task_timing:
+        scored_task_count: null
+        forced_choice_task_count: null
+        elapsed_seconds: null
+        timing_evidence_ref: null
+      accessibility_or_technical_issues: []
+      comments_evidence_ref: null
+
+instrument:
+  primary_dimensions:
+    - specificity
+    - character_voice
+    - causal_progression
+  forced_choice_response_mode: null
+  substantive_tie_option_available: null
+  technical_issue_policy: abort_replace_not_score
+  task_display_format_ref: null
+  neutral_context_ref: null
+  guide_direction_check: null
+  ambiguous_content_count: null
+  missing_or_unreadable_content_count: null
+  replacement_task_count: null
+  orientation_decision: null
+  orientation_decision_evidence_ref: null
+
+timing:
+  target_minutes_per_rater_max: 45
+  anchors_or_forced_choice_tasks_included: null
+  all_instrument_tasks_completed: null
+  median_elapsed_seconds: null
+  maximum_elapsed_seconds: null
+  workload_within_limit: null
+  fallback_recommendation: null
+
+evidence:
+  raw_response_records: []
+  timing_records: []
+  guide_feedback_records: []
+  accessibility_records: []
+  qualification_records: []
+  command_log_ref: null
+  artifact_manifest_ref: null
+
+attestations:
+  at_least_two_non_builder_raters_participated: null
+  quality_range_was_deliberately_varied: null
+  intended_direction_was_checked_for_each_primary_dimension: null
+  no_pilot_response_was_pooled_with_primary_round: null
+  no_primary_condition_outputs_were_exposed: null
+  no_control_truth_was_exposed: null
+  no_unblinding_information_was_exposed: null
+  no_credential_value_recorded: null
+
+handoff:
+  guide_revision_required_before_freeze: null
+  assignment_mode_recommendation: null
+  protocol_update_recommendations_ref: null
+  freeze_readiness: null
+  blockers: []
+  operator_notes: null

@@ -169,6 +169,7 @@ dependencies = [
     { name = "film-graph-contracts" },
     { name = "film-graph-domain" },
     { name = "film-graph-model-routing" },
+    { name = "pyyaml" },
 ]
 
 [package.metadata]
@@ -176,6 +177,7 @@ requires-dist = [
     { name = "film-graph-contracts", editable = "packages/contracts" },
     { name = "film-graph-domain", editable = "packages/domain" },
     { name = "film-graph-model-routing", editable = "packages/model-routing" },
+    { name = "pyyaml", specifier = ">=6,<7" },
 ]
 
 [[package]]

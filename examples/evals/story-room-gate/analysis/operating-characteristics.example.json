@@ -13,7 +13,7 @@
     "run_sd_logit": 0.15,
     "tie_rate": 0.15
   },
-  "protocol_hash": "sha256:40e008ad9b700fcb1aa9ce7fbedfa5274012b7f7015ca6f184bd24c9c0c0d0d1",
+  "protocol_hash": "sha256:732a776eedbbc6fd8ef0f068c9ed45816563731804f0b2e9f47d150e7de8077c",
   "review": {
     "rationale": "Illustrative package fixture only; replace assumptions with calibration-observed values, keep reliability_mode=simulate, and record a human review before freeze.",
     "reviewed_at": null,

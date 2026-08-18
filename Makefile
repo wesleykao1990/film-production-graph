@@ -1,7 +1,7 @@
 SHELL := /bin/sh
 .DEFAULT_GOAL := help
 
-.PHONY: help bootstrap dev db-reset lint typecheck test check
+.PHONY: help bootstrap dev db-reset lint typecheck test check m04a-prekey-check
 
 help:
 	@printf '%s\n' \
@@ -11,6 +11,7 @@ help:
 	  'make lint       Run Python and TypeScript lint checks' \
 	  'make typecheck  Run Python and TypeScript type checks' \
 	  'make test       Run package, prototype, API, domain, studio, and build checks' \
+	  'make m04a-prekey-check  Run the offline protected-experiment checks' \
 	  'make check      Run lint, typecheck, and test'
 
 bootstrap:
@@ -52,3 +53,18 @@ test:
 	npm run build
 
 check: lint typecheck test
+
+m04a-prekey-check:
+	uv run pytest tests/python/test_m04_story_room_experiment.py -q
+	uv run python -m unittest scripts/tests/test_prepare_m4.py -v
+	uv run python scripts/prepare_m4.py \
+	  --phase calibration \
+	  --model-alias pre-key-placeholder \
+	  --provider provider-not-yet-selected \
+	  --model model-not-yet-selected \
+	  --equal-information-max-calls 1 \
+	  --equal-information-max-cost-usd 1 \
+	  --fixed-budget-conventional-max-calls 2 \
+	  --fixed-budget-conventional-max-cost-usd 1.5 \
+	  --story-room-max-calls 3 \
+	  --story-room-max-cost-usd 1

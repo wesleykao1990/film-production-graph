@@ -6,6 +6,7 @@ These scripts make the review-critical parts executable without creating an appl
 - `m4_rules.py` contains the pure frozen M04 preference and positive-control rules. It performs no file I/O.
 - `analyze_m4.py` validates scored and anchor coverage, checks the blinded positive control before exposing preferences, unblinds pairwise ratings, calculates preferences, non-gating agreement diagnostics, continuity, cost/latency, and the frozen heuristic decision.
 - `simulate_m4.py` imports the same rule functions and estimates PASS/MIXED/FAIL/INCONCLUSIVE behavior—including the anchor control and five-run MIXED repeat—before protocol freeze.
+- `prepare_m4.py` verifies hash-pinned M04a inputs and compiles the three calibration or 27 primary request descriptors. Its default dry-run does not read a credential or call a provider; `execute_preflight` checks frozen controls and credential presence but still makes zero provider calls.
 
 ## Schema registry requirement
 
@@ -57,6 +58,18 @@ python scripts/simulate_m4.py \
   --reliability-mode simulate \
   --output /tmp/m4-operating-characteristics.json
 
+python scripts/prepare_m4.py \
+  --phase calibration \
+  --model-alias REPLACE_BEFORE_CALIBRATION \
+  --provider REPLACE_BEFORE_CALIBRATION \
+  --model REPLACE_BEFORE_CALIBRATION \
+  --equal-information-max-calls 1 \
+  --equal-information-max-cost-usd REPLACE_BEFORE_CALIBRATION \
+  --fixed-budget-conventional-max-calls REPLACE_BEFORE_CALIBRATION \
+  --fixed-budget-conventional-max-cost-usd REPLACE_BEFORE_CALIBRATION \
+  --story-room-max-calls REPLACE_BEFORE_CALIBRATION \
+  --story-room-max-cost-usd REPLACE_BEFORE_CALIBRATION
+
 python -m unittest discover -s scripts/tests -v
 
 cd prototype
@@ -65,3 +78,5 @@ python -m app.cli smoke
 ```
 
 The checked-in simulation and analysis outputs are mechanical fixtures. They do not claim inferential significance or prove creative efficacy. Before a real M04 freeze, replace simulation assumptions with calibration-informed central and sensitivity values, confirm that `INCONCLUSIVE` is neither assumed away nor forced, and record a named human review and rationale.
+
+The preparation command is also non-evidence. A successful dry-run proves only that the declared files, hashes, model identity, budgets, and request matrix are internally coherent. It does not generate text, freeze the protocol, validate a credential, or authorize primary execution.

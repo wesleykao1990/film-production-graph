@@ -1,0 +1,135 @@
+# M04a non-test calibration record template.
+# This file is a draft form, not evidence that calibration occurred.
+# At protected execution, supply any authorized provider secret only through
+# the named environment variable M04A_PROVIDER_SECRET; never record its value.
+# Keep reserve-brief contents outside this record.
+
+status: draft
+record_type: M04A_CALIBRATION_RECORD
+template_version: REPLACE_BEFORE_EXECUTION
+
+operator:
+  role: REPLACE_BEFORE_EXECUTION
+  identity_ref: null
+  separation_of_duties_attested: null
+  protected_packet_ref: null
+
+calibration:
+  brief_ref: null
+  brief_content_hash: null
+  brief_kind: non_test_calibration
+  rights_or_synthetic_evidence_ref: null
+  started_at: null
+  completed_at: null
+  execution_status: draft
+  primary_generation_started_before_completion: null
+
+# These are protocol condition labels only. Do not add source IDs, mappings,
+# expected responses, or reserve contents to this operator-facing form.
+conditions:
+  - id: equal_information
+    prompt_ref: null
+    skill_lock_ref: null
+    model_alias_ref: null
+    resolved_model_record_ref: null
+    input_snapshot_ref: null
+    output_refs: []
+    output_content_hashes: []
+    technical_validity: null
+    invalid_reason: null
+    elapsed_seconds: null
+    usage_evidence_ref: null
+    cost_evidence_ref: null
+    latency_evidence_ref: null
+    retry_evidence_ref: null
+    unresolved_metadata: []
+
+  - id: fixed_budget_conventional
+    prompt_ref: null
+    skill_lock_ref: null
+    model_alias_ref: null
+    resolved_model_record_ref: null
+    input_snapshot_ref: null
+    output_refs: []
+    output_content_hashes: []
+    technical_validity: null
+    invalid_reason: null
+    elapsed_seconds: null
+    usage_evidence_ref: null
+    cost_evidence_ref: null
+    latency_evidence_ref: null
+    retry_evidence_ref: null
+    unresolved_metadata: []
+
+  - id: story_room
+    prompt_ref: null
+    skill_lock_ref: null
+    model_alias_ref: null
+    resolved_model_record_ref: null
+    input_snapshot_ref: null
+    output_refs: []
+    output_content_hashes: []
+    technical_validity: null
+    invalid_reason: null
+    elapsed_seconds: null
+    usage_evidence_ref: null
+    cost_evidence_ref: null
+    latency_evidence_ref: null
+    retry_evidence_ref: null
+    unresolved_metadata: []
+
+budget_projection:
+  projected_story_room_cap_usd_per_sample: null
+  fixed_budget_conventional_multiplier: 1.5
+  fixed_budget_conventional_cap_usd_per_sample: null
+  cap_method_ref: null
+  price_snapshot_ref: null
+  contingency_method_ref: null
+  projection_notes: null
+  condition_budgets:
+    equal_information:
+      max_model_calls: null
+      max_cost_usd: null
+    fixed_budget_conventional:
+      max_model_calls: null
+      max_cost_usd: null
+    story_room:
+      max_model_calls: null
+      max_cost_usd: null
+
+operating_observations:
+  quality_range_design_ref: null
+  observed_specificity_notes_ref: null
+  observed_character_voice_notes_ref: null
+  observed_causal_progression_notes_ref: null
+  timing_summary_ref: null
+  likely_rater_heterogeneity_ref: null
+  likely_brief_heterogeneity_ref: null
+  calibration_limits: []
+
+evidence:
+  input_records: []
+  output_records: []
+  validator_records: []
+  usage_and_cost_records: []
+  timing_records: []
+  rights_and_provenance_records: []
+  command_log_ref: null
+  artifact_manifest_ref: null
+
+attestations:
+  calibration_is_non_test: null
+  no_primary_output_was_selected: null
+  all_condition_outputs_preserved: null
+  no_reserve_contents_accessed: null
+  no_rater_saw_primary_outputs: null
+  no_condition_truth_entered_rater_packet: null
+  no_credential_value_recorded: null
+  unresolved_items_reviewed_by_protocol_custodian: null
+
+handoff:
+  pilot_record_ref: null
+  protocol_update_recommendations_ref: null
+  freeze_readiness: null
+  blockers: []
+  operator_notes: null

@@ -245,7 +245,8 @@
         "calibration_required",
         "projected_story_room_cap_usd_per_sample",
         "fixed_budget_conventional_multiplier",
-        "provider_price_snapshot_ref"
+        "provider_price_snapshot_ref",
+        "condition_budgets"
       ],
       "properties": {
         "calibration_required": {
@@ -260,10 +261,30 @@
         },
         "fixed_budget_conventional_multiplier": {
           "type": "number",
-          "minimum": 1
+          "const": 1.5
         },
         "provider_price_snapshot_ref": {
           "type": "string"
+        },
+        "condition_budgets": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "equal_information",
+            "fixed_budget_conventional",
+            "story_room"
+          ],
+          "properties": {
+            "equal_information": {
+              "$ref": "#/$defs/conditionBudget"
+            },
+            "fixed_budget_conventional": {
+              "$ref": "#/$defs/conditionBudget"
+            },
+            "story_room": {
+              "$ref": "#/$defs/conditionBudget"
+            }
+          }
         }
       }
     },
@@ -661,6 +682,43 @@
     }
   },
   "$defs": {
+    "conditionBudget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "max_model_calls",
+        "max_cost_usd"
+      ],
+      "properties": {
+        "max_model_calls": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "max_cost_usd": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "frozenConditionBudget": {
+      "type": "object",
+      "properties": {
+        "max_model_calls": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_cost_usd": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
     "thresholdSet": {
       "type": "object",
       "additionalProperties": false,
@@ -714,6 +772,19 @@
               "projected_story_room_cap_usd_per_sample": {
                 "type": "number",
                 "exclusiveMinimum": 0
+              },
+              "condition_budgets": {
+                "properties": {
+                  "equal_information": {
+                    "$ref": "#/$defs/frozenConditionBudget"
+                  },
+                  "fixed_budget_conventional": {
+                    "$ref": "#/$defs/frozenConditionBudget"
+                  },
+                  "story_room": {
+                    "$ref": "#/$defs/frozenConditionBudget"
+                  }
+                }
               }
             }
           },
